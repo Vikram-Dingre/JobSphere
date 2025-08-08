@@ -19,13 +19,13 @@
             android:name=".Recruiter.Activities.RecruiterHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".CommonActivities.RegisterActivity"
+            android:name=".Common.Activities.CommonRegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".CommonActivities.LoginActivity"
+            android:name=".Common.Activities.CommonLoginActivity"
             android:exported="false" />
         <activity
-            android:name=".CommonActivities.SplashActivity"
+            android:name=".Common.Activities.CommonSplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.sphere.jobsphere.CommonActivities;
+package com.sphere.jobsphere.Common.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,20 +9,20 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import com.sphere.jobsphere.R;
 
-public class RegisterActivity extends AppCompatActivity {
+public class CommonRegisterActivity extends AppCompatActivity {
 
     AppCompatButton acbRegisterLogin, acbRegisterSignUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_common_register);
 
         acbRegisterLogin = findViewById(R.id.acbRegisterLogin);
         acbRegisterSignUp = findViewById(R.id.acbRegisterSignUp);
 
         acbRegisterLogin.setOnClickListener(v->{
-            startActivity(new Intent(this, LoginActivity.class));
+            startActivity(new Intent(this, CommonLoginActivity.class));
         });
 
         acbRegisterSignUp.setOnClickListener(v->{

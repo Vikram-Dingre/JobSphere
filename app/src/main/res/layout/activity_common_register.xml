@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_splash_bg"
-    tools:context=".CommonActivities.LoginActivity">
+    tools:context=".Common.Activities.CommonRegisterActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -41,7 +41,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:fontFamily="@font/carter_one"
-        android:text="Login Account"
+        android:text="Create Account"
         android:textColor="@color/dadada"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
+        android:layout_marginHorizontal="30dp"
         android:layout_marginTop="32dp"
         app:cardBackgroundColor="@color/dadada"
         app:cardCornerRadius="10dp"
@@ -70,7 +70,28 @@
             android:orientation="vertical">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilLoginEmail"
+                android:id="@+id/tilRegisterName"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginVertical="5dp"
+                android:hint="Your Name"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#6200EE"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tieRegisterName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilRegisterEmail"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -84,14 +105,14 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tieLoginEmail"
+                    android:id="@+id/tieRegisterEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/tilLoginPhone"
+                android:id="@+id/tilRegisterPassword"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -105,33 +126,35 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/tieLoginPhone"
+                    android:id="@+id/tieRegisterPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
 
+
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/acbLoginLogin"
+                android:id="@+id/acbRegisterSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginVertical="12dp"
                 android:background="@drawable/button_shape_with_bg_gradient"
-                android:text="Login"
+                android:text="Sign-Up"
                 android:textColor="@color/white" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/acbLoginSignUp"
+                android:id="@+id/acbRegisterLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="12dp"
                 android:background="@drawable/button_shape_borders_only"
-                android:text="Sign-Up"
+                android:text="Login"
                 android:textAllCaps="true"
                 android:textColor="@color/primary" />
         </LinearLayout>
+
 
     </androidx.cardview.widget.CardView>
 
