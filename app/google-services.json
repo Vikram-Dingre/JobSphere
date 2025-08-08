@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1000335506160",
+    "project_id": "jobsphere-5e682",
+    "storage_bucket": "jobsphere-5e682.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000335506160:android:a8044ed715697529eee035",
+        "android_client_info": {
+          "package_name": "com.sphere.jobsphere"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJcKKO2bI4vRJQwwfg1oUTF53HIZ47xSU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
