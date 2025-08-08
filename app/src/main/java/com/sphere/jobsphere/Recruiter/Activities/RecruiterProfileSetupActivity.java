@@ -1,8 +1,6 @@
-package com.sphere.jobsphere.Activities;
+package com.sphere.jobsphere.Recruiter.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,16 +10,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.sphere.jobsphere.R;
 
-public class SplashActivity extends AppCompatActivity {
+public class RecruiterProfileSetupActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_splash);
-        new Handler().postDelayed(()->{
-            startActivity(new Intent(this,LoginActivity.class));
-            finish();
-        },2000);
+        setContentView(R.layout.activity_recruiter_profile_setup);
+
     }
 }
+

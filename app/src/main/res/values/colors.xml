@@ -5,4 +5,7 @@
     <color name="dadada">#dadada</color>
     <color name="transparent">#00ffffff</color>
     <color name="primary">#6A1B9A</color>
+    <color name="textSecondary">#A09D9D</color>
+    <color name="cardCheckedColor">#E7E1F3</color>
+    <color name="cardUncheckedColor">#FAF8F8</color>
 </resources>
