@@ -2,20 +2,16 @@ package com.sphere.jobsphere.Candidate.Activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
+import com.sphere.jobsphere.Candidate.Classes.CandidateProfileSetupData;
+import com.sphere.jobsphere.Candidate.Fragments.CandidateProfileSetupStep1Fragment;
 import com.sphere.jobsphere.R;
 
 public class CandidateProfileSetupActivity extends AppCompatActivity {
-AppCompatButton btn;
 
+    public CandidateProfileSetupData candidateProfileSetupData = new CandidateProfileSetupData();
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
@@ -24,16 +20,25 @@ AppCompatButton btn;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_profile_setup);
 
-        pref = getSharedPreferences("settings", MODE_PRIVATE);
-       editor = pref.edit();
-        
-        btn = findViewById(R.id.btn);
-        
-        btn.setOnClickListener(v -> {
-            editor.putBoolean("isProfileSetupCompleted",true).apply();
-            Toast.makeText(this, "Profile Setup Completed Successfully.", Toast.LENGTH_SHORT).show();
-        });
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateProfileSetupFrameContainer, new CandidateProfileSetupStep1Fragment()).commit();
 
     }
 }
+//ProfileSetupActivity (Single Activity)
+//    ├── Step1PersonalInfoFragment
+//    ├── Step2EducationFragment
+//    ├── Step3ExperienceFragment
+//    ├── Step4SkillsFragment
+//    ├── Step5ResumeUploadFragment
 
+
+//        pref = getSharedPreferences("settings", MODE_PRIVATE);
+//       editor = pref.edit();
+//
+//        btn = findViewById(R.id.btn);
+//
+//        btn.setOnClickListener(v -> {
+//            editor.putBoolean("isProfileSetupCompleted",true).apply();
+//            Toast.makeText(this, "Profile Setup Completed Successfully.", Toast.LENGTH_SHORT).show();
+//        });
