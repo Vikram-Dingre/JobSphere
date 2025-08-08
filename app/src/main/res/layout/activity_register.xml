@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient_splash_bg"
-    tools:context=".Activities.RegisterActivity">
+    tools:context=".CommonActivities.RegisterActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
