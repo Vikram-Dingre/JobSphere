@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.sphere.jobsphere" />
+                  <option name="mobileSdkAppId" value="1:1000335506160:android:a8044ed715697529eee035" />
+                  <option name="projectId" value="jobsphere-5e682" />
+                  <option name="projectNumber" value="1000335506160" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
