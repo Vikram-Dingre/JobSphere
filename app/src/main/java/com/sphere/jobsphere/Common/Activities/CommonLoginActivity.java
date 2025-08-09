@@ -20,24 +20,17 @@ import com.sphere.jobsphere.Recruiter.Activities.RecruiterHomeActivity;
 import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileSetupActivity;
 
 public class CommonLoginActivity extends AppCompatActivity {
-
     AppCompatButton acbLoginLogin, acbLoginSignUp;
     TextInputEditText tieLoginEmail, tieLoginPassword;
-
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     SharedPreferences pref;
     SharedPreferences.Editor editor;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common_login);
-
-        pref = getSharedPreferences("settings", MODE_PRIVATE);
         editor = pref.edit();
-
         acbLoginLogin = findViewById(R.id.acbLoginLogin);
         acbLoginSignUp = findViewById(R.id.acbLoginSignUp);
         tieLoginEmail = findViewById(R.id.tieLoginEmail);

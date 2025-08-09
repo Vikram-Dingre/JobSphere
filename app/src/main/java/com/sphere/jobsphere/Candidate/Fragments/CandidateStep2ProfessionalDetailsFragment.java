@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
 import com.sphere.jobsphere.Candidate.Models.CandiateProfessionalDetails;
 import com.sphere.jobsphere.R;
@@ -20,10 +21,7 @@ import java.util.Arrays;
 
 public class CandidateStep2ProfessionalDetailsFragment extends Fragment {
     AppCompatButton acbCandidateProfileSetupStep2Next;
-    EditText etCandidateProfileSetupStep2Email;
-
-    EditText etTitle, etCompany, etExperience, etIndustry, etDepartment, etSkills, etSalary;
-    Button btnNext;
+    TextInputEditText tieCandidateProfileSetupStep2JobTitle,tieCandidateProfileSetupStep2CurrentCompany,tieCandidateProfileSetupStep2Experience,tieCandidateProfileSetupStep2Skills,tieCandidateProfileSetupStep2ExpectedSalary;
     CandidateProfileSetupActivity activity;
 
     @Override
@@ -35,24 +33,20 @@ public class CandidateStep2ProfessionalDetailsFragment extends Fragment {
         ProgressBar progressBar = activity.findViewById(R.id.stepProgressBar);
         progressBar.setProgress(50);
 
-        etTitle = view.findViewById(R.id.etTitle);
-        etCompany = view.findViewById(R.id.etCompany);
-        etExperience = view.findViewById(R.id.etExperience);
-        etIndustry = view.findViewById(R.id.etIndustry);
-        etDepartment = view.findViewById(R.id.etDepartment);
-        etSkills = view.findViewById(R.id.etSkills);
-        etSalary = view.findViewById(R.id.etSalary);
-        btnNext = view.findViewById(R.id.btnNext);
+        tieCandidateProfileSetupStep2JobTitle = view.findViewById(R.id.tieCandidateProfileSetupStep2JobTitle);
+        tieCandidateProfileSetupStep2CurrentCompany = view.findViewById(R.id.tieCandidateProfileSetupStep2CurrentCompany);
+        tieCandidateProfileSetupStep2Experience = view.findViewById(R.id.tieCandidateProfileSetupStep2Experience);
+        tieCandidateProfileSetupStep2Skills = view.findViewById(R.id.tieCandidateProfileSetupStep2Skills);
+        tieCandidateProfileSetupStep2ExpectedSalary = view.findViewById(R.id.tieCandidateProfileSetupStep2ExpectedSalary);
+        acbCandidateProfileSetupStep2Next = view.findViewById(R.id.acbCandidateProfileSetupStep2Next);
 
-        btnNext.setOnClickListener(v -> {
+        acbCandidateProfileSetupStep2Next.setOnClickListener(v -> {
             CandiateProfessionalDetails pd = new CandiateProfessionalDetails();
-            pd.setJobTitle(etTitle.getText().toString());
-            pd.setCurrentCompany(etCompany.getText().toString());
-            pd.setExperience(etExperience.getText().toString());
-            pd.setIndustry(etIndustry.getText().toString());
-            pd.setDepartment(etDepartment.getText().toString());
-            pd.setSkills(Arrays.asList(etSkills.getText().toString().split(",")));
-            pd.setExpectedSalary(Double.parseDouble(etSalary.getText().toString()));
+            pd.setJobTitle(tieCandidateProfileSetupStep2JobTitle.getText().toString());
+            pd.setCurrentCompany(tieCandidateProfileSetupStep2CurrentCompany.getText().toString());
+            pd.setExperience(tieCandidateProfileSetupStep2Experience.getText().toString());
+            pd.setIndustry(tieCandidateProfileSetupStep2Skills.getText().toString());
+            pd.setDepartment(tieCandidateProfileSetupStep2ExpectedSalary.getText().toString());
 
             activity.candidateProfile.setProfessionalDetails(pd);
 
