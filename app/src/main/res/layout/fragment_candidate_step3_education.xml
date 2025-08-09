@@ -1,0 +1,18 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText android:id="@+id/etQualification" android:hint="Highest Qualification" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etSpecialization" android:hint="Specialization" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etUniversity" android:hint="University" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etYear" android:hint="Graduation Year" android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <Button android:id="@+id/btnNext" android:text="Next" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</ScrollView>

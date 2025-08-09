@@ -1,0 +1,21 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText android:id="@+id/etTitle" android:hint="Job Title" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etCompany" android:hint="Current Company" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etExperience" android:hint="Experience (e.g., 1-3 years)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etIndustry" android:hint="Industry" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etDepartment" android:hint="Department" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etSkills" android:hint="Skills (comma separated)" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etSalary" android:hint="Expected Salary" android:inputType="number" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <Button android:id="@+id/btnNext" android:text="Next" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</ScrollView>
