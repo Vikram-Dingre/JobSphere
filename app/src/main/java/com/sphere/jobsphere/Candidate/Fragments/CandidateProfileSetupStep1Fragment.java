@@ -10,23 +10,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
 import com.sphere.jobsphere.R;
 
 public class CandidateProfileSetupStep1Fragment extends Fragment {
 
     AppCompatButton acbCandidateProfileSetupStep1Next;
-    EditText etCandidateProfileSetupStep1Name;
+    TextInputEditText tieCandidateProfileSetupStep1Name;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_profile_setup_step1, container, false);
 
         acbCandidateProfileSetupStep1Next = view.findViewById(R.id.acbCandidateProfileSetupStep1Next);
-        etCandidateProfileSetupStep1Name = view.findViewById(R.id.etCandidateProfileSetupStep1Name);
+        tieCandidateProfileSetupStep1Name = view.findViewById(R.id.tieCandidateProfileSetupStep1Name);
 
         acbCandidateProfileSetupStep1Next.setOnClickListener(v -> {
-            String name = etCandidateProfileSetupStep1Name.getText().toString();
+            String name = tieCandidateProfileSetupStep1Name.getText().toString();
             CandidateProfileSetupActivity activity = (CandidateProfileSetupActivity) getActivity();
             activity.candidateProfileSetupData.fullName = name;
 
