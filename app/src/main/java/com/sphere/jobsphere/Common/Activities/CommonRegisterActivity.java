@@ -13,7 +13,6 @@ import androidx.core.content.ContextCompat;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.R;
 
 import java.util.HashMap;
@@ -78,10 +77,9 @@ public class CommonRegisterActivity extends AppCompatActivity {
                                         finish();
                                     }, 1000);
                                 })
-                                .addOnFailureListener(e->{
+                                .addOnFailureListener(e -> {
                                     Toast.makeText(this, "Failure : Creating Account.", Toast.LENGTH_SHORT).show();
                                 });
-                        
                     } else {
                         Toast.makeText(this, "Error : Can't Create Account", Toast.LENGTH_SHORT).show();
                     }
@@ -89,7 +87,6 @@ public class CommonRegisterActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "Invalid Credentials.", Toast.LENGTH_SHORT).show();
             }
-
         });
 
         cvRegisterRecruiter.setOnClickListener(v -> {
