@@ -1,0 +1,21 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText android:id="@+id/etResume" android:hint="Resume URL" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etPortfolio" android:hint="Portfolio URL" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etLinkedIn" android:hint="LinkedIn URL" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etGithub" android:hint="GitHub URL" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etNotice" android:hint="Notice Period" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etWorkAuth" android:hint="Work Authorization" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <EditText android:id="@+id/etCareer" android:hint="Career Objective" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+        <Button android:id="@+id/btnFinish" android:text="Finish" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="16dp"/>
+    </LinearLayout>
+</ScrollView>

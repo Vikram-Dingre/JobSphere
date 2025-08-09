@@ -2,11 +2,16 @@ package com.sphere.jobsphere.Candidate.Activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Classes.CandidateProfileSetupData;
-import com.sphere.jobsphere.Candidate.Fragments.CandidateProfileSetupStep1Fragment;
+import com.sphere.jobsphere.Candidate.Fragments.CandidateStep1PersonalInfoFragment;
+import com.sphere.jobsphere.Candidate.Models.CandidateProfile;
 import com.sphere.jobsphere.R;
 
 public class CandidateProfileSetupActivity extends AppCompatActivity {
@@ -15,14 +20,37 @@ public class CandidateProfileSetupActivity extends AppCompatActivity {
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
+    public CandidateProfile candidateProfile = new CandidateProfile();
+    private String userId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_profile_setup);
 
+        userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateProfileSetupFrameContainer, new CandidateProfileSetupStep1Fragment()).commit();
+        // Load Step 1 initially
+        loadFragment(new CandidateStep1PersonalInfoFragment());
+    }
+    public void loadFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.flCandidateProfileSetupFrameContainer, fragment)
+                .addToBackStack(null)
+                .commit();
+    }
 
+    public void saveProfileToFirestore() {
+        FirebaseFirestore.getInstance()
+                .collection("candidates")
+                .document(userId)
+                .set(candidateProfile)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "Profile Completed!!", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }
 //ProfileSetupActivity (Single Activity)
