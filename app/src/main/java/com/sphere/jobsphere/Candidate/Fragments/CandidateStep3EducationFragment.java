@@ -2,15 +2,16 @@ package com.sphere.jobsphere.Candidate.Fragments;
 
 import android.os.Bundle;
 
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
 import com.sphere.jobsphere.Candidate.Models.CandidateEducation;
 import com.sphere.jobsphere.R;
@@ -21,9 +22,8 @@ import java.util.List;
 
 public class CandidateStep3EducationFragment extends Fragment {
 
-
-    EditText etQualification, etSpecialization, etUniversity, etYear;
-    Button btnNext;
+    TextInputEditText tieCandidateProfileSetupStep3Qualifications,tieCandidateProfileSetupStep3Specialization,tieCandidateProfileSetupStep3University,tieCandidateProfileSetupStep3GraduationYear;
+    AppCompatButton acbCandidateProfileSetupStep3Next;
     CandidateProfileSetupActivity activity;
 
     @Override
@@ -32,27 +32,29 @@ public class CandidateStep3EducationFragment extends Fragment {
 
         activity = (CandidateProfileSetupActivity) getActivity();
         ProgressBar progressBar = activity.findViewById(R.id.stepProgressBar);
-        progressBar.setProgress(75);
+        progressBar.setProgress(100);
 
-        etQualification = view.findViewById(R.id.etQualification);
-        etSpecialization = view.findViewById(R.id.etSpecialization);
-        etUniversity = view.findViewById(R.id.etUniversity);
-        etYear = view.findViewById(R.id.etYear);
-        btnNext = view.findViewById(R.id.btnNext);
+        tieCandidateProfileSetupStep3Qualifications = view.findViewById(R.id.tieCandidateProfileSetupStep3Qualifications);
+        tieCandidateProfileSetupStep3Specialization = view.findViewById(R.id.tieCandidateProfileSetupStep3Specialization);
+        tieCandidateProfileSetupStep3University = view.findViewById(R.id.tieCandidateProfileSetupStep3University);
+        tieCandidateProfileSetupStep3GraduationYear = view.findViewById(R.id.tieCandidateProfileSetupStep3GraduationYear);
+        acbCandidateProfileSetupStep3Next = view.findViewById(R.id.acbCandidateProfileSetupStep3Next);
 
-        btnNext.setOnClickListener(v -> {
+        acbCandidateProfileSetupStep3Next.setOnClickListener(v -> {
             CandidateEducation edu = new CandidateEducation();
-            edu.setQualification(etQualification.getText().toString());
-            edu.setSpecialization(etSpecialization.getText().toString());
-            edu.setUniversity(etUniversity.getText().toString());
-            edu.setGraduationYear(Integer.parseInt(etYear.getText().toString()));
+            edu.setQualification(tieCandidateProfileSetupStep3Qualifications.getText().toString());
+            edu.setSpecialization(tieCandidateProfileSetupStep3Specialization.getText().toString());
+            edu.setUniversity(tieCandidateProfileSetupStep3University.getText().toString());
+            edu.setGraduationYear(Integer.parseInt(tieCandidateProfileSetupStep3GraduationYear.getText().toString()));
 
             List<CandidateEducation> eduList = new ArrayList<>();
             eduList.add(edu);
 
             activity.candidateProfile.setEducation(eduList);
+            activity.saveProfileToFirestore();
 
-            activity.loadFragment(new CandidateStep4ResumePreferencesFragment());
+//            Toast.makeText(activity, "Profile Setup Successfull.", Toast.LENGTH_SHORT).show();
+//            activity.loadFragment(new CandidateStep4ResumePreferencesFragment());
         });
 
 

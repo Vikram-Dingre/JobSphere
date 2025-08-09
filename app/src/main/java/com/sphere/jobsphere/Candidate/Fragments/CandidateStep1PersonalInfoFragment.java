@@ -14,63 +14,47 @@ import android.widget.ProgressBar;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
+import com.sphere.jobsphere.Candidate.Models.CandiateProfessionalDetails;
 import com.sphere.jobsphere.Candidate.Models.CandidatePersonalInfo;
 import com.sphere.jobsphere.R;
 
 public class CandidateStep1PersonalInfoFragment extends Fragment {
 
     AppCompatButton acbCandidateProfileSetupStep1Next;
-    TextInputEditText tieCandidateProfileSetupStep1Name;
+    TextInputEditText tieCandidateProfileSetupStep1Name,tieCandidateProfileSetupStep1ProfileUrl,tieCandidateProfileSetupStep1Dob,tieCandidateProfileSetupStep1Email,tieCandidateProfileSetupStep1Phone,tieCandidateProfileSetupStep1CurrentLocation;
 
-    EditText etName, etEmail, etPhone, etLocation;
-    Button btnNext;
     CandidateProfileSetupActivity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_step1_personal_info, container, false);
 
-        acbCandidateProfileSetupStep1Next = view.findViewById(R.id.acbCandidateProfileSetupStep1Next);
-        tieCandidateProfileSetupStep1Name = view.findViewById(R.id.tieCandidateProfileSetupStep1Name);
-            activity = (CandidateProfileSetupActivity) getActivity();
+        activity = (CandidateProfileSetupActivity) getActivity();
 
         ProgressBar progressBar = activity.findViewById(R.id.stepProgressBar);
-        progressBar.setProgress(25);
+        progressBar.setProgress(33);
+
+        tieCandidateProfileSetupStep1Name = view.findViewById(R.id.tieCandidateProfileSetupStep1Name);
+        tieCandidateProfileSetupStep1ProfileUrl = view.findViewById(R.id.tieCandidateProfileSetupStep1ProfileUrl);
+        tieCandidateProfileSetupStep1Dob = view.findViewById(R.id.tieCandidateProfileSetupStep1Dob);
+        tieCandidateProfileSetupStep1Email = view.findViewById(R.id.tieCandidateProfileSetupStep1Email);
+        tieCandidateProfileSetupStep1Phone = view.findViewById(R.id.tieCandidateProfileSetupStep1Phone);
+        tieCandidateProfileSetupStep1CurrentLocation = view.findViewById(R.id.tieCandidateProfileSetupStep1CurrentLocation);
+        acbCandidateProfileSetupStep1Next = view.findViewById(R.id.acbCandidateProfileSetupStep1Next);
 
         acbCandidateProfileSetupStep1Next.setOnClickListener(v -> {
-            String name = tieCandidateProfileSetupStep1Name.getText().toString();
-//            CandidateProfileSetupActivity activity1 = (CandidateProfileSetupActivity) getActivity();
-//            activity1.candidateProfileSetupData.fullName = name;
+            CandidatePersonalInfo pd = new CandidatePersonalInfo();
+            pd.setFullName(tieCandidateProfileSetupStep1Name.getText().toString());
+            pd.setProfilePhotoUrl(tieCandidateProfileSetupStep1ProfileUrl.getText().toString());
+            pd.setDob(tieCandidateProfileSetupStep1Dob.getText().toString());
+            pd.setEmail(tieCandidateProfileSetupStep1Email.getText().toString());
+            pd.setPhone(tieCandidateProfileSetupStep1Phone.getText().toString());
+            pd.setCurrentLocation(tieCandidateProfileSetupStep1CurrentLocation.getText().toString());
 
-            // Move to next step
+            activity.candidateProfile.setPersonalInfo(pd);
+
             activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
-//            getParentFragmentManager().beginTransaction().replace(R.id.flCandidateProfileSetupFrameContainer,new CandidateStep2ProfessionalDetailsFragment()).addToBackStack(null).commit();
 
-
-            /// ////////////////////////////////////////////////////////////////////////////////////////////
-
-//            activity = (CandidateProfileSetupActivity) getActivity();
-//
-//
-//
-//            etName = view.findViewById(R.id.etName);
-//            etEmail = view.findViewById(R.id.etEmail);
-//            etPhone = view.findViewById(R.id.etPhone);
-//            etLocation = view.findViewById(R.id.etLocation);
-//            btnNext = view.findViewById(R.id.btnNext);
-//
-//            btnNext.setOnClickListener(v -> {
-//                CandidatePersonalInfo personalInfo = new CandidatePersonalInfo();
-//                personalInfo.setFullName(etName.getText().toString());
-//                personalInfo.setEmail(etEmail.getText().toString());
-//                personalInfo.setPhone(etPhone.getText().toString());
-//                personalInfo.setCurrentLocation(etLocation.getText().toString());
-//
-//                activity.candidateProfile.setPersonalInfo(personalInfo);
-////                activity.saveProfileToFirestore(false); // save draft
-//
-//                activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
-//            });
 
 
         });

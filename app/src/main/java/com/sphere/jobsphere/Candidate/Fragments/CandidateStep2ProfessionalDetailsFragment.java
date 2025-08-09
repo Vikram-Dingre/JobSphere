@@ -31,7 +31,7 @@ public class CandidateStep2ProfessionalDetailsFragment extends Fragment {
         activity = (CandidateProfileSetupActivity) getActivity();
 
         ProgressBar progressBar = activity.findViewById(R.id.stepProgressBar);
-        progressBar.setProgress(50);
+        progressBar.setProgress(66);
 
         tieCandidateProfileSetupStep2JobTitle = view.findViewById(R.id.tieCandidateProfileSetupStep2JobTitle);
         tieCandidateProfileSetupStep2CurrentCompany = view.findViewById(R.id.tieCandidateProfileSetupStep2CurrentCompany);
@@ -45,36 +45,14 @@ public class CandidateStep2ProfessionalDetailsFragment extends Fragment {
             pd.setJobTitle(tieCandidateProfileSetupStep2JobTitle.getText().toString());
             pd.setCurrentCompany(tieCandidateProfileSetupStep2CurrentCompany.getText().toString());
             pd.setExperience(tieCandidateProfileSetupStep2Experience.getText().toString());
-            pd.setIndustry(tieCandidateProfileSetupStep2Skills.getText().toString());
-            pd.setDepartment(tieCandidateProfileSetupStep2ExpectedSalary.getText().toString());
+            pd.setSkills(Arrays.asList(tieCandidateProfileSetupStep2Skills.getText().toString().split(",")));
+            pd.setExpectedSalary(Double.parseDouble(tieCandidateProfileSetupStep2ExpectedSalary.getText().toString()));
 
             activity.candidateProfile.setProfessionalDetails(pd);
 
             activity.loadFragment(new CandidateStep3EducationFragment());
         });
 
-
-
-        /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//        acbCandidateProfileSetupStep2Next = view.findViewById(R.id.acbCandidateProfileSetupStep2Next);
-//        etCandidateProfileSetupStep2Email = view.findViewById(R.id.etCandidateProfileSetupStep2Email);
-//
-//        acbCandidateProfileSetupStep2Next.setOnClickListener(v -> {
-//            String Email = etCandidateProfileSetupStep2Email.getText().toString();
-//            CandidateProfileSetupActivity activity = (CandidateProfileSetupActivity) getActivity();
-//            activity.candidateProfileSetupData.email = Email;
-//
-//
-//            Toast.makeText(getActivity(), "Name : "+ activity.candidateProfileSetupData.fullName + "\n" + " Email : "+activity.candidateProfileSetupData.email , Toast.LENGTH_SHORT).show();
-//
-//            // Move to next step
-//
-////            getParentFragmentManager().beginTransaction().replace(R.id.flCandidateProfileSetupFrameContainer,new CandidateProfileSetupStep2Fragment()).addToBackStack(null).commit();
-//
-////            startActivity(new Intent(getActivity(), CandidateHomeActivity.class));
-//
-//        });
         
         return view;
     }
