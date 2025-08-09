@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CandidateProfile {
+
     private CandidatePersonalInfo personalInfo;
     private CandiateProfessionalDetails professionalDetails;
     private List<CandidateEducation> education;

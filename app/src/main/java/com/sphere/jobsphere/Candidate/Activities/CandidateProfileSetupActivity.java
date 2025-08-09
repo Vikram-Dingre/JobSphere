@@ -42,11 +42,11 @@ public class CandidateProfileSetupActivity extends AppCompatActivity {
 
     public void saveProfileToFirestore() {
         FirebaseFirestore.getInstance()
-                .collection("job_seekers")
+                .collection("candidates")
                 .document(userId)
                 .set(candidateProfile)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Profile Saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Profile Completed!!", Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
