@@ -1,5 +1,6 @@
 package com.sphere.jobsphere.Candidate.Fragments;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -11,12 +12,15 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
 import com.sphere.jobsphere.Candidate.Models.CandiateProfessionalDetails;
 import com.sphere.jobsphere.Candidate.Models.CandidatePersonalInfo;
 import com.sphere.jobsphere.R;
+
+import java.util.Calendar;
 
 public class CandidateStep1PersonalInfoFragment extends Fragment {
 
@@ -42,21 +46,47 @@ public class CandidateStep1PersonalInfoFragment extends Fragment {
         tieCandidateProfileSetupStep1CurrentLocation = view.findViewById(R.id.tieCandidateProfileSetupStep1CurrentLocation);
         acbCandidateProfileSetupStep1Next = view.findViewById(R.id.acbCandidateProfileSetupStep1Next);
 
+
+        tieCandidateProfileSetupStep1Dob.setOnClickListener(v -> {
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    getContext(), // or YourActivity.this
+                    (datePicker, selectedYear, selectedMonth, selectedDay) -> {
+                        // Month is 0-based, so +1
+                        String dob = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
+                        tieCandidateProfileSetupStep1Dob.setText(dob);
+
+                        // Store in ViewModel / object for database
+//                        profileSetupViewModel.setDob(selectedYear, selectedMonth + 1, selectedDay);
+                    },
+                    year, month, day
+            );
+            datePickerDialog.show();
+        });
+
+
         acbCandidateProfileSetupStep1Next.setOnClickListener(v -> {
-            CandidatePersonalInfo pd = new CandidatePersonalInfo();
-            pd.setFullName(tieCandidateProfileSetupStep1Name.getText().toString());
-            pd.setProfilePhotoUrl(tieCandidateProfileSetupStep1ProfileUrl.getText().toString());
-            pd.setDob(tieCandidateProfileSetupStep1Dob.getText().toString());
-            pd.setEmail(tieCandidateProfileSetupStep1Email.getText().toString());
-            pd.setPhone(tieCandidateProfileSetupStep1Phone.getText().toString());
-            pd.setCurrentLocation(tieCandidateProfileSetupStep1CurrentLocation.getText().toString());
+            String name = tieCandidateProfileSetupStep1Name.getText().toString();
+            String email = tieCandidateProfileSetupStep1Email.getText().toString();
+            String phone = tieCandidateProfileSetupStep1Phone.getText().toString();
 
-            activity.candidateProfile.setPersonalInfo(pd);
-
-            activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
-
-
-
+           if (!name.isEmpty() && !email.isEmpty() && !phone.isEmpty()){
+               CandidatePersonalInfo pd = new CandidatePersonalInfo();
+               pd.setFullName(name);
+               pd.setProfilePhotoUrl(tieCandidateProfileSetupStep1ProfileUrl.getText().toString());
+               pd.setDob(tieCandidateProfileSetupStep1Dob.getText().toString());
+               pd.setEmail(email);
+               pd.setPhone(phone);
+               pd.setCurrentLocation(tieCandidateProfileSetupStep1CurrentLocation.getText().toString());
+               activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
+               activity.candidateProfile.setPersonalInfo(pd);
+           }else{
+               Toast.makeText(getActivity(), "Fill the Required(*) Fields.", Toast.LENGTH_SHORT).show();
+           }
         });
 
         return view;

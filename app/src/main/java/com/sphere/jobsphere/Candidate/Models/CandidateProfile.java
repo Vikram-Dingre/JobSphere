@@ -5,6 +5,7 @@ import java.util.List;
 
 public class CandidateProfile {
 
+    private String uid;
     private CandidatePersonalInfo personalInfo;
     private CandiateProfessionalDetails professionalDetails;
     private List<CandidateEducation> education;
@@ -54,5 +55,13 @@ public class CandidateProfile {
 
     public void setResumePreferences(CandidateResumePreferences resumePreferences) {
         this.resumePreferences = resumePreferences;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 }

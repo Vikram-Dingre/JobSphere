@@ -113,7 +113,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Full Name"
+                        android:hint="Full Name*"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -135,7 +135,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Profile Photo..."
+                        android:hint="Profile Photo"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -147,7 +147,8 @@
                             android:id="@+id/tieCandidateProfileSetupStep1ProfileUrl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:drawableEnd="@drawable/ic_launcher_foreground"
+                            android:drawableEnd="@drawable/outline_add_a_photo_24"
+                            android:drawableTint="#868282"
                             android:focusable="false"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -172,6 +173,8 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:focusable="false"
+                            android:drawableEnd="@drawable/outline_calendar_month_24"
+                            android:drawableTint="#868282"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -183,7 +186,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Email"
+                        android:hint="Email*"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -205,7 +208,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Phone"
+                        android:hint="Phone*"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"

@@ -30,7 +30,10 @@ public class CommonLoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common_login);
+
+        pref = getSharedPreferences("settings",MODE_PRIVATE);
         editor = pref.edit();
+
         acbLoginLogin = findViewById(R.id.acbLoginLogin);
         acbLoginSignUp = findViewById(R.id.acbLoginSignUp);
         tieLoginEmail = findViewById(R.id.tieLoginEmail);
@@ -46,6 +49,7 @@ public class CommonLoginActivity extends AppCompatActivity {
             String userPassword = tieLoginPassword.getText().toString();
 
             if (!userEmail.isEmpty() && !userPassword.isEmpty()) {
+
                 auth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         FirebaseUser user = auth.getCurrentUser();
@@ -74,18 +78,10 @@ public class CommonLoginActivity extends AppCompatActivity {
                                     }, 1000);
                                 }
                             } else {
-                                // if profile is not setUp then navigate user based on role to setup the profile
-                                if (userRole.equals("seeker")) {
-                                    new Handler().postDelayed(() -> {
-                                        startActivity(new Intent(this, CandidateProfileSetupActivity.class));
-                                        finish();
-                                    }, 1000);
-                                } else {
-                                    new Handler().postDelayed(() -> {
-                                        startActivity(new Intent(this, RecruiterProfileSetupActivity.class));
-                                        finish();
-                                    }, 1000);
-                                }
+                                Intent intent = new Intent(this, CommonProfileSetupIntroActivity.class);
+                                intent.putExtra("userRole",userRole);
+                               startActivity(intent);
+                               finish();
                             }
 
 //                            Toast.makeText(this, "Login SuccessFull", Toast.LENGTH_SHORT).show();

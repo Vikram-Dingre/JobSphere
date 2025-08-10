@@ -17,6 +17,7 @@ import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
 import com.sphere.jobsphere.Candidate.Models.CandiateProfessionalDetails;
 import com.sphere.jobsphere.R;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class CandidateStep2ProfessionalDetailsFragment extends Fragment {
@@ -40,17 +41,23 @@ public class CandidateStep2ProfessionalDetailsFragment extends Fragment {
         tieCandidateProfileSetupStep2ExpectedSalary = view.findViewById(R.id.tieCandidateProfileSetupStep2ExpectedSalary);
         acbCandidateProfileSetupStep2Next = view.findViewById(R.id.acbCandidateProfileSetupStep2Next);
 
+
+
         acbCandidateProfileSetupStep2Next.setOnClickListener(v -> {
+
+            String skills = tieCandidateProfileSetupStep2Skills.getText().toString();
+            String expectedSalary = tieCandidateProfileSetupStep2ExpectedSalary.getText().toString();
+
             CandiateProfessionalDetails pd = new CandiateProfessionalDetails();
             pd.setJobTitle(tieCandidateProfileSetupStep2JobTitle.getText().toString());
             pd.setCurrentCompany(tieCandidateProfileSetupStep2CurrentCompany.getText().toString());
             pd.setExperience(tieCandidateProfileSetupStep2Experience.getText().toString());
-            pd.setSkills(Arrays.asList(tieCandidateProfileSetupStep2Skills.getText().toString().split(",")));
-            pd.setExpectedSalary(Double.parseDouble(tieCandidateProfileSetupStep2ExpectedSalary.getText().toString()));
-
-            activity.candidateProfile.setProfessionalDetails(pd);
+            pd.setSkills(!skills.isEmpty() ? Arrays.asList(skills.split(",")) : new ArrayList<>());
+            pd.setExpectedSalary(!expectedSalary.isEmpty() ? Double.parseDouble(expectedSalary) : 0.0);
 
             activity.loadFragment(new CandidateStep3EducationFragment());
+            activity.candidateProfile.setProfessionalDetails(pd);
+
         });
 
         
