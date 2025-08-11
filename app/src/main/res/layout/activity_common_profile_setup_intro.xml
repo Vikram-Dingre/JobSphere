@@ -5,14 +5,17 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_splash_bg"
     tools:context=".Common.Activities.CommonProfileSetupIntroActivity">
+
+
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Let's Take Your Overview"
-        android:textColor="@color/primary"
+        android:textColor="@color/white"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,6 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="11dp"
         android:text="Get Started"
+        android:backgroundTint="@color/dadada"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
