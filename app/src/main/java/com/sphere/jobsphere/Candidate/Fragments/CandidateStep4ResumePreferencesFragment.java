@@ -51,9 +51,9 @@ public class CandidateStep4ResumePreferencesFragment extends Fragment {
             rp.setRelocation(true); // can be from checkbox
 
             activity.candidateProfile.setResumePreferences(rp);
-            activity.saveProfileToFirestore();
+//            activity.saveProfileToFirestore();
 
-            Toast.makeText(activity, "Profile Setup Successfull.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, "This Step is Not Included.", Toast.LENGTH_SHORT).show();
         });
 
 

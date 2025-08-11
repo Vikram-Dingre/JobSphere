@@ -122,11 +122,33 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1Name"
+                            android:id="@+id/tieRecruiterProfileSetupStep1FullName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="55dp"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginVertical="5dp"
+                        android:hint="JobTitle"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="#6200EE"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/tieRecruiterProfileSetupStep1JobTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/tilCandidateProfileSetupStep1ProfileUrl"
@@ -144,37 +166,12 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1ProfileUrl"
+                            android:id="@+id/tieRecruiterProfileSetupStep1ProfilePhotoUrl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableEnd="@drawable/outline_add_a_photo_24"
                             android:drawableTint="#868282"
                             android:focusable="false"
-                            android:inputType="text" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilCandidateProfileSetupStep1Dob"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginVertical="5dp"
-                        android:hint="Date of Birth"
-                        app:boxBackgroundMode="outline"
-                        app:boxStrokeColor="#6200EE"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1Dob"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="false"
-                            android:drawableEnd="@drawable/outline_calendar_month_24"
-                            android:drawableTint="#868282"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -195,7 +192,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1Email"
+                            android:id="@+id/tieRecruiterProfileSetupStep1WorkEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="textEmailAddress" />
@@ -217,36 +214,15 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1Phone"
+                            android:id="@+id/tieRecruiterProfileSetupStep1WorkPhone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="phone" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilCandidateProfileSetupStep1CurrentLocation"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginVertical="5dp"
-                        android:hint="Location"
-                        app:boxBackgroundMode="outline"
-                        app:boxStrokeColor="#6200EE"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1CurrentLocation"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="text" />
-                    </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/acbCandidateProfileSetupStep1Next"
+                        android:id="@+id/acbRecruiterProfileStep1Next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"

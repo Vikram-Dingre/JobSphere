@@ -36,7 +36,7 @@
                     android:layout_height="8dp"
                     android:layout_weight="1"
                     android:max="3"
-                    android:progress="1"
+                    android:progress="2"
                     android:progressDrawable="@drawable/progress_bar_step" />
 
                 <TextView
@@ -44,7 +44,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:text="Step 1 of 3"
+                    android:text="Step 2 of 3"
                     android:textColor="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="55dp"
             android:fontFamily="@font/carter_one"
-            android:text="Personal Information"
+            android:text="Company Details"
             android:textColor="@color/dadada"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +113,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Full Name*"
+                        android:hint="Company Name*"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -122,7 +122,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1Name"
+                            android:id="@+id/tieRecruiterProfileSetupStep2CompanyName"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text" />
@@ -135,7 +135,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Profile Photo"
+                        android:hint="Company Logo*"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -144,7 +144,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1ProfileUrl"
+                            android:id="@+id/tieRecruiterProfileSetupStep2LogoUrl"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:drawableEnd="@drawable/outline_add_a_photo_24"
@@ -153,30 +153,6 @@
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilCandidateProfileSetupStep1Dob"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:layout_width="match_parent"
-                        android:layout_height="55dp"
-                        android:layout_marginHorizontal="20dp"
-                        android:layout_marginVertical="5dp"
-                        android:hint="Date of Birth"
-                        app:boxBackgroundMode="outline"
-                        app:boxStrokeColor="#6200EE"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1Dob"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:focusable="false"
-                            android:drawableEnd="@drawable/outline_calendar_month_24"
-                            android:drawableTint="#868282"
-                            android:inputType="text" />
-                    </com.google.android.material.textfield.TextInputLayout>
 
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -186,7 +162,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Email*"
+                        android:hint="Industry*"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -195,10 +171,10 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1Email"
+                            android:id="@+id/tieRecruiterProfileSetupStep2Industry"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textEmailAddress" />
+                            android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -208,7 +184,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Phone*"
+                        android:hint="Sizs*"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -217,7 +193,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1Phone"
+                            android:id="@+id/tieRecruiterProfileSetupStep2Size"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="phone" />
@@ -230,7 +206,7 @@
                         android:layout_height="55dp"
                         android:layout_marginHorizontal="20dp"
                         android:layout_marginVertical="5dp"
-                        android:hint="Location"
+                        android:hint="Website"
                         app:boxBackgroundMode="outline"
                         app:boxStrokeColor="#6200EE"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -239,14 +215,14 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/tieCandidateProfileSetupStep1CurrentLocation"
+                            android:id="@+id/tieRecruiterProfileSetupStep2Website"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/acbCandidateProfileSetupStep1Next"
+                        android:id="@+id/acbRecruiterProfileStep2Next"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"

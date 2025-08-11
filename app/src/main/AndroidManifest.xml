@@ -13,17 +13,23 @@
         android:theme="@style/Theme.JobSphere"
         tools:targetApi="31">
         <activity
+            android:name=".Recruiter.Fragments.RecruiterProfileStep3CompanyLocation"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Fragments.RecruiterProfileStep2CompanyDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Fragments.RecruiterProfileStep1PersonalInfo"
+            android:exported="false" />
+        <activity
+            android:name=".Common.Activities.CommonProfileSetupIntroActivity"
+            android:exported="false" />
+        <activity
             android:name=".Recruiter.Activities.RecruiterProfileSetupActivity"
             android:exported="false" />
         <activity
             android:name=".Candidate.Activities.CandidateProfileSetupActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".Candidate.Activities.CandidateHomeActivity"
             android:exported="false" />
@@ -38,8 +44,12 @@
             android:exported="false" />
         <activity
             android:name=".Common.Activities.CommonSplashActivity"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data

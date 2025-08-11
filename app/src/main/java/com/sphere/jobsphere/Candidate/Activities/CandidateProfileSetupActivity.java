@@ -33,14 +33,18 @@ public class CandidateProfileSetupActivity extends AppCompatActivity {
         // Load Step 1 initially
         loadFragment(new CandidateStep1PersonalInfoFragment());
     }
+
     public void loadFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
                 .replace(R.id.flCandidateProfileSetupFrameContainer, fragment)
                 .addToBackStack(null)
                 .commit();
     }
 
+
     public void saveProfileToFirestore() {
+        candidateProfile.setUid(userId);
         FirebaseFirestore.getInstance()
                 .collection("candidates")
                 .document(userId)
@@ -53,6 +57,7 @@ public class CandidateProfileSetupActivity extends AppCompatActivity {
                 });
     }
 }
+
 //ProfileSetupActivity (Single Activity)
 //    ├── Step1PersonalInfoFragment
 //    ├── Step2EducationFragment
@@ -70,3 +75,10 @@ public class CandidateProfileSetupActivity extends AppCompatActivity {
 //            editor.putBoolean("isProfileSetupCompleted",true).apply();
 //            Toast.makeText(this, "Profile Setup Completed Successfully.", Toast.LENGTH_SHORT).show();
 //        });
+
+
+// date picker ✅
+// skip ✅
+// validations ✅
+// enable one time profile setup
+// photo

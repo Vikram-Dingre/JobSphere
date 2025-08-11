@@ -1,16 +1,22 @@
 package com.sphere.jobsphere.Candidate.Fragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+
+import com.google.android.material.textfield.TextInputEditText;
+import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
 import com.sphere.jobsphere.Candidate.Models.CandidateEducation;
 import com.sphere.jobsphere.R;
@@ -21,41 +27,73 @@ import java.util.List;
 
 public class CandidateStep3EducationFragment extends Fragment {
 
-
-    EditText etQualification, etSpecialization, etUniversity, etYear;
-    Button btnNext;
+    TextInputEditText tieCandidateProfileSetupStep3Qualifications, tieCandidateProfileSetupStep3Specialization, tieCandidateProfileSetupStep3University, tieCandidateProfileSetupStep3GraduationYear;
+    AppCompatButton acbCandidateProfileSetupStep3Next;
     CandidateProfileSetupActivity activity;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_step3_education, container, false);
 
+        pref = getActivity().getSharedPreferences("settings", MODE_PRIVATE);
+        editor = pref.edit();
+
         activity = (CandidateProfileSetupActivity) getActivity();
         ProgressBar progressBar = activity.findViewById(R.id.stepProgressBar);
-        progressBar.setProgress(75);
+        progressBar.setProgress(100);
 
-        etQualification = view.findViewById(R.id.etQualification);
-        etSpecialization = view.findViewById(R.id.etSpecialization);
-        etUniversity = view.findViewById(R.id.etUniversity);
-        etYear = view.findViewById(R.id.etYear);
-        btnNext = view.findViewById(R.id.btnNext);
+        tieCandidateProfileSetupStep3Qualifications = view.findViewById(R.id.tieCandidateProfileSetupStep3Qualifications);
+        tieCandidateProfileSetupStep3Specialization = view.findViewById(R.id.tieCandidateProfileSetupStep3Specialization);
+        tieCandidateProfileSetupStep3University = view.findViewById(R.id.tieCandidateProfileSetupStep3University);
+        tieCandidateProfileSetupStep3GraduationYear = view.findViewById(R.id.tieCandidateProfileSetupStep3GraduationYear);
+        acbCandidateProfileSetupStep3Next = view.findViewById(R.id.acbCandidateProfileSetupStep3Next);
 
-        btnNext.setOnClickListener(v -> {
-            CandidateEducation edu = new CandidateEducation();
-            edu.setQualification(etQualification.getText().toString());
-            edu.setSpecialization(etSpecialization.getText().toString());
-            edu.setUniversity(etUniversity.getText().toString());
-            edu.setGraduationYear(Integer.parseInt(etYear.getText().toString()));
+        acbCandidateProfileSetupStep3Next.setOnClickListener(v -> {
 
-            List<CandidateEducation> eduList = new ArrayList<>();
-            eduList.add(edu);
+            String qualification = tieCandidateProfileSetupStep3Qualifications.getText().toString();
+            String university = tieCandidateProfileSetupStep3University.getText().toString();
+            String graduationYear = tieCandidateProfileSetupStep3GraduationYear.getText().toString();
 
-            activity.candidateProfile.setEducation(eduList);
+            if (!qualification.isEmpty() && !university.isEmpty() && !graduationYear.isEmpty()) {
+                CandidateEducation edu = new CandidateEducation();
+                edu.setQualification(qualification);
+                edu.setSpecialization(tieCandidateProfileSetupStep3Specialization.getText().toString());
+                edu.setUniversity(university);
+                edu.setGraduationYear(Integer.parseInt(graduationYear));
 
-            activity.loadFragment(new CandidateStep4ResumePreferencesFragment());
+                List<CandidateEducation> eduList = new ArrayList<>();
+                eduList.add(edu);
+
+                activity.candidateProfile.setEducation(eduList);
+                activity.saveProfileToFirestore();
+
+                editor.putBoolean("isProfileSetupCompleted", true).apply();
+                new Handler().postDelayed(() -> {
+                    getActivity().startActivity(new Intent(getActivity(), CandidateHomeActivity.class));
+                    getActivity().finish();
+                }, 1000);
+            } else {
+                Toast.makeText(getActivity(), "Fill the Required(*) Fields.", Toast.LENGTH_SHORT).show();
+            }
+
+//            Toast.makeText(activity, "Profile Setup Successfull.", Toast.LENGTH_SHORT).show();
+//            activity.loadFragment(new CandidateStep4ResumePreferencesFragment());
         });
 
 
         return view;
     }
 }
+
+
+//        pref = getSharedPreferences("settings", MODE_PRIVATE);
+//       editor = pref.edit();
+//
+//        btn = findViewById(R.id.btn);
+//
+//        btn.setOnClickListener(v -> {
+//            editor.putBoolean("isProfileSetupCompleted",true).apply();
+//            Toast.makeText(this, "Profile Setup Completed Successfully.", Toast.LENGTH_SHORT).show();
+//        });

@@ -1,5 +1,6 @@
 package com.sphere.jobsphere.Candidate.Fragments;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -11,68 +12,81 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
+import com.sphere.jobsphere.Candidate.Models.CandiateProfessionalDetails;
 import com.sphere.jobsphere.Candidate.Models.CandidatePersonalInfo;
 import com.sphere.jobsphere.R;
+
+import java.util.Calendar;
 
 public class CandidateStep1PersonalInfoFragment extends Fragment {
 
     AppCompatButton acbCandidateProfileSetupStep1Next;
-    TextInputEditText tieCandidateProfileSetupStep1Name;
+    TextInputEditText tieCandidateProfileSetupStep1Name,tieCandidateProfileSetupStep1ProfileUrl,tieCandidateProfileSetupStep1Dob,tieCandidateProfileSetupStep1Email,tieCandidateProfileSetupStep1Phone,tieCandidateProfileSetupStep1CurrentLocation;
 
-    EditText etName, etEmail, etPhone, etLocation;
-    Button btnNext;
     CandidateProfileSetupActivity activity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_step1_personal_info, container, false);
 
-        acbCandidateProfileSetupStep1Next = view.findViewById(R.id.acbCandidateProfileSetupStep1Next);
-        tieCandidateProfileSetupStep1Name = view.findViewById(R.id.tieCandidateProfileSetupStep1Name);
-            activity = (CandidateProfileSetupActivity) getActivity();
+        activity = (CandidateProfileSetupActivity) getActivity();
 
         ProgressBar progressBar = activity.findViewById(R.id.stepProgressBar);
-        progressBar.setProgress(25);
+        progressBar.setProgress(33);
+
+        tieCandidateProfileSetupStep1Name = view.findViewById(R.id.tieCandidateProfileSetupStep1Name);
+        tieCandidateProfileSetupStep1ProfileUrl = view.findViewById(R.id.tieCandidateProfileSetupStep1ProfileUrl);
+        tieCandidateProfileSetupStep1Dob = view.findViewById(R.id.tieCandidateProfileSetupStep1Dob);
+        tieCandidateProfileSetupStep1Email = view.findViewById(R.id.tieCandidateProfileSetupStep1Email);
+        tieCandidateProfileSetupStep1Phone = view.findViewById(R.id.tieCandidateProfileSetupStep1Phone);
+        tieCandidateProfileSetupStep1CurrentLocation = view.findViewById(R.id.tieCandidateProfileSetupStep1CurrentLocation);
+        acbCandidateProfileSetupStep1Next = view.findViewById(R.id.acbCandidateProfileSetupStep1Next);
+
+
+        tieCandidateProfileSetupStep1Dob.setOnClickListener(v -> {
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(
+                    getContext(), // or YourActivity.this
+                    (datePicker, selectedYear, selectedMonth, selectedDay) -> {
+                        // Month is 0-based, so +1
+                        String dob = selectedDay + "/" + (selectedMonth + 1) + "/" + selectedYear;
+                        tieCandidateProfileSetupStep1Dob.setText(dob);
+
+                        // Store in ViewModel / object for database
+//                        profileSetupViewModel.setDob(selectedYear, selectedMonth + 1, selectedDay);
+                    },
+                    year, month, day
+            );
+            datePickerDialog.show();
+        });
+
 
         acbCandidateProfileSetupStep1Next.setOnClickListener(v -> {
             String name = tieCandidateProfileSetupStep1Name.getText().toString();
-//            CandidateProfileSetupActivity activity1 = (CandidateProfileSetupActivity) getActivity();
-//            activity1.candidateProfileSetupData.fullName = name;
+            String email = tieCandidateProfileSetupStep1Email.getText().toString();
+            String phone = tieCandidateProfileSetupStep1Phone.getText().toString();
 
-            // Move to next step
-            activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
-//            getParentFragmentManager().beginTransaction().replace(R.id.flCandidateProfileSetupFrameContainer,new CandidateStep2ProfessionalDetailsFragment()).addToBackStack(null).commit();
-
-
-            /// ////////////////////////////////////////////////////////////////////////////////////////////
-
-//            activity = (CandidateProfileSetupActivity) getActivity();
-//
-//
-//
-//            etName = view.findViewById(R.id.etName);
-//            etEmail = view.findViewById(R.id.etEmail);
-//            etPhone = view.findViewById(R.id.etPhone);
-//            etLocation = view.findViewById(R.id.etLocation);
-//            btnNext = view.findViewById(R.id.btnNext);
-//
-//            btnNext.setOnClickListener(v -> {
-//                CandidatePersonalInfo personalInfo = new CandidatePersonalInfo();
-//                personalInfo.setFullName(etName.getText().toString());
-//                personalInfo.setEmail(etEmail.getText().toString());
-//                personalInfo.setPhone(etPhone.getText().toString());
-//                personalInfo.setCurrentLocation(etLocation.getText().toString());
-//
-//                activity.candidateProfile.setPersonalInfo(personalInfo);
-////                activity.saveProfileToFirestore(false); // save draft
-//
-//                activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
-//            });
-
-
+           if (!name.isEmpty() && !email.isEmpty() && !phone.isEmpty()){
+               CandidatePersonalInfo pd = new CandidatePersonalInfo();
+               pd.setFullName(name);
+               pd.setProfilePhotoUrl(tieCandidateProfileSetupStep1ProfileUrl.getText().toString());
+               pd.setDob(tieCandidateProfileSetupStep1Dob.getText().toString());
+               pd.setEmail(email);
+               pd.setPhone(phone);
+               pd.setCurrentLocation(tieCandidateProfileSetupStep1CurrentLocation.getText().toString());
+               activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
+               activity.candidateProfile.setPersonalInfo(pd);
+           }else{
+               Toast.makeText(getActivity(), "Fill the Required(*) Fields.", Toast.LENGTH_SHORT).show();
+           }
         });
 
         return view;
