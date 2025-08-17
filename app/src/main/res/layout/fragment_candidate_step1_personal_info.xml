@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Candidate.Fragments.CandidateStep1PersonalInfoFragment">
+    tools:context=".Candidate.Fragments.CandidateProfileSetupFragments.CandidateStep1PersonalInfoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
                 app:cardBackgroundColor="@color/dadada"
                 app:cardCornerRadius="150dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"  />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ScrollView
                 android:elevation="20dp"
@@ -256,12 +256,10 @@
                         android:paddingHorizontal="10dp"
                         android:background="@drawable/button_shape_with_bg_gradient"
                         android:textColor="@color/white"
-                        android:text="Next"  />
+                        android:text="Next" />
 
                 </LinearLayout>
             </ScrollView>
-
-
 
 
         </androidx.cardview.widget.CardView>

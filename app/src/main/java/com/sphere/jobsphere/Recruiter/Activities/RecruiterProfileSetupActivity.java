@@ -18,7 +18,7 @@ import com.sphere.jobsphere.Recruiter.Models.RecruiterProfile;
 
 public class RecruiterProfileSetupActivity extends AppCompatActivity {
 
-    RecruiterProfile recruiterProfile;
+   public RecruiterProfile recruiterProfile;
     String userId;
 
     @Override
@@ -41,6 +41,7 @@ public class RecruiterProfileSetupActivity extends AppCompatActivity {
     }
 
     public void saveProfileToFirestore() {
+
         recruiterProfile.setUid(userId);
 
         FirebaseFirestore.getInstance()

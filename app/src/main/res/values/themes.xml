@@ -1,8 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.JobSphere" parent="Theme.Material3.DayNight.NoActionBar">
+
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+         <item name="colorPrimary">@color/primary</item>
+    </style>
+
+    <style name="NoActiveIndicatorNavigation" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemActiveIndicatorStyle">@null</item>
     </style>
 
     <style name="Theme.JobSphere" parent="Base.Theme.JobSphere" />

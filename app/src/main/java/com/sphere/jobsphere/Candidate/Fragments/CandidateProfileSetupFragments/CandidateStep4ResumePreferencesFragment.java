@@ -1,4 +1,4 @@
-package com.sphere.jobsphere.Candidate.Fragments;
+package com.sphere.jobsphere.Candidate.Fragments.CandidateProfileSetupFragments;
 
 import android.os.Bundle;
 

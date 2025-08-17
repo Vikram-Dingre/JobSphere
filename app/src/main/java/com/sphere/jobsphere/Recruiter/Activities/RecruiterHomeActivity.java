@@ -41,3 +41,4 @@ public class RecruiterHomeActivity extends AppCompatActivity {
         });
     }
 }
+

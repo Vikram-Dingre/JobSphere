@@ -1,4 +1,4 @@
-package com.sphere.jobsphere.Candidate.Fragments;
+package com.sphere.jobsphere.Candidate.Fragments.CandidateProfileSetupFragments;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
@@ -9,14 +9,11 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
-import com.sphere.jobsphere.Candidate.Models.CandiateProfessionalDetails;
 import com.sphere.jobsphere.Candidate.Models.CandidatePersonalInfo;
 import com.sphere.jobsphere.R;
 
@@ -85,7 +82,7 @@ public class CandidateStep1PersonalInfoFragment extends Fragment {
                activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
                activity.candidateProfile.setPersonalInfo(pd);
            }else{
-               Toast.makeText(getActivity(), "Fill the Required(*) Fields.", Toast.LENGTH_SHORT).show();
+               Toast.makeText(getActivity(), "Fill All Required(*) Fields.", Toast.LENGTH_SHORT).show();
            }
         });
 

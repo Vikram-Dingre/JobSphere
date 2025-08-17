@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Classes.CandidateProfileSetupData;
-import com.sphere.jobsphere.Candidate.Fragments.CandidateStep1PersonalInfoFragment;
+import com.sphere.jobsphere.Candidate.Fragments.CandidateProfileSetupFragments.CandidateStep1PersonalInfoFragment;
 import com.sphere.jobsphere.Candidate.Models.CandidateProfile;
 import com.sphere.jobsphere.R;
 
