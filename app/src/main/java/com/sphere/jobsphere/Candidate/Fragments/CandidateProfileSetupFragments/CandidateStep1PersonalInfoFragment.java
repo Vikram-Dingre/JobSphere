@@ -2,19 +2,18 @@ package com.sphere.jobsphere.Candidate.Fragments.CandidateProfileSetupFragments;
 
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.fragment.app.Fragment;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
-import com.sphere.jobsphere.Candidate.Models.CandidatePersonalInfo;
+import com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels.CandidatePersonalInfo;
 import com.sphere.jobsphere.R;
 
 import java.util.Calendar;
@@ -22,7 +21,7 @@ import java.util.Calendar;
 public class CandidateStep1PersonalInfoFragment extends Fragment {
 
     AppCompatButton acbCandidateProfileSetupStep1Next;
-    TextInputEditText tieCandidateProfileSetupStep1Name,tieCandidateProfileSetupStep1ProfileUrl,tieCandidateProfileSetupStep1Dob,tieCandidateProfileSetupStep1Email,tieCandidateProfileSetupStep1Phone,tieCandidateProfileSetupStep1CurrentLocation;
+    TextInputEditText tieCandidateProfileSetupStep1Name, tieCandidateProfileSetupStep1ProfileUrl, tieCandidateProfileSetupStep1Dob, tieCandidateProfileSetupStep1Email, tieCandidateProfileSetupStep1Phone, tieCandidateProfileSetupStep1CurrentLocation;
 
     CandidateProfileSetupActivity activity;
 
@@ -71,19 +70,19 @@ public class CandidateStep1PersonalInfoFragment extends Fragment {
             String email = tieCandidateProfileSetupStep1Email.getText().toString();
             String phone = tieCandidateProfileSetupStep1Phone.getText().toString();
 
-           if (!name.isEmpty() && !email.isEmpty() && !phone.isEmpty()){
-               CandidatePersonalInfo pd = new CandidatePersonalInfo();
-               pd.setFullName(name);
-               pd.setProfilePhotoUrl(tieCandidateProfileSetupStep1ProfileUrl.getText().toString());
-               pd.setDob(tieCandidateProfileSetupStep1Dob.getText().toString());
-               pd.setEmail(email);
-               pd.setPhone(phone);
-               pd.setCurrentLocation(tieCandidateProfileSetupStep1CurrentLocation.getText().toString());
-               activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
-               activity.candidateProfile.setPersonalInfo(pd);
-           }else{
-               Toast.makeText(getActivity(), "Fill All Required(*) Fields.", Toast.LENGTH_SHORT).show();
-           }
+            if (!name.isEmpty() && !email.isEmpty() && !phone.isEmpty()) {
+                CandidatePersonalInfo pd = new CandidatePersonalInfo();
+                pd.setFullName(name);
+                pd.setProfilePhotoUrl(tieCandidateProfileSetupStep1ProfileUrl.getText().toString());
+                pd.setDob(tieCandidateProfileSetupStep1Dob.getText().toString());
+                pd.setEmail(email);
+                pd.setPhone(phone);
+                pd.setCurrentLocation(tieCandidateProfileSetupStep1CurrentLocation.getText().toString());
+                activity.loadFragment(new CandidateStep2ProfessionalDetailsFragment());
+                activity.candidateProfile.setPersonalInfo(pd);
+            } else {
+                Toast.makeText(getActivity(), "Fill All Required(*) Fields.", Toast.LENGTH_SHORT).show();
+            }
         });
 
         return view;

@@ -1,0 +1,151 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="290dp"
+    android:layout_height="wrap_content"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="#F6F6F6"
+    app:cardElevation="6dp"
+    app:contentPadding="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp">
+
+            <LinearLayout
+                android:id="@+id/llCandidateRecentJobColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/recentOne"
+                android:padding="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/ivCandidateHomeRecentJobImage"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:scaleType="centerCrop"
+                        android:background="@drawable/image_shape"
+                        android:src="@drawable/profile"
+                        android:layout_marginRight="10dp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvCandidateHomeRecentJobTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="App Developement"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white" />
+
+                        <TextView
+                            android:id="@+id/tvCandidateHomeRecentJobCompanyName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Company Name"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/dadada" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/candidateHomeRecentChipGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="10dp"
+                    app:singleLine="true"
+                    app:singleSelection="false"
+                    app:chipSpacing="8dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCandidateHomeRecentJobMinSalary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹25,000"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#E5E4E4" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" - "
+                        android:textSize="18sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tvCandidateHomeRecentJobMaxSalary"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="₹28,000"
+                        android:textSize="15sp"
+                        android:textColor="#E5E4E4"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="10dp"
+            android:gravity="center_vertical"
+            android:weightSum="100"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Explore"
+                android:layout_weight="75"
+                android:textSize="18sp"
+                android:fontFamily="sans-serif"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/ivCandidateHomeRecentJobExplore"
+                android:layout_width="0dp"
+                android:layout_weight="20"
+                android:layout_height="wrap_content"
+                android:src="@drawable/explore_arrow"
+                android:background="@drawable/button_shape_with_bg_gradient"
+                app:tint="@color/white"
+                android:padding="3dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
+
+    <!--e0f3ff-->
+

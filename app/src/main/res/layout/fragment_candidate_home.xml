@@ -9,18 +9,18 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="#F8F5F5"
+        android:orientation="vertical"
         android:weightSum="100">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="10"
-            android:padding="10dp"
+            android:background="@color/primary"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:background="@color/primary"
+            android:padding="10dp"
             android:weightSum="100">
 
             <ImageView
@@ -51,8 +51,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Vikram Dingre"
-                    android:textSize="20sp"
                     android:textColor="@color/white"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -63,18 +63,18 @@
                 android:layout_weight="10"
                 android:backgroundTint="@color/transparent"
                 android:scaleType="centerCrop"
-                app:tint="@color/white"
-                android:src="@drawable/candidate_notifications" />
+                android:src="@drawable/candidate_notifications"
+                app:tint="@color/white" />
 
         </LinearLayout>
 
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:scrollbars="none"
+            android:layout_weight="90"
             android:paddingHorizontal="8dp"
             android:paddingBottom="5dp"
-            android:layout_weight="90">
+            android:scrollbars="none">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -84,13 +84,14 @@
                     android:id="@+id/etCandidateHomeSearchBar"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/input_shape"
                     android:drawableStart="@drawable/search_icon"
                     android:drawablePadding="5dp"
+                    android:enabled="false"
                     android:hint="Search Jobs..."
-                    android:paddingVertical="5dp"
                     android:paddingHorizontal="10dp"
+                    android:paddingVertical="5dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -98,7 +99,7 @@
                 <ImageView
                     android:id="@+id/ivCandidateHomeBanner"
                     android:layout_width="match_parent"
-                    android:layout_height="140dp"
+                    android:layout_height="150dp"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/input_shape"
                     android:clipToOutline="true"
@@ -112,7 +113,7 @@
                     android:id="@+id/tvCandidateHomeBrowseByCategory"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="17dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Browse By Category"
                     android:textSize="21sp"
@@ -125,7 +126,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCandidateHomeCategories"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -136,7 +137,7 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="25dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Suggested Jobs"
                     android:textSize="21sp"
@@ -164,7 +165,7 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCandidateHomeSuggestedJobs"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -175,7 +176,7 @@
                     android:id="@+id/tvRecentJobs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
+                    android:layout_marginTop="15dp"
                     android:fontFamily="sans-serif-medium"
                     android:text="Recent Jobs"
                     android:textSize="21sp"
@@ -189,7 +190,7 @@
                     android:id="@+id/tvCandidateHomeSeeAllRecentJobs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="25dp"
                     android:text="See All"
                     android:textColor="@color/primary"
                     android:textSize="14sp"
@@ -202,8 +203,8 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCandidateHomeRecentJobs"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -212,6 +213,12 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
     </LinearLayout>
-
 </FrameLayout>
 
+    <!--
+    model
+    adapter
+    recyclerview ✅
+    layout
+    set adapter
+    -->

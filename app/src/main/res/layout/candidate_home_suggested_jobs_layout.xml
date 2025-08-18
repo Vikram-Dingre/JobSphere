@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cvCandidateSuggestedJobCard"
+    android:layout_width="290dp"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#7d66ff"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+    app:contentPadding="15dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <ImageView
+                android:id="@+id/ivCandidateHomeSuggestedJobImage"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_weight="16"
+                android:background="@drawable/image_shape"
+                android:clipToOutline="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/profile" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
+                android:layout_weight="70"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvCandidateHomeSuggestedCompanyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Company Name"
+                    android:textColor="#dadada"
+                    android:textSize="15sp"
+                    android:textStyle="normal" />
+
+                <TextView
+                    android:id="@+id/tvCandidateHomeSuggestedJobTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="App Developement"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivCandidateHomeSuggestedSaveJob"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="2dp"
+                android:layout_weight="10"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bookmark"
+                app:tint="@color/white" />
+
+        </LinearLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/jobTypeChipGroup"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="10dp"
+            app:chipSpacing="8dp"
+            app:singleLine="true"
+            app:singleSelection="false" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCandidateHomeSuggestedSalary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="₹19000"
+                android:textColor="#E5E4E4"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acbCandidateHomeSuggestedApplyJob"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginLeft="100dp"
+                android:background="@drawable/button_shape_with_bg_gradient"
+                android:text="Apply ▶"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
+
+    <!--
+
+    7d66ff
+    a45efd
+    5adcbb
+
+    -->

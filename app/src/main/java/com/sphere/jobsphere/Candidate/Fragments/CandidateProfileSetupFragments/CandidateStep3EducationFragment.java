@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
-import com.sphere.jobsphere.Candidate.Models.CandidateEducation;
+import com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels.CandidateEducation;
 import com.sphere.jobsphere.R;
 
 import java.util.ArrayList;

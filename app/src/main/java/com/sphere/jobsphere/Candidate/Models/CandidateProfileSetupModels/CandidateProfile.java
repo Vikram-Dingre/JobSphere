@@ -1,4 +1,6 @@
-package com.sphere.jobsphere.Candidate.Models;
+package com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels;
+
+import com.sphere.jobsphere.Candidate.Models.CandidateCertifications;
 
 import java.util.ArrayList;
 import java.util.List;

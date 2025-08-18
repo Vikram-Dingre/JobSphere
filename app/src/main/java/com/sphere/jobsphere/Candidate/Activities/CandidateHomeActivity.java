@@ -37,33 +37,30 @@ public class CandidateHomeActivity extends AppCompatActivity {
 
         bnvCandidateHomeActivityBottomMenu = findViewById(R.id.bnvCandidateHomeActivityBottomMenu);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer,new CandidateHomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateHomeFragment()).commit();
 
         bnvCandidateHomeActivityBottomMenu.setOnItemSelectedListener((item -> {
             Fragment fragment;
 
-            if (item.getItemId() == R.id.candidate_home_bottom_menu_home){
+            if (item.getItemId() == R.id.candidate_home_bottom_menu_home) {
                 fragment = new CandidateHomeFragment();
-            }else if (item.getItemId() == R.id.candidate_home_bottom_menu_jobs){
+            } else if (item.getItemId() == R.id.candidate_home_bottom_menu_jobs) {
                 fragment = new CandidateJobsFragment();
-            }else if(item.getItemId() == R.id.candidate_home_bottom_menu_applications){
+            } else if (item.getItemId() == R.id.candidate_home_bottom_menu_applications) {
                 fragment = new CandidateApplicationsFragment();
-            }else if (item.getItemId() == R.id.candidate_home_bottom_menu_search_jobs){
+            } else if (item.getItemId() == R.id.candidate_home_bottom_menu_search_jobs) {
                 fragment = new CandidateJobSearchFragment();
-            }else{
+            } else {
                 fragment = new CandidateProfileFragment();
             }
 
             getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, fragment).commit();
 
-            
 
             return true;
         }));
     }
 }
-
-
 
 
 //pref = getSharedPreferences("settings",MODE_PRIVATE);

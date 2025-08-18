@@ -32,7 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".Candidate.Activities.CandidateHomeActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,7 +50,7 @@
             android:exported="false" />
         <activity
             android:name=".Common.Activities.CommonSplashActivity"
-            android:exported="false"/>
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
