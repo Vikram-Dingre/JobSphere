@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
+    <color name="lightDard">#575757</color>
     <color name="white">#FFFFFFFF</color>
     <color name="dadada">#dadada</color>
     <color name="transparent">#00ffffff</color>
     <color name="primary">#6A1B9A</color>
-    <color name="textSecondary">#A09D9D</color>
+    <color name="textSecondary">#D9D6D6</color>
     <color name="cardCheckedColor">#E7E1F3</color>
     <color name="cardUncheckedColor">#FAF8F8</color>
+    <color name="lightPurple">#9582fc</color>
+    <color name="thinPurple">#C49582FC</color>
+    <color name="pink">#891B9C</color>
+    <color name="one">#7962FD</color>
+    <color name="two">#A157FF</color>
+    <color name="three">#2D9CF3</color>
+    <!--<color name="four">#4ED5B2</color>-->
+    <color name="four">#B85865AA</color>
+
+    <color name="recentOne">#C569D7</color>
+    <color name="recentTwo">#DC7497</color>
+    <color name="recentThree">#72BADC</color>
+    <color name="recentFour">#A7FFE7</color>
 </resources>
+

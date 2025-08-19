@@ -3,11 +3,7 @@ package com.sphere.jobsphere.Recruiter.Activities;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,7 +14,7 @@ import com.sphere.jobsphere.Recruiter.Models.RecruiterProfile;
 
 public class RecruiterProfileSetupActivity extends AppCompatActivity {
 
-    RecruiterProfile recruiterProfile;
+    public RecruiterProfile recruiterProfile;
     String userId;
 
     @Override
@@ -32,6 +28,7 @@ public class RecruiterProfileSetupActivity extends AppCompatActivity {
         loadFragment(new RecruiterProfileStep1PersonalInfoFragment());
 
     }
+
     public void loadFragment(Fragment fragment) {
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out)
@@ -41,6 +38,7 @@ public class RecruiterProfileSetupActivity extends AppCompatActivity {
     }
 
     public void saveProfileToFirestore() {
+
         recruiterProfile.setUid(userId);
 
         FirebaseFirestore.getInstance()

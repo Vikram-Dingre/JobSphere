@@ -1,4 +1,4 @@
-package com.sphere.jobsphere.Candidate.Models;
+package com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels;
 
 public class CandidatePersonalInfo {
     private String fullName, profilePhotoUrl, dob, gender, email, phone, currentLocation;

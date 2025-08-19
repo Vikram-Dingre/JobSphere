@@ -1,4 +1,4 @@
-package com.sphere.jobsphere.Candidate.Fragments;
+package com.sphere.jobsphere.Candidate.Fragments.CandidateProfileSetupFragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -18,7 +18,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
-import com.sphere.jobsphere.Candidate.Models.CandidateEducation;
+import com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels.CandidateEducation;
 import com.sphere.jobsphere.R;
 
 import java.util.ArrayList;
@@ -77,23 +77,8 @@ public class CandidateStep3EducationFragment extends Fragment {
             } else {
                 Toast.makeText(getActivity(), "Fill the Required(*) Fields.", Toast.LENGTH_SHORT).show();
             }
-
-//            Toast.makeText(activity, "Profile Setup Successfull.", Toast.LENGTH_SHORT).show();
-//            activity.loadFragment(new CandidateStep4ResumePreferencesFragment());
         });
-
-
         return view;
     }
 }
 
-
-//        pref = getSharedPreferences("settings", MODE_PRIVATE);
-//       editor = pref.edit();
-//
-//        btn = findViewById(R.id.btn);
-//
-//        btn.setOnClickListener(v -> {
-//            editor.putBoolean("isProfileSetupCompleted",true).apply();
-//            Toast.makeText(this, "Profile Setup Completed Successfully.", Toast.LENGTH_SHORT).show();
-//        });

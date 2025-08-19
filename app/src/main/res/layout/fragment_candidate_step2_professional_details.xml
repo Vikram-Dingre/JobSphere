@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Candidate.Fragments.CandidateStep1PersonalInfoFragment">
+    tools:context=".Candidate.Fragments.CandidateProfileSetupFragments.CandidateStep1PersonalInfoFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -223,8 +223,6 @@
                         android:background="@drawable/button_shape_with_bg_gradient"
                         android:textColor="@color/white"
                         android:text="Next" />
-
-
 
 
                 </LinearLayout>

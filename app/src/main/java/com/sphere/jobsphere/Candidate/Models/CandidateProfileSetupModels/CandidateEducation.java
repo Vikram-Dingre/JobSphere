@@ -1,4 +1,4 @@
-package com.sphere.jobsphere.Candidate.Models;
+package com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels;
 
 public class CandidateEducation {
     private String qualification, specialization, university;

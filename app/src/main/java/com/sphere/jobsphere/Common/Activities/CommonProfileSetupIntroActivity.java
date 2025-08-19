@@ -4,19 +4,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileSetupActivity;
 
 public class CommonProfileSetupIntroActivity extends AppCompatActivity {
-AppCompatButton acbProfileSetupIntroGetStarted;
+    AppCompatButton acbProfileSetupIntroGetStarted;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

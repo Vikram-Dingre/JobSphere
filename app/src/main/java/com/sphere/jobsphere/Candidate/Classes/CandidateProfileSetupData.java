@@ -13,7 +13,7 @@ public class CandidateProfileSetupData {
     public String profileUrl;
 
 
-    public CandidateProfileSetupData(){
+    public CandidateProfileSetupData() {
 
     }
 }

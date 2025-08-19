@@ -14,10 +14,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
-import com.sphere.jobsphere.Candidate.Activities.CandidateProfileSetupActivity;
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Activities.RecruiterHomeActivity;
-import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileSetupActivity;
 
 public class CommonLoginActivity extends AppCompatActivity {
     AppCompatButton acbLoginLogin, acbLoginSignUp;
@@ -26,12 +24,13 @@ public class CommonLoginActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     SharedPreferences pref;
     SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_common_login);
 
-        pref = getSharedPreferences("settings",MODE_PRIVATE);
+        pref = getSharedPreferences("settings", MODE_PRIVATE);
         editor = pref.edit();
 
         acbLoginLogin = findViewById(R.id.acbLoginLogin);
@@ -79,9 +78,9 @@ public class CommonLoginActivity extends AppCompatActivity {
                                 }
                             } else {
                                 Intent intent = new Intent(this, CommonProfileSetupIntroActivity.class);
-                                intent.putExtra("userRole",userRole);
-                               startActivity(intent);
-                               finish();
+                                intent.putExtra("userRole", userRole);
+                                startActivity(intent);
+                                finish();
                             }
 
 //                            Toast.makeText(this, "Login SuccessFull", Toast.LENGTH_SHORT).show();

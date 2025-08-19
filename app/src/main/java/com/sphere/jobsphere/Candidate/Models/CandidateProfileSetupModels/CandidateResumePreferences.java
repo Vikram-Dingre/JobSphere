@@ -1,4 +1,4 @@
-package com.sphere.jobsphere.Candidate.Models;
+package com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels;
 
 public class CandidateResumePreferences {
     private String resumeUrl, portfolioUrl, linkedinUrl, githubUrl, noticePeriod, workAuthorization, careerObjective;

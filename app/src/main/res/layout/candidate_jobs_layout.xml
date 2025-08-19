@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="100"
+        android:gravity="center_vertical"
+        android:paddingVertical="13dp"
+        android:paddingHorizontal="10dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivCandidateJobsCompanyLogo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/image_shape"
+            android:layout_gravity="top"
+            android:src="@drawable/profile" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="70"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvCandidateJobsJobTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="Junior Software Engineer"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvCandidateJobsCompanyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zensar Technologies"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#616161" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginVertical="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvCandidateJobsLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pune, Maharashtra, India"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="14sp"
+                    android:textColor="#848484" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" ("
+                    android:textSize="14sp"
+                    android:textColor="#848484"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCandidateJobsWorkingType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Remote"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="14sp"
+                    android:textColor="#848484" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=")"
+                    android:textColor="#848484"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvCandidateJobsExperience"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fresher"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="13sp"
+                    android:textColor="#838383" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Level"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="13sp"
+                    android:textColor="#838383" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvCandidateJobsMinSalary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$500"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvCandidateJobsMaxSalary"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="$1000"
+                    android:textSize="14sp"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    app:cardCornerRadius="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffe1cb"
+                        android:paddingVertical="3dp"
+                        android:paddingHorizontal="6dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvCandidateJobsVacancyNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="5"
+                            android:textColor="@color/recentTwo"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" vacancies"
+                            android:textColor="@color/recentTwo"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <TextView
+                    android:id="@+id/tvCandidateJobsPostedDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="22 hours ago"
+                    android:fontFamily="sans-serif-medium"
+                    android:textSize="11sp"
+                    android:layout_marginHorizontal="10dp"
+                    android:textColor="#848484"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivCandidateJobsSaveJob"
+            android:layout_width="0dp"
+            android:layout_gravity="top"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_weight="15"
+            android:src="@drawable/bookmark" />
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#dadada"
+
+        />
+
+</androidx.cardview.widget.CardView>
+
+
+    <!--
+    logo
+    title
+    company name
+    location ( type )
+    salary range
+    postedDate
+    vacancies ( optional )
+    -->

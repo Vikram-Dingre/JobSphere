@@ -1,4 +1,4 @@
-package com.sphere.jobsphere.Candidate.Models;
+package com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels;
 
 import java.util.List;
 
