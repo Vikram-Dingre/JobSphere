@@ -1,14 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Candidate.Fragments.CandidateHomeFragments.CandidateJobsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Jobs Fragment" />
+        android:orientation="vertical"
+
+        >
+        <!-- CardView Header -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/jobsCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:shapeAppearanceOverlay="@style/CandidateJobsCardShape"
+            app:cardPreventCornerOverlap="true"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            app:cardBackgroundColor="@color/primary">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="10dp"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal"
+                    android:weightSum="100">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/back_arrow"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:text="Browse Jobs"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:fontFamily="sans-serif-medium"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/ivCandidateJobsFilter"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/search"
+                        app:tint="@color/white" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.tabs.TabLayout
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:id="@+id/jobsTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/primary"
+            app:tabSelectedTextColor="@color/primary"
+            app:tabTextColor="@color/black"
+            app:tabIndicatorHeight="3dp"
+            app:tabMode="fixed"
+            app:tabGravity="fill" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="100"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="10dp"
+            android:layout_marginVertical="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvCandidateJobsAllResultCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="102"
+                android:textColor="@color/lightDard"
+                android:textSize="22sp"
+                android:fontFamily="sans-serif-medium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="65"
+                android:text=" Jobs Found"
+                android:textSize="22sp"
+                android:textColor="@color/lightDard"
+                android:textStyle="bold" />
+
+            <AutoCompleteTextView
+                android:id="@+id/sortDropDown"
+                android:layout_width="0dp"
+                android:layout_weight="33"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp"
+                android:background="@drawable/spinner_background"
+                android:drawableEnd="@android:drawable/arrow_down_float"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:paddingVertical="8dp"
+                android:inputType="none"
+                android:focusable="false"
+                android:textColorHint="@color/lightDard"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:hint="Sort" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvCandidateJobsReycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <!-- Floating Search Bar outside CardView -->
+    <EditText
+        android:id="@+id/etCandidateJobsSearch"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="85dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/candidate_jobs_searchbar_shape"
+        android:drawableEnd="@drawable/search_24dp_1f1f1f_fill0_wght400_grad0_opsz24"
+        android:elevation="10dp"
+        android:hint="Search Jobs"
+        android:paddingHorizontal="15dp"
+        android:textColorHint="#848484" />
 
 </FrameLayout>
+

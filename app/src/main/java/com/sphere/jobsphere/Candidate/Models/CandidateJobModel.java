@@ -13,6 +13,9 @@ public class CandidateJobModel {
     private String jobType;             // Full-time, Part-time, Remote, Freelance
     private List<String> jobTypes;      // If multiple (Remote + Part-time)
 
+    private String vacancies;
+//    private String about;
+
     private String category;            // IT, Finance, Marketing, etc.
     private String skillsRequired;      // Skills needed (comma-separated)
     private List<String> skillsList;     // Skills as list

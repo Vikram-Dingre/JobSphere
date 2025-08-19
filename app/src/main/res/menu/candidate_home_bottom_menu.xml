@@ -12,11 +12,10 @@
         android:title="Jobs"
         android:icon="@drawable/candidate_bottom_nav_jobs" />
 
-    <item
-        android:id="@+id/candidate_home_bottom_menu_search_jobs"
-        android:title="Search"
-        android:icon="@drawable/search" />
-
+    <!--    <item-->
+    <!--        android:id="@+id/candidate_home_bottom_menu_search_jobs"-->
+    <!--        android:title="Search"-->
+    <!--        android:icon="@drawable/search" />-->
 
     <item
         android:id="@+id/candidate_home_bottom_menu_applications"

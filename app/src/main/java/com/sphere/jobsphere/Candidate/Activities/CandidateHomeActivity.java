@@ -11,7 +11,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateApplicationsFragment;
 import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateHomeFragment;
-import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateJobSearchFragment;
 import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateJobsFragment;
 import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateProfileFragment;
 import com.sphere.jobsphere.R;
@@ -48,8 +47,6 @@ public class CandidateHomeActivity extends AppCompatActivity {
                 fragment = new CandidateJobsFragment();
             } else if (item.getItemId() == R.id.candidate_home_bottom_menu_applications) {
                 fragment = new CandidateApplicationsFragment();
-            } else if (item.getItemId() == R.id.candidate_home_bottom_menu_search_jobs) {
-                fragment = new CandidateJobSearchFragment();
             } else {
                 fragment = new CandidateProfileFragment();
             }

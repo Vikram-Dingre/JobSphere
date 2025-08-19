@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Solid background -->
+    <solid android:color="@color/primary" />
+
+    <!-- Apply corner radius only to bottom -->
+    <corners
+        android:bottomLeftRadius="16dp"
+        android:bottomRightRadius="16dp"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp" />
+
+    <!-- Optional elevation shadow simulation -->
+    <padding
+        android:left="0dp"
+        android:top="0dp"
+        android:right="0dp"
+        android:bottom="4dp" />
+</shape>
