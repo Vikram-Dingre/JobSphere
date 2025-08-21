@@ -47,7 +47,7 @@ public class CandidateJobsPageAdapter extends RecyclerView.Adapter<CandidateJobs
         holder.workingType.setText(job.getJobType());
         holder.experienceLevel.setText(job.getExperienceLevel());
         holder.minSalary.setText("₹" + job.getMinSalary());
-        holder.maxSalary.setText("₹" + job.getMaxSalary() + "");
+        holder.maxSalary.setText("₹" + job.getMaxSalary());
         holder.vacancyCount.setText("5");
         holder.postedDate.setText(job.getPostedAt() + "");
     }

@@ -1,0 +1,7 @@
+<resources>
+    <array name="default_salary_range">
+        <item>10000</item>
+        <item>50000</item>
+    </array>
+
+</resources>
