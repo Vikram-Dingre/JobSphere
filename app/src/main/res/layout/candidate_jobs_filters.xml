@@ -8,13 +8,13 @@
 
     <!-- Header -->
     <LinearLayout
-        android:paddingBottom="5dp"
-        android:paddingTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingHorizontal="20dp"
-        android:gravity="center_vertical">
+        android:paddingTop="20dp"
+        android:paddingBottom="5dp">
 
         <TextView
             android:id="@+id/tvFilterTitle"
@@ -29,22 +29,49 @@
             android:id="@+id/ivCandidateJobFiltersClearFilters"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:paddingBottom="2dp"
             android:text="Clear all"
             android:textColor="@color/primary"
-            android:textStyle="bold"
-            android:gravity="bottom"
-            android:paddingBottom="2dp" />
+            android:textStyle="bold" />
     </LinearLayout>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/llCandidateFiltersSelectedFilters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupSelectedFilters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:paddingLeft="10dp"
+                app:chipSpacingHorizontal="10dp"
+                app:singleLine="true"
+                app:singleSelection="false" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginVertical="8dp"
+        android:layout_marginTop="13dp"
         android:background="@android:color/darker_gray" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -68,95 +95,96 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="80"
                             android:layout_height="wrap_content"
+                            android:layout_weight="80"
                             android:text="Job Type"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black" />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/ivCandidateJobFiltersExpandJobTypes"
                             android:layout_width="0dp"
-                            android:layout_weight="20"
-                            android:scaleType="centerInside"
-                            android:paddingLeft="30dp"
                             android:layout_height="wrap_content"
-                            app:tint="@color/expand_collapse_button_color"
+                            android:layout_weight="20"
+                            android:paddingLeft="30dp"
+                            android:pointerIcon="hand"
+                            android:scaleType="centerInside"
                             android:src="@drawable/plus"
-                            android:pointerIcon="hand" />
+                            app:tint="@color/primary" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/llCandidateFiltersJobType"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.google.android.material.chip.ChipGroup
                             android:id="@+id/chipGroupJobType"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:singleSelection="false"
-                            app:singleLine="false"
                             android:layout_marginTop="6dp"
-                            app:chipSpacingHorizontal="15dp">
+                            app:chipSpacingHorizontal="15dp"
+                            app:singleLine="false"
+                            app:singleSelection="false">
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Full-Time"
                                 android:textColor="@color/black"
-                                android:text="Full-Time" />
+                                app:checkedIcon="@drawable/checked"
+                                app:checkedIconTint="@color/primary" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Part-Time" />
+                                android:layout_height="wrap_content"
+                                android:text="Part-Time"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:textColor="@color/black"
-                                android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
-                                android:text="Internship" />
+                                android:layout_height="wrap_content"
+                                android:text="Internship"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="On-Site" />
+                                android:layout_height="wrap_content"
+                                android:text="On-Site"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Hybrid" />
+                                android:layout_height="wrap_content"
+                                android:text="Hybrid"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Remote" />
+                                android:layout_height="wrap_content"
+                                android:text="Remote"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
 
                         </com.google.android.material.chip.ChipGroup>
@@ -182,110 +210,110 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="80"
                             android:layout_height="wrap_content"
+                            android:layout_weight="80"
                             android:text="Category"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black" />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/ivCandidateJobFiltersExpandCategory"
                             android:layout_width="0dp"
-                            android:layout_weight="20"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerInside"
+                            android:layout_weight="20"
                             android:paddingLeft="30dp"
-                            app:tint="@color/expand_collapse_button_color"
                             android:pointerIcon="hand"
-                            android:src="@drawable/plus" />
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/llCandidateFiltersCategory"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <CheckBox
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="IT &amp; Software"
-                            android:textStyle="normal"
+                            android:textColor="@color/filter_checkbox_text_color"
                             android:textSize="15sp"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/filter_checkbox_text_color" />
+                            android:textStyle="normal" />
 
                         <CheckBox
                             android:layout_width="match_parent"
-                            android:textSize="15dp"
                             android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="AI &amp; Ml"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/filter_checkbox_text_color" />
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15dp"
+                            android:textStyle="normal" />
 
                         <CheckBox
                             android:layout_width="match_parent"
-                            android:textSize="15sp"
                             android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="UI/UX"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/filter_checkbox_text_color" />
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
 
                         <CheckBox
                             android:layout_width="match_parent"
-                            android:textSize="15sp"
                             android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="Web Developement"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/filter_checkbox_text_color" />
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
 
                         <CheckBox
                             android:layout_width="match_parent"
-                            android:textSize="15sp"
                             android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="App Developement"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/filter_checkbox_text_color" />
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
 
                         <CheckBox
                             android:layout_width="match_parent"
-                            android:textSize="15sp"
                             android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="Data Science"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/filter_checkbox_text_color" />
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
 
                         <CheckBox
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
-                            android:textSize="15sp"
+                            android:fontFamily="sans-serif-medium"
                             android:text="Human Resource (HR)"
-                            android:textStyle="normal"
-                            android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/filter_checkbox_text_color" />
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
 
                         <CheckBox
                             android:layout_width="match_parent"
-                            android:textSize="15sp"
                             android:layout_height="35dp"
-                            android:text="Sales &amp; Marketing"
-                            android:textStyle="normal"
                             android:fontFamily="sans-serif-medium"
-                            android:textColor="@color/filter_checkbox_text_color" />
+                            android:text="Sales &amp; Marketing"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
 
                     </LinearLayout>
                 </LinearLayout>
@@ -307,127 +335,127 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="80"
                             android:layout_height="wrap_content"
+                            android:layout_weight="80"
                             android:text="Skills"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black" />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/ivCandidateJobFiltersExpandSkills"
                             android:layout_width="0dp"
-                            android:layout_weight="20"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerInside"
+                            android:layout_weight="20"
                             android:paddingLeft="30dp"
-                            app:tint="@color/expand_collapse_button_color"
                             android:pointerIcon="hand"
-                            android:src="@drawable/plus" />
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/llCandidateFiltersSkills"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.google.android.material.chip.ChipGroup
                             android:id="@+id/chipGroupSkills"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:singleSelection="false"
-                            app:singleLine="false"
                             android:layout_marginTop="6dp"
-                            app:chipSpacingHorizontal="15dp">
-
-                            <com.google.android.material.chip.Chip
-                                style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:textColor="@color/black"
-                                android:text="Java" />
-
-                            <com.google.android.material.chip.Chip
-                                style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
-                                android:layout_width="wrap_content"
-                                android:text="Python" />
-
-                            <com.google.android.material.chip.Chip
-                                style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:textColor="@color/black"
-                                android:layout_height="wrap_content"
-                                android:layout_width="wrap_content"
-                                android:text="JavaScript" />
-
-                            <com.google.android.material.chip.Chip
-                                style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
-                                android:layout_width="wrap_content"
-                                android:text="React.js" />
+                            app:chipSpacingHorizontal="15dp"
+                            app:singleLine="false"
+                            app:singleSelection="false">
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
                                 android:layout_width="wrap_content"
-                                app:checkedIcon="@drawable/checked"
                                 android:layout_height="wrap_content"
+                                android:text="Java"
                                 android:textColor="@color/black"
-                                android:text="Node.js" />
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="SQL" />
+                                android:layout_height="wrap_content"
+                                android:text="Python"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Firebase" />
+                                android:layout_height="wrap_content"
+                                android:text="JavaScript"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="MongoDB" />
+                                android:layout_height="wrap_content"
+                                android:text="React.js"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Angular" />
+                                android:layout_height="wrap_content"
+                                android:text="Node.js"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Problem Solving" />
+                                android:layout_height="wrap_content"
+                                android:text="SQL"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Firebase"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MongoDB"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Angular"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Problem Solving"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                         </com.google.android.material.chip.ChipGroup>
                     </LinearLayout>
@@ -452,87 +480,88 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="80"
                             android:layout_height="wrap_content"
+                            android:layout_weight="80"
                             android:text="Experience"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black" />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/ivCandidateJobFiltersExpandExperience"
                             android:layout_width="0dp"
-                            android:layout_weight="20"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerInside"
+                            android:layout_weight="20"
                             android:paddingLeft="30dp"
-                            app:tint="@color/expand_collapse_button_color"
                             android:pointerIcon="hand"
-                            android:src="@drawable/plus" />
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/llCandidateFiltersExperience"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
                         <RadioGroup
+                            android:id="@+id/rgCandidateFiltersExperience"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="Entry Level"
-                                android:textStyle="normal"
+                                android:textColor="@color/filter_checkbox_text_color"
                                 android:textSize="15sp"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:textStyle="normal" />
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="Mid Level"
-                                android:textStyle="normal"
+                                android:textColor="@color/filter_checkbox_text_color"
                                 android:textSize="15sp"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:textStyle="normal" />
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="Senior Level"
-                                android:textStyle="normal"
+                                android:textColor="@color/filter_checkbox_text_color"
                                 android:textSize="15sp"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:textStyle="normal" />
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="Manager Level"
-                                android:textStyle="normal"
+                                android:textColor="@color/filter_checkbox_text_color"
                                 android:textSize="15sp"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:textStyle="normal" />
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
-                                android:text="Sr. Manager Level"
-                                android:textStyle="normal"
-                                android:textSize="15sp"
                                 android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:text="Sr. Manager Level"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />
 
                         </RadioGroup>
 
@@ -558,135 +587,135 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="80"
                             android:layout_height="wrap_content"
+                            android:layout_weight="80"
                             android:text="Location"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black" />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/ivCandidateJobFiltersExpandLocation"
                             android:layout_width="0dp"
-                            android:layout_weight="20"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerInside"
+                            android:layout_weight="20"
                             android:paddingLeft="30dp"
-                            app:tint="@color/expand_collapse_button_color"
                             android:pointerIcon="hand"
-                            android:src="@drawable/plus" />
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/llCandidateFiltersLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.google.android.material.chip.ChipGroup
                             android:id="@+id/chipGroupLocation"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            app:singleSelection="false"
-                            app:singleLine="false"
                             android:layout_marginTop="6dp"
-                            app:chipSpacingHorizontal="15dp">
+                            app:chipSpacingHorizontal="15dp"
+                            app:singleLine="false"
+                            app:singleSelection="false">
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Delhi"
                                 android:textColor="@color/black"
-                                android:text="Delhi" />
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Bangalore" />
+                                android:layout_height="wrap_content"
+                                android:text="Bangalore"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:textColor="@color/black"
-                                android:layout_height="wrap_content"
                                 android:layout_width="wrap_content"
-                                android:text="Mumbai" />
+                                android:layout_height="wrap_content"
+                                android:text="Mumbai"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Chennai" />
+                                android:layout_height="wrap_content"
+                                android:text="Chennai"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Pune" />
+                                android:layout_height="wrap_content"
+                                android:text="Pune"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Kolkata" />
+                                android:layout_height="wrap_content"
+                                android:text="Kolkata"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Noida" />
+                                android:layout_height="wrap_content"
+                                android:text="Noida"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Indore" />
+                                android:layout_height="wrap_content"
+                                android:text="Indore"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Lucknow" />
+                                android:layout_height="wrap_content"
+                                android:text="Lucknow"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Ahmedabad" />
+                                android:layout_height="wrap_content"
+                                android:text="Ahmedabad"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
-                                app:checkedIcon="@drawable/checked"
-                                android:layout_height="wrap_content"
-                                android:textColor="@color/black"
                                 android:layout_width="wrap_content"
-                                android:text="Kanpur" />
+                                android:layout_height="wrap_content"
+                                android:text="Kanpur"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
 
 
                         </com.google.android.material.chip.ChipGroup>
@@ -712,38 +741,38 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="80"
                             android:layout_height="wrap_content"
+                            android:layout_weight="80"
                             android:text="Salary"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black" />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/ivCandidateJobFiltersExpandSalary"
                             android:layout_width="0dp"
-                            android:layout_weight="20"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerInside"
+                            android:layout_weight="20"
                             android:paddingLeft="30dp"
-                            app:tint="@color/expand_collapse_button_color"
                             android:pointerIcon="hand"
-                            android:src="@drawable/plus" />
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/llCandidateFiltersSalary"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <com.google.android.material.slider.RangeSlider
                             android:id="@+id/salaryRangeSlider"
@@ -752,18 +781,18 @@
                             android:layout_marginVertical="15dp"
                             android:valueFrom="0"
                             android:valueTo="500000"
-                            app:values="@array/default_salary_range"
-                            app:trackHeight="6dp"
-                            app:thumbTint="@color/primary"
-
+                            app:haloRadius="50dp"
                             app:thumbColor="@android:color/white"
                             app:thumbRadius="50dp"
+
                             app:thumbStrokeColor="@color/primary"
                             app:thumbStrokeWidth="2dp"
-                            app:haloRadius="50dp"
-
+                            app:thumbTint="@color/primary"
                             app:trackColorActive="@color/primary"
-                            app:trackColorInactive="@color/dadada" />
+                            app:trackColorInactive="@color/dadada"
+
+                            app:trackHeight="6dp"
+                            app:values="@array/default_salary_range" />
 
 
                     </LinearLayout>
@@ -788,82 +817,83 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:weightSum="100"
                         android:gravity="center_vertical"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:weightSum="100">
 
                         <TextView
                             android:layout_width="0dp"
-                            android:layout_weight="80"
                             android:layout_height="wrap_content"
+                            android:layout_weight="80"
                             android:text="Freshness"
+                            android:textColor="@color/black"
                             android:textSize="16dp"
-                            android:textStyle="bold"
-                            android:textColor="@color/black" />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:id="@+id/ivCandidateJobFiltersExpandFreshness"
                             android:layout_width="0dp"
-                            android:layout_weight="20"
                             android:layout_height="wrap_content"
-                            android:scaleType="centerInside"
+                            android:layout_weight="20"
                             android:paddingLeft="30dp"
-                            app:tint="@color/expand_collapse_button_color"
                             android:pointerIcon="hand"
-                            android:src="@drawable/plus" />
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:visibility="gone"
                         android:id="@+id/llCandidateFiltersFreshness"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <RadioGroup
+                            android:id="@+id/rgCandidateFiltersFreshness"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="Last 24 Hours"
-                                android:textSize="15sp"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="Last 3 Days"
-                                android:textSize="15sp"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="Last 7 days"
-                                android:textSize="15sp"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
                                 android:text="Last 15 days"
-                                android:textSize="15sp"
-                                android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
 
                             <RadioButton
                                 android:layout_width="match_parent"
                                 android:layout_height="35dp"
-                                android:text="Last 30 days"
-                                android:textSize="15sp"
                                 android:fontFamily="sans-serif-medium"
-                                android:textColor="@color/filter_checkbox_text_color" />
+                                android:text="Last 30 days"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
 
 
                         </RadioGroup>
@@ -877,32 +907,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="100"
-                android:gravity="center_horizontal|center_vertical"
                 android:layout_marginVertical="30dp"
-                android:orientation="horizontal">
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="100">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/acbCandidateJobFiltersCancel"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
-                    android:text="Cancel"
-                    android:paddingHorizontal="60dp"
-                    android:textAllCaps="false"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="50"
                     android:background="@drawable/no_bg_cancel_filters"
-                    android:textColor="@color/primary"
-                    android:layout_marginRight="15dp" />
+                    android:paddingHorizontal="60dp"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/primary" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/acbCandidateJobFiltersApply"
                     android:layout_width="0dp"
-                    android:layout_weight="50"
                     android:layout_height="wrap_content"
-                    android:text="Apply"
-                    android:paddingHorizontal="50dp"
-                    android:textAllCaps="false"
+                    android:layout_weight="50"
                     android:background="@drawable/bg_apply_filters"
+                    android:paddingHorizontal="50dp"
+                    android:text="Apply"
+                    android:textAllCaps="false"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -911,6 +941,7 @@
 
     </ScrollView>
 </LinearLayout>
+
 
     <!--
     job Type ✅ chip ✅

@@ -19,10 +19,11 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
-        app:labelVisibilityMode="unlabeled"
+        app:labelVisibilityMode="auto"
         app:itemIconTint="@null"
         app:itemTextColor="@null"
         style="@style/NoActiveIndicatorNavigation"
         app:itemRippleColor="@android:color/transparent"
         app:menu="@menu/candidate_home_bottom_menu" />
 </LinearLayout>
+
