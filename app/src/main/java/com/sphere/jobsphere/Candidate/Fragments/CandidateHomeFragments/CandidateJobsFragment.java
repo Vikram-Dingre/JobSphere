@@ -1,5 +1,12 @@
 package com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments;
 
+// REMAINING FEATURES IN THIS FRAGMENT
+//TODO
+// 1. Sorting Feature
+// 2. Save Jobs
+// 3.
+
+
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.tabs.TabLayout;
+import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.Candidate.Adapters.CandidateJobsPageAdapter;
 import com.sphere.jobsphere.Candidate.Classes.CandidateJobFilterModel;
 import com.sphere.jobsphere.Candidate.Classes.JobFiltersBottomSheet;
@@ -42,19 +50,27 @@ public class CandidateJobsFragment extends Fragment {
     List<CandidateJobModel> cachedSuggestedJobs = new ArrayList<>();
     List<CandidateJobModel> cachedRecentJobs = new ArrayList<>();
     List<CandidateJobModel> cachedAppliedJobs = new ArrayList<>();
+    JobFiltersBottomSheet jobFiltersBottomSheet;
+    boolean isFragmentStartingFirstTime = true;
+    CandidateHomeActivity activity;
     private TabLayout tabLayout;
     private AutoCompleteTextView customSpinner;
     private RecyclerView jobsRecycler;
     private TextView tvCandidateJobsAllResultCount;
-    private String currentTab = "All";
+    private String currentTab;
     private AlertDialog progressDialog;
     private EditText etCandidateJobsSearch;
     private ImageView ivCandidateJobsFilter;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_jobs, container, false);
+
+        if (getArguments() != null) {
+            currentTab = getArguments().getString("currentJobsTab");
+        } else {
+            currentTab = "All";
+        }
 
         tabLayout = view.findViewById(R.id.jobsTabLayout);
         customSpinner = view.findViewById(R.id.sortDropDown);
@@ -68,7 +84,8 @@ public class CandidateJobsFragment extends Fragment {
         jobsPageAdapter = new CandidateJobsPageAdapter(jobs, getActivity());
         jobsRecycler.setAdapter(jobsPageAdapter);
 
-        loadJobs("All", "Date");
+        activity = (CandidateHomeActivity) getActivity();
+//        fetchJobsForFirstTimeWithFilters();
 
         etCandidateJobsSearch.addTextChangedListener(new android.text.TextWatcher() {
             @Override
@@ -87,13 +104,14 @@ public class CandidateJobsFragment extends Fragment {
 
         ivCandidateJobsFilter.setOnClickListener(v -> {
 
-            JobFiltersBottomSheet jobFiltersBottomSheet = new JobFiltersBottomSheet();
+            jobFiltersBottomSheet = new JobFiltersBottomSheet();
 
-            jobFiltersBottomSheet.setOnFilterAppliedListener(new JobFiltersBottomSheet.OnFilterAppliedListener() {
-                @Override
-                public void onFilterApplied(CandidateJobFilterModel filterModel) {
-                    applyFilters(filterModel);
-                }
+            jobFiltersBottomSheet.setOnFilterAppliedListener(filterModel -> {
+                // Save filter in activity
+                activity.lastAppliedFilter = filterModel;
+
+                // Apply filter immediately
+                applyFilters(filterModel);
             });
 
             jobFiltersBottomSheet.show(getActivity().getSupportFragmentManager(), "JobFiltersBottomSheet");
@@ -106,13 +124,50 @@ public class CandidateJobsFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Recent"));
         tabLayout.addTab(tabLayout.newTab().setText("Applied"));
 
+        if (currentTab.equals("All")) {
+            tabLayout.getTabAt(0).select();
+        } else if (currentTab.equals("Suggested")) {
+            tabLayout.getTabAt(1).select();
+        } else if (currentTab.equals("Recent")) {
+            tabLayout.getTabAt(2).select();
+        } else {
+            tabLayout.getTabAt(3).select();
+        }
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 currentTab = tab.getText().toString();
+
+                // Load jobs for selected tab
                 loadJobs(currentTab, currentSort);
-                if (!etCandidateJobsSearch.getText().toString().isEmpty()) {
-                    filterJobs(etCandidateJobsSearch.getText().toString());
+
+                if (!loadedTabs.contains(currentTab)) {
+                    // if fetching jobs for first time in that tab then wait until data fetched and then apply filters
+                    new Handler().postDelayed(() -> {
+                        // Apply filters if saved in activity
+                        if (activity.lastAppliedFilter != null) {
+                            applyFilters(activity.lastAppliedFilter);
+                        }
+
+                        // Apply search if active
+                        String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+                        if (!searchQuery.isEmpty()) {
+                            filterJobs(searchQuery);
+                        }
+                    }, 700);
+                } else {
+                    // if already fetched then directly apply filters
+
+                    // If filters are active, reapply them
+                    if (jobFiltersBottomSheet != null) {
+                        jobFiltersBottomSheet.applyFilters(false);
+                    }
+
+                    // If search is active, reapply it
+                    if (!etCandidateJobsSearch.getText().toString().isEmpty()) {
+                        filterJobs(etCandidateJobsSearch.getText().toString());
+                    }
                 }
             }
 
@@ -125,6 +180,7 @@ public class CandidateJobsFragment extends Fragment {
             }
         });
 
+
         String[] options = {"Date", "Title", "Salary"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_dropdown_item_1line, options);
         customSpinner.setAdapter(adapter);
@@ -136,6 +192,41 @@ public class CandidateJobsFragment extends Fragment {
         });
         return view;
     }
+
+//
+//    @Override
+//    public void onPause() {
+//        super.onPause();
+//        activity.copyJobFilterBottomSheet = jobFiltersBottomSheet;
+//        makeText(activity, "paused"+activity.copyJobFilterBottomSheet, LENGTH_SHORT).show();
+//    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+//        makeText(activity, "Resumed" + activity.lastAppliedFilter, LENGTH_SHORT).show();
+        fetchJobsForFirstTimeWithFilters();
+    }
+
+    // new code adding
+
+    private void fetchJobsForFirstTimeWithFilters() {
+        loadJobs(currentTab, currentSort);
+
+        new Handler().postDelayed(() -> {
+            // Reapply last applied filters from activity
+            if (activity.lastAppliedFilter != null) {
+                applyFilters(activity.lastAppliedFilter);
+            }
+
+            // Reapply search if any
+            String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+            if (!searchQuery.isEmpty()) {
+                filterJobs(searchQuery);
+            }
+        }, 700);
+    }
+
 
     private void applyFilters(CandidateJobFilterModel filters) {
         List<CandidateJobModel> sourceList;
@@ -243,7 +334,6 @@ public class CandidateJobsFragment extends Fragment {
         jobsPageAdapter.notifyDataSetChanged();
         tvCandidateJobsAllResultCount.setText(jobs.size() + "");
     }
-
 
     private void filterJobs(String query) {
         List<CandidateJobModel> filteredJobs = new ArrayList<>();
@@ -412,6 +502,17 @@ public class CandidateJobsFragment extends Fragment {
 
                 jobsPageAdapter.notifyDataSetChanged();
                 tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+// 🔹 Reapply filters if active
+                if (activity.lastAppliedFilter != null) {
+                    applyFilters(activity.lastAppliedFilter);
+                }
+
+// 🔹 Reapply search if active
+                String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+                if (!searchQuery.isEmpty()) {
+                    filterJobs(searchQuery);
+                }
                 loadedTabs.add(currentTab);
                 hideLoader();
             }, 700);
@@ -431,6 +532,17 @@ public class CandidateJobsFragment extends Fragment {
             jobsPageAdapter.notifyDataSetChanged();
             jobsRecycler.setVerticalScrollbarPosition(1);
             tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+// 🔹 Reapply filters if active
+            if (activity.lastAppliedFilter != null) {
+                applyFilters(activity.lastAppliedFilter);
+            }
+
+// 🔹 Reapply search if active
+            String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+            if (!searchQuery.isEmpty()) {
+                filterJobs(searchQuery);
+            }
         }
     }
 

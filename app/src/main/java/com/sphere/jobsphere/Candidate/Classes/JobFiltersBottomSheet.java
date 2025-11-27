@@ -3,6 +3,8 @@ package com.sphere.jobsphere.Candidate.Classes;
 import android.animation.LayoutTransition;
 import android.app.Dialog;
 import android.os.Bundle;
+import android.transition.AutoTransition;
+import android.transition.TransitionManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,12 +33,11 @@ import java.util.List;
 
 public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
 
+    public boolean isFilterApplied = false;
     ImageView ivCandidateJobFiltersExpandJobTypes, ivCandidateJobFiltersExpandCategory, ivCandidateJobFiltersExpandSkills, ivCandidateJobFiltersExpandExperience, ivCandidateJobFiltersExpandLocation, ivCandidateJobFiltersExpandSalary, ivCandidateJobFiltersExpandFreshness;
     LinearLayout llCandidateFiltersJobType, llCandidateFiltersCategory, llCandidateFiltersSkills, llCandidateFiltersExperience, llCandidateFiltersLocation, llCandidateFiltersSalary, llCandidateFiltersFreshness;
     AppCompatButton acbCandidateJobFiltersApply, acbCandidateJobFiltersCancel;
-
     TextView ivCandidateJobFiltersClearFilters;
-
     boolean isShowJobTypes = false;
     boolean isShowCategory = false;
     boolean isShowSkills = false;
@@ -44,7 +45,6 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
     boolean isShowLocation = false;
     boolean isSHowSalary = false;
     boolean isShowFreshness = false;
-
     List<String> selectedJobType;
     List<String> selectedCategory;
     List<String> selectedSkills;
@@ -53,17 +53,13 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
     Double selectedMinSalary;
     Double selectedMaxSalary;
     String selectedFreshness;
-
     ChipGroup chipGroupSelectedFilters;
     ChipGroup chipGroupJobType, chipGroupSkills, chipGroupLocation;
-
     RangeSlider salaryRangeSlider;
-
-    private OnFilterAppliedListener listener;
-
     RadioGroup rgCandidateFiltersExperience, rgCandidateFiltersFreshness;
 
     CandidateJobFilterState state;
+    private OnFilterAppliedListener listener;
 
     @Nullable
     @Override
@@ -74,6 +70,26 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+        findViews(view);
+
+        state = CandidateJobFilterState.getInstance();
+
+        //RESTORE ALL FILTERS
+        restoreAllFilters();
+
+        //CLICK LISTENERS
+        allOnViewCreatedClickListeners();
+
+        // add to filtered chips at top when clicking on that filter ui
+        // SELECTING CHIPS ON OPENING BOTTOM SHEET
+        addDefaultChipsToSelectedFilterChips();
+
+        // RADIO BUTTON LISTENERS
+        allOncViewCreatedRadioCheckedChangeListeners();
+
+    }
+
+    private void findViews(View view) {
         ivCandidateJobFiltersExpandJobTypes = view.findViewById(R.id.ivCandidateJobFiltersExpandJobTypes);
         ivCandidateJobFiltersExpandCategory = view.findViewById(R.id.ivCandidateJobFiltersExpandCategory);
         ivCandidateJobFiltersExpandSkills = view.findViewById(R.id.ivCandidateJobFiltersExpandSkills);
@@ -104,9 +120,256 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
         rgCandidateFiltersFreshness = view.findViewById(R.id.rgCandidateFiltersFreshness);
 
         ivCandidateJobFiltersClearFilters = view.findViewById(R.id.ivCandidateJobFiltersClearFilters);
+    }
 
-        state = CandidateJobFilterState.getInstance();
+    private void addDefaultChipsToSelectedFilterChips() {
+        for (int i = 0; i < chipGroupJobType.getChildCount(); i++) {
+            View v = chipGroupJobType.getChildAt(i);
+            if (v instanceof Chip) {
+                Chip chip = (Chip) v;
+                chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    addOrRemoveSelectedFilterChip(chip.getText().toString(), isChecked);
+                });
+            }
+        }
 
+        for (int i = 0; i < llCandidateFiltersCategory.getChildCount(); i++) {
+            View v = llCandidateFiltersCategory.getChildAt(i);
+            if (v instanceof CheckBox) {
+                CheckBox checkBox = (CheckBox) v;
+                checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    addOrRemoveSelectedFilterChip(checkBox.getText().toString(), isChecked);
+                });
+            }
+        }
+
+        for (int i = 0; i < chipGroupSkills.getChildCount(); i++) {
+            View v = chipGroupSkills.getChildAt(i);
+            if (v instanceof Chip) {
+                Chip chip = (Chip) v;
+                chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    addOrRemoveSelectedFilterChip(chip.getText().toString(), isChecked);
+                });
+            }
+        }
+
+        for (int i = 0; i < chipGroupLocation.getChildCount(); i++) {
+            View v = chipGroupLocation.getChildAt(i);
+            if (v instanceof Chip) {
+                Chip chip = (Chip) v;
+                chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                    addOrRemoveSelectedFilterChip(chip.getText().toString(), isChecked);
+                });
+            }
+        }
+    }
+
+    private void allOncViewCreatedRadioCheckedChangeListeners() {
+        rgCandidateFiltersExperience.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = group.findViewById(checkedId);
+
+                if (radioButton == null) return;
+
+                String selectedText = radioButton.getText().toString();
+                List<String> experienceButtons = new ArrayList<>();
+
+                for (int j = 0; j < group.getChildCount(); j++) {
+                    RadioButton radio = (RadioButton) group.getChildAt(j);
+                    experienceButtons.add(radio.getText().toString());
+                }
+
+                int count = chipGroupSelectedFilters.getChildCount();
+
+                if (count > 0) {
+                    for (int i = 0; i < count; i++) {
+                        View view = chipGroupSelectedFilters.getChildAt(i);
+                        if (view instanceof Chip) {
+                            Chip c = (Chip) view;
+                            boolean isRadioButtonAlreadyExists = experienceButtons.contains(c.getText().toString());
+
+                            if (isRadioButtonAlreadyExists) {
+
+                                chipGroupSelectedFilters.removeView(c);
+                                addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
+
+//                            c.setText(selectedText);
+//                            c.setOnCloseIconClickListener(v -> {
+//                                unselectFilterFromSections(selectedText); // uncheck in section
+//                                chipGroupSelectedFilters.removeView(c);
+//                            });
+
+                            } else {
+                                addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
+                            }
+                        }
+                    }
+                } else {
+                    addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
+                }
+            }
+        });
+
+        rgCandidateFiltersFreshness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                RadioButton radioButton = group.findViewById(checkedId);
+
+                if (radioButton == null) return;
+
+                String selectedText = radioButton.getText().toString();
+                List<String> freshnessButtons = new ArrayList<>();
+
+                for (int j = 0; j < group.getChildCount(); j++) {
+                    RadioButton radio = (RadioButton) group.getChildAt(j);
+                    freshnessButtons.add(radio.getText().toString());
+                }
+
+                int count = chipGroupSelectedFilters.getChildCount();
+
+                if (count > 0) {
+                    for (int i = 0; i < count; i++) {
+                        View view = chipGroupSelectedFilters.getChildAt(i);
+                        if (view instanceof Chip) {
+                            Chip c = (Chip) view;
+                            boolean isRadioButtonAlreadyExists = freshnessButtons.contains(c.getText().toString());
+
+                            if (isRadioButtonAlreadyExists) {
+
+                                chipGroupSelectedFilters.removeView(c);
+                                addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
+
+//                            c.setText(selectedText);
+//                            c.setOnCloseIconClickListener(v -> {
+//                                unselectFilterFromSections(selectedText); // uncheck in section
+//                                chipGroupSelectedFilters.removeView(c);
+//                            });
+
+                            } else {
+                                addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
+                            }
+                        }
+                    }
+                } else {
+                    addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
+                }
+            }
+        });
+
+//        rgCandidateFiltersFreshness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(RadioGroup group, int checkedId) {
+//                RadioButton radioButton = group.findViewById(checkedId);
+//                addOrRemoveSelectedFilterChip(radioButton.getText().toString(), radioButton.isChecked());
+//            }
+//        });
+    }
+
+    private void allOnViewCreatedClickListeners() {
+
+        ivCandidateJobFiltersClearFilters.setOnClickListener(v -> {
+            clearAllFilters();
+        });
+
+        acbCandidateJobFiltersCancel.setOnClickListener(v -> {
+            dismiss();
+        });
+
+        acbCandidateJobFiltersApply.setOnClickListener(v -> {
+            applyFilters(true);
+        });
+
+        ivCandidateJobFiltersExpandJobTypes.setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition(llCandidateFiltersJobType, new AutoTransition());
+            if (isShowJobTypes) {
+                llCandidateFiltersJobType.setVisibility(View.GONE);
+                ivCandidateJobFiltersExpandJobTypes.setImageResource(R.drawable.plus);
+            } else {
+                llCandidateFiltersJobType.setVisibility(View.VISIBLE);
+                ivCandidateJobFiltersExpandJobTypes.setImageResource(R.drawable.minus);
+            }
+            isShowJobTypes = !isShowJobTypes;
+        });
+
+
+        ivCandidateJobFiltersExpandCategory.setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition(llCandidateFiltersCategory, new AutoTransition());
+            if (isShowCategory) {
+                llCandidateFiltersCategory.setVisibility(View.GONE);
+                ivCandidateJobFiltersExpandCategory.setImageResource(R.drawable.plus);
+            } else {
+                llCandidateFiltersCategory.setVisibility(View.VISIBLE);
+                ivCandidateJobFiltersExpandCategory.setImageResource(R.drawable.minus);
+            }
+            isShowCategory = !isShowCategory;
+        });
+
+        ivCandidateJobFiltersExpandSkills.setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition(llCandidateFiltersSkills, new AutoTransition());
+            if (isShowSkills) {
+                llCandidateFiltersSkills.setVisibility(View.GONE);
+                ivCandidateJobFiltersExpandSkills.setImageResource(R.drawable.plus);
+            } else {
+                llCandidateFiltersSkills.setVisibility(View.VISIBLE);
+                ivCandidateJobFiltersExpandSkills.setImageResource(R.drawable.minus);
+            }
+            isShowSkills = !isShowSkills;
+
+        });
+
+        ivCandidateJobFiltersExpandExperience.setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition(llCandidateFiltersExperience, new AutoTransition());
+            if (isShowExperience) {
+                llCandidateFiltersExperience.setVisibility(View.GONE);
+                ivCandidateJobFiltersExpandExperience.setImageResource(R.drawable.plus);
+            } else {
+                llCandidateFiltersExperience.setVisibility(View.VISIBLE);
+                ivCandidateJobFiltersExpandExperience.setImageResource(R.drawable.minus);
+            }
+            isShowExperience = !isShowExperience;
+
+        });
+
+        ivCandidateJobFiltersExpandLocation.setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition(llCandidateFiltersLocation, new AutoTransition());
+            if (isShowLocation) {
+                llCandidateFiltersLocation.setVisibility(View.GONE);
+                ivCandidateJobFiltersExpandLocation.setImageResource(R.drawable.plus);
+            } else {
+                llCandidateFiltersLocation.setVisibility(View.VISIBLE);
+                ivCandidateJobFiltersExpandLocation.setImageResource(R.drawable.minus);
+            }
+            isShowLocation = !isShowLocation;
+
+        });
+
+        ivCandidateJobFiltersExpandSalary.setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition(llCandidateFiltersSalary, new AutoTransition());
+            if (isSHowSalary) {
+                llCandidateFiltersSalary.setVisibility(View.GONE);
+                ivCandidateJobFiltersExpandSalary.setImageResource(R.drawable.plus);
+            } else {
+                llCandidateFiltersSalary.setVisibility(View.VISIBLE);
+                ivCandidateJobFiltersExpandSalary.setImageResource(R.drawable.minus);
+            }
+            isSHowSalary = !isSHowSalary;
+        });
+
+        ivCandidateJobFiltersExpandFreshness.setOnClickListener(v -> {
+            TransitionManager.beginDelayedTransition(llCandidateFiltersFreshness, new AutoTransition());
+            if (isShowFreshness) {
+                llCandidateFiltersFreshness.setVisibility(View.GONE);
+                ivCandidateJobFiltersExpandFreshness.setImageResource(R.drawable.plus);
+            } else {
+                llCandidateFiltersFreshness.setVisibility(View.VISIBLE);
+                ivCandidateJobFiltersExpandFreshness.setImageResource(R.drawable.minus);
+            }
+            isShowFreshness = !isShowFreshness;
+        });
+    }
+
+    public void restoreAllFilters() {
         // Restore categories
         for (int i = 0; i < llCandidateFiltersCategory.getChildCount(); i++) {
             View v = llCandidateFiltersCategory.getChildAt(i);
@@ -212,247 +475,9 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
         if (state.minSalary != 0 || state.maxSalary != 0) {
             salaryRangeSlider.setValues(Float.valueOf(1000.0F), Float.valueOf(5000.0F));
         }
-
-        ivCandidateJobFiltersClearFilters.setOnClickListener(v -> {
-            clearAllFilters();
-        });
-
-        acbCandidateJobFiltersCancel.setOnClickListener(v -> {
-            dismiss();
-        });
-
-        acbCandidateJobFiltersApply.setOnClickListener(v -> {
-            applyFilters(true);
-        });
-
-        ivCandidateJobFiltersExpandJobTypes.setOnClickListener(v -> {
-            if (isShowJobTypes) {
-                llCandidateFiltersJobType.setVisibility(View.GONE);
-                ivCandidateJobFiltersExpandJobTypes.setImageResource(R.drawable.plus);
-            } else {
-                llCandidateFiltersJobType.setVisibility(View.VISIBLE);
-                ivCandidateJobFiltersExpandJobTypes.setImageResource(R.drawable.minus);
-            }
-            isShowJobTypes = !isShowJobTypes;
-
-        });
-
-        ivCandidateJobFiltersExpandCategory.setOnClickListener(v -> {
-
-            if (isShowCategory) {
-                llCandidateFiltersCategory.setVisibility(View.GONE);
-                ivCandidateJobFiltersExpandCategory.setImageResource(R.drawable.plus);
-            } else {
-                llCandidateFiltersCategory.setVisibility(View.VISIBLE);
-                ivCandidateJobFiltersExpandCategory.setImageResource(R.drawable.minus);
-            }
-            isShowCategory = !isShowCategory;
-        });
-
-        ivCandidateJobFiltersExpandSkills.setOnClickListener(v -> {
-            if (isShowSkills) {
-                llCandidateFiltersSkills.setVisibility(View.GONE);
-                ivCandidateJobFiltersExpandSkills.setImageResource(R.drawable.plus);
-            } else {
-                llCandidateFiltersSkills.setVisibility(View.VISIBLE);
-                ivCandidateJobFiltersExpandSkills.setImageResource(R.drawable.minus);
-            }
-            isShowSkills = !isShowSkills;
-
-        });
-
-        ivCandidateJobFiltersExpandExperience.setOnClickListener(v -> {
-            if (isShowExperience) {
-                llCandidateFiltersExperience.setVisibility(View.GONE);
-                ivCandidateJobFiltersExpandExperience.setImageResource(R.drawable.plus);
-            } else {
-                llCandidateFiltersExperience.setVisibility(View.VISIBLE);
-                ivCandidateJobFiltersExpandExperience.setImageResource(R.drawable.minus);
-            }
-            isShowExperience = !isShowExperience;
-
-        });
-
-        ivCandidateJobFiltersExpandLocation.setOnClickListener(v -> {
-            if (isShowLocation) {
-                llCandidateFiltersLocation.setVisibility(View.GONE);
-                ivCandidateJobFiltersExpandLocation.setImageResource(R.drawable.plus);
-            } else {
-                llCandidateFiltersLocation.setVisibility(View.VISIBLE);
-                ivCandidateJobFiltersExpandLocation.setImageResource(R.drawable.minus);
-            }
-            isShowLocation = !isShowLocation;
-
-        });
-
-        ivCandidateJobFiltersExpandSalary.setOnClickListener(v -> {
-            if (isSHowSalary) {
-                llCandidateFiltersSalary.setVisibility(View.GONE);
-                ivCandidateJobFiltersExpandSalary.setImageResource(R.drawable.plus);
-            } else {
-                llCandidateFiltersSalary.setVisibility(View.VISIBLE);
-                ivCandidateJobFiltersExpandSalary.setImageResource(R.drawable.minus);
-            }
-            isSHowSalary = !isSHowSalary;
-        });
-
-        ivCandidateJobFiltersExpandFreshness.setOnClickListener(v -> {
-            if (isShowFreshness) {
-                llCandidateFiltersFreshness.setVisibility(View.GONE);
-                ivCandidateJobFiltersExpandFreshness.setImageResource(R.drawable.plus);
-            } else {
-                llCandidateFiltersFreshness.setVisibility(View.VISIBLE);
-                ivCandidateJobFiltersExpandFreshness.setImageResource(R.drawable.minus);
-            }
-            isShowFreshness = !isShowFreshness;
-        });
-
-        // add to filtered chips at top when clicking on that filter ui
-
-        for (int i = 0; i < chipGroupJobType.getChildCount(); i++) {
-            View v = chipGroupJobType.getChildAt(i);
-            if (v instanceof Chip) {
-                Chip chip = (Chip) v;
-                chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    addOrRemoveSelectedFilterChip(chip.getText().toString(), isChecked);
-                });
-            }
-        }
-
-        for (int i = 0; i < llCandidateFiltersCategory.getChildCount(); i++) {
-            View v = llCandidateFiltersCategory.getChildAt(i);
-            if (v instanceof CheckBox) {
-                CheckBox checkBox = (CheckBox) v;
-                checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    addOrRemoveSelectedFilterChip(checkBox.getText().toString(), isChecked);
-                });
-            }
-        }
-
-        for (int i = 0; i < chipGroupSkills.getChildCount(); i++) {
-            View v = chipGroupSkills.getChildAt(i);
-            if (v instanceof Chip) {
-                Chip chip = (Chip) v;
-                chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    addOrRemoveSelectedFilterChip(chip.getText().toString(), isChecked);
-                });
-            }
-        }
-
-        for (int i = 0; i < chipGroupLocation.getChildCount(); i++) {
-            View v = chipGroupLocation.getChildAt(i);
-            if (v instanceof Chip) {
-                Chip chip = (Chip) v;
-                chip.setOnCheckedChangeListener((buttonView, isChecked) -> {
-                    addOrRemoveSelectedFilterChip(chip.getText().toString(), isChecked);
-                });
-            }
-        }
-
-        rgCandidateFiltersExperience.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton = group.findViewById(checkedId);
-
-                if (radioButton == null) return;
-
-                String selectedText = radioButton.getText().toString();
-                List<String> experienceButtons = new ArrayList<>();
-
-                for (int j = 0; j < group.getChildCount(); j++) {
-                    RadioButton radio = (RadioButton) group.getChildAt(j);
-                    experienceButtons.add(radio.getText().toString());
-                }
-
-                int count = chipGroupSelectedFilters.getChildCount();
-
-                if (count > 0) {
-                    for (int i = 0; i < count; i++) {
-                        View view = chipGroupSelectedFilters.getChildAt(i);
-                        if (view instanceof Chip) {
-                            Chip c = (Chip) view;
-                            boolean isRadioButtonAlreadyExists = experienceButtons.contains(c.getText().toString());
-
-                            if (isRadioButtonAlreadyExists) {
-
-                                chipGroupSelectedFilters.removeView(c);
-                                addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
-
-//                            c.setText(selectedText);
-//                            c.setOnCloseIconClickListener(v -> {
-//                                unselectFilterFromSections(selectedText); // uncheck in section
-//                                chipGroupSelectedFilters.removeView(c);
-//                            });
-
-                            } else {
-                                addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
-                            }
-                        }
-                    }
-                } else {
-                    addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
-                }
-            }
-        });
-
-        rgCandidateFiltersFreshness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                RadioButton radioButton = group.findViewById(checkedId);
-
-                if (radioButton == null) return;
-
-                String selectedText = radioButton.getText().toString();
-                List<String> freshnessButtons = new ArrayList<>();
-
-                for (int j = 0; j < group.getChildCount(); j++) {
-                    RadioButton radio = (RadioButton) group.getChildAt(j);
-                    freshnessButtons.add(radio.getText().toString());
-                }
-
-                int count = chipGroupSelectedFilters.getChildCount();
-
-                if (count > 0) {
-                    for (int i = 0; i < count; i++) {
-                        View view = chipGroupSelectedFilters.getChildAt(i);
-                        if (view instanceof Chip) {
-                            Chip c = (Chip) view;
-                            boolean isRadioButtonAlreadyExists = freshnessButtons.contains(c.getText().toString());
-
-                            if (isRadioButtonAlreadyExists) {
-
-                                chipGroupSelectedFilters.removeView(c);
-                                addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
-
-//                            c.setText(selectedText);
-//                            c.setOnCloseIconClickListener(v -> {
-//                                unselectFilterFromSections(selectedText); // uncheck in section
-//                                chipGroupSelectedFilters.removeView(c);
-//                            });
-
-                            } else {
-                                addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
-                            }
-                        }
-                    }
-                } else {
-                    addOrRemoveSelectedFilterChip(selectedText, radioButton.isChecked());
-                }
-            }
-        });
-
-//        rgCandidateFiltersFreshness.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(RadioGroup group, int checkedId) {
-//                RadioButton radioButton = group.findViewById(checkedId);
-//                addOrRemoveSelectedFilterChip(radioButton.getText().toString(), radioButton.isChecked());
-//            }
-//        });
-
-
     }
 
-    private void clearAllFilters() {
+    public void clearAllFilters() {
         chipGroupJobType.clearCheck();
         chipGroupSkills.clearCheck();
         rgCandidateFiltersExperience.clearCheck();
@@ -469,13 +494,9 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 checkBox.setChecked(false);
             }
         }
-
         applyFilters(false);
+        isFilterApplied = false;
 
-    }
-
-    public interface OnFilterAppliedListener {
-        void onFilterApplied(CandidateJobFilterModel filterModel);
     }
 
     public void setOnFilterAppliedListener(OnFilterAppliedListener listener) {
@@ -600,9 +621,8 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
         }
     }
 
-
     // when user clicks "Apply Filters"
-    private void applyFilters(boolean shouldDismissSheet) {
+    public void applyFilters(boolean shouldDismissSheet) {
 
         selectedJobType = getSelectedFromSection(llCandidateFiltersJobType);
         selectedSkills = getSelectedFromSection(llCandidateFiltersSkills);
@@ -634,13 +654,20 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
         state.maxSalary = selectedMaxSalary;
         state.freshness = selectedFreshness;
 
+        if (shouldDismissSheet) {  // only mark true if user actually clicked "Apply"
+            isFilterApplied = true;
+        }
+
         CandidateJobFilterModel filters = new CandidateJobFilterModel(
                 selectedJobType, selectedCategory, selectedSkills, selectedExperience, selectedLocation, selectedMinSalary, selectedMaxSalary, selectedFreshness
         );
 
+
         if (listener != null) {
             listener.onFilterApplied(filters); // send back to fragment
         }
+
+
         if (shouldDismissSheet) {
             dismiss();
         }
@@ -660,25 +687,6 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
 
         return selectedItemText;
     }
-
-//    private String getSelectedFromRadioSections(LinearLayout parentLayout) {
-//        String selectedItemText = "";
-//        int childCount = parentLayout.getChildCount();
-//        for (int i = 0; i < childCount; i++) {
-//            View child = parentLayout.getChildAt(i);
-//            if (child instanceof RadioGroup) {
-//                RadioGroup radioGroup = (RadioGroup) child;
-//                int selectedRadioId = radioGroup.getCheckedRadioButtonId();
-//                RadioButton radioButton = radioGroup.findViewById(selectedRadioId);
-//                if (radioButton != null) {
-//                    selectedItemText = radioButton.getText().toString();
-//                }
-//                Toast.makeText(getContext(), ""+selectedRadioId, Toast.LENGTH_SHORT).show();
-//
-//            }
-//        }
-//        return selectedItemText;
-//    }
 
     private List<String> getSelectedFromSection(LinearLayout parentLayout) {
         List<String> selectedItems = new ArrayList<>();
@@ -704,6 +712,25 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
         }
         return selectedItems;
     }
+
+//    private String getSelectedFromRadioSections(LinearLayout parentLayout) {
+//        String selectedItemText = "";
+//        int childCount = parentLayout.getChildCount();
+//        for (int i = 0; i < childCount; i++) {
+//            View child = parentLayout.getChildAt(i);
+//            if (child instanceof RadioGroup) {
+//                RadioGroup radioGroup = (RadioGroup) child;
+//                int selectedRadioId = radioGroup.getCheckedRadioButtonId();
+//                RadioButton radioButton = radioGroup.findViewById(selectedRadioId);
+//                if (radioButton != null) {
+//                    selectedItemText = radioButton.getText().toString();
+//                }
+//                Toast.makeText(getContext(), ""+selectedRadioId, Toast.LENGTH_SHORT).show();
+//
+//            }
+//        }
+//        return selectedItemText;
+//    }
 
     @NonNull
     @Override
@@ -734,6 +761,10 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
         });
 
         return dialog;
+    }
+
+    public interface OnFilterAppliedListener {
+        void onFilterApplied(CandidateJobFilterModel filterModel);
     }
 
 

@@ -58,6 +58,7 @@
             </LinearLayout>
 
             <ImageButton
+                android:id="@+id/ibCandidateHomeNotifications"
                 android:layout_width="0dp"
                 android:layout_height="44dp"
                 android:layout_weight="10"
