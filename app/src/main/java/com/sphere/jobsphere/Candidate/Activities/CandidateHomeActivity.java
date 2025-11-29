@@ -9,25 +9,24 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.sphere.jobsphere.Candidate.Classes.CandidateJobFilterModel;
 import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateApplicationsFragment;
 import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateHomeFragment;
 import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateJobsFragment;
 import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateProfileFragment;
 import com.sphere.jobsphere.R;
 
+
 public class CandidateHomeActivity extends AppCompatActivity {
 
 
+    public BottomNavigationView bnvCandidateHomeActivityBottomMenu;
+    public CandidateJobFilterModel lastAppliedFilter = null;
     FirebaseAuth auth = FirebaseAuth.getInstance();
     AppCompatButton logout;
     String currentUid;
-
     SharedPreferences pref;
-
     SharedPreferences.Editor editor;
-
-    BottomNavigationView bnvCandidateHomeActivityBottomMenu;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +44,10 @@ public class CandidateHomeActivity extends AppCompatActivity {
                 fragment = new CandidateHomeFragment();
             } else if (item.getItemId() == R.id.candidate_home_bottom_menu_jobs) {
                 fragment = new CandidateJobsFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("currentJobsTab", "All");
+                fragment.setArguments(bundle);
+//                getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer,candidateJobsFragment).commit();
             } else if (item.getItemId() == R.id.candidate_home_bottom_menu_applications) {
                 fragment = new CandidateApplicationsFragment();
             } else {
@@ -52,7 +55,6 @@ public class CandidateHomeActivity extends AppCompatActivity {
             }
 
             getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, fragment).commit();
-
 
             return true;
         }));

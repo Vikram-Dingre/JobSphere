@@ -1,19 +1,31 @@
 package com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments;
 
+import static android.content.Context.MODE_PRIVATE;
+import static android.widget.Toast.LENGTH_SHORT;
+import static android.widget.Toast.makeText;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.Candidate.Adapters.CandidateHomeCategoryAdapter;
 import com.sphere.jobsphere.Candidate.Adapters.CandidateHomeRecentJobsAdapter;
 import com.sphere.jobsphere.Candidate.Adapters.CandidateHomeSuggestedJobsAdapter;
 import com.sphere.jobsphere.Candidate.Models.CandidateHomeCategoryModel;
 import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
+import com.sphere.jobsphere.Common.Activities.CommonLoginActivity;
 import com.sphere.jobsphere.R;
 
 import java.util.ArrayList;
@@ -27,14 +39,27 @@ public class CandidateHomeFragment extends Fragment {
     List<CandidateHomeCategoryModel> categories = new ArrayList<>();
     List<CandidateJobModel> suggestedJobs = new ArrayList<>();
     List<CandidateJobModel> recentJobs = new ArrayList<>();
+    TextView tvCandidateHomeSeeAllSuggestedJobs, tvCandidateHomeSeeAllRecentJobs;
+
+    ImageButton ibCandidateHomeNotifications;
+
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_home, container, false);
 
+        pref = getActivity().getSharedPreferences("settings", MODE_PRIVATE);
+        editor = pref.edit();
+
         candidateCategoriesRecycler = view.findViewById(R.id.rvCandidateHomeCategories);
         candidateSuggestedJobsRecycler = view.findViewById(R.id.rvCandidateHomeSuggestedJobs);
         candidateRecentJobsRecycler = view.findViewById(R.id.rvCandidateHomeRecentJobs);
+        tvCandidateHomeSeeAllRecentJobs = view.findViewById(R.id.tvCandidateHomeSeeAllRecentJobs);
+        tvCandidateHomeSeeAllSuggestedJobs = view.findViewById(R.id.tvCandidateHomeSeeAllSuggestedJobs);
+        ibCandidateHomeNotifications = view.findViewById(R.id.ibCandidateHomeNotifications);
+
 
         candidateSuggestedJobsRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
         candidateCategoriesRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -109,7 +134,7 @@ public class CandidateHomeFragment extends Fragment {
                 "https://logo.clearbit.com/adobe.com",
                 "Remote",
                 "Freelance",
-                Arrays.asList("Freelance"),
+                List.of("Freelance"),
                 "Design",
                 "Figma, Photoshop",
                 Arrays.asList("Figma", "Photoshop"),
@@ -191,7 +216,7 @@ public class CandidateHomeFragment extends Fragment {
                 "https://logo.clearbit.com/flipkart.com",
                 "Bengaluru, India",
                 "Part-time",
-                Arrays.asList("Part-time"),
+                List.of("Part-time"),
                 "Data Analytics",
                 "SQL, Excel, PowerBI",
                 Arrays.asList("SQL", "PowerBI", "Excel"),
@@ -218,6 +243,37 @@ public class CandidateHomeFragment extends Fragment {
 
         CandidateHomeRecentJobsAdapter recentJobsAdapter = new CandidateHomeRecentJobsAdapter(recentJobs, getActivity());
         candidateRecentJobsRecycler.setAdapter(recentJobsAdapter);
+
+        tvCandidateHomeSeeAllSuggestedJobs.setOnClickListener(v -> {
+            Fragment candidateJobsFragment = new CandidateJobsFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("currentJobsTab", "Suggested");
+            candidateJobsFragment.setArguments(bundle);
+            CandidateHomeActivity activity = (CandidateHomeActivity) getActivity();
+            activity.bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_jobs);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, candidateJobsFragment).commit();
+        });
+
+        tvCandidateHomeSeeAllRecentJobs.setOnClickListener(v -> {
+            Fragment candidateJobsFragment = new CandidateJobsFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("currentJobsTab", "Recent");
+            candidateJobsFragment.setArguments(bundle);
+            CandidateHomeActivity activity = (CandidateHomeActivity) getActivity();
+            activity.bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_jobs);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, candidateJobsFragment).commit();
+        });
+
+        ibCandidateHomeNotifications.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            editor.putBoolean("isLoggedIn", false).apply();
+            makeText(getActivity(), "Logged out Successfully."  , LENGTH_SHORT).show();
+            new Handler().postDelayed(() -> {
+                startActivity(new Intent(getActivity(), CommonLoginActivity.class));
+            }, 2000);
+
+        });
+
         return view;
     }
 }

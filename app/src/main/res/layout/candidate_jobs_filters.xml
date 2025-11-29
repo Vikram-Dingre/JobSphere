@@ -1,0 +1,1032 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="5dp">
+
+        <TextView
+            android:id="@+id/tvFilterTitle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Filter Jobs"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ivCandidateJobFiltersClearFilters"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:paddingBottom="2dp"
+            android:text="Clear all"
+            android:textColor="@color/primary"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:id="@+id/llCandidateFiltersSelectedFilters"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroupSelectedFilters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:paddingLeft="10dp"
+                app:chipSpacingHorizontal="10dp"
+                app:singleLine="true"
+                app:singleSelection="false" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="13dp"
+        android:background="@android:color/darker_gray" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3.5dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="80"
+                            android:text="Job Type"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivCandidateJobFiltersExpandJobTypes"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"
+                            android:paddingLeft="30dp"
+                            android:pointerIcon="hand"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCandidateFiltersJobType"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupJobType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            app:chipSpacingHorizontal="15dp"
+                            app:singleLine="false"
+                            app:singleSelection="false">
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Full-Time"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked"
+                                app:checkedIconTint="@color/primary" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Part-Time"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Internship"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="On-Site"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Hybrid"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Remote"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+
+                        </com.google.android.material.chip.ChipGroup>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3.5dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="80"
+                            android:text="Category"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivCandidateJobFiltersExpandCategory"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"
+                            android:paddingLeft="30dp"
+                            android:pointerIcon="hand"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCandidateFiltersCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="IT &amp; Software"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="AI &amp; Ml"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15dp"
+                            android:textStyle="normal" />
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="UI/UX"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Web Developement"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="App Developement"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Data Science"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Human Resource (HR)"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                        <CheckBox
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="Sales &amp; Marketing"
+                            android:textColor="@color/filter_checkbox_text_color"
+                            android:textSize="15sp"
+                            android:textStyle="normal" />
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3.5dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="80"
+                            android:text="Skills"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivCandidateJobFiltersExpandSkills"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"
+                            android:paddingLeft="30dp"
+                            android:pointerIcon="hand"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCandidateFiltersSkills"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupSkills"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            app:chipSpacingHorizontal="15dp"
+                            app:singleLine="false"
+                            app:singleSelection="false">
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Java"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Python"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="JavaScript"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="React.js"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Node.js"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="SQL"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Firebase"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MongoDB"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Angular"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Problem Solving"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                        </com.google.android.material.chip.ChipGroup>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3.5dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="80"
+                            android:text="Experience"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivCandidateJobFiltersExpandExperience"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"
+                            android:paddingLeft="30dp"
+                            android:pointerIcon="hand"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCandidateFiltersExperience"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <RadioGroup
+                            android:id="@+id/rgCandidateFiltersExperience"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Entry Level"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Mid Level"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Senior Level"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Manager Level"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Sr. Manager Level"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp"
+                                android:textStyle="normal" />
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3.5dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="80"
+                            android:text="Location"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivCandidateJobFiltersExpandLocation"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"
+                            android:paddingLeft="30dp"
+                            android:pointerIcon="hand"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCandidateFiltersLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            app:chipSpacingHorizontal="15dp"
+                            app:singleLine="false"
+                            app:singleSelection="false">
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Delhi"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Bangalore"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Mumbai"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Chennai"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pune"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kolkata"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Noida"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Indore"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Lucknow"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Ahmedabad"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.Material3.Chip.Filter.Elevated"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Kanpur"
+                                android:textColor="@color/black"
+                                app:checkedIcon="@drawable/checked" />
+
+
+                        </com.google.android.material.chip.ChipGroup>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3.5dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="80"
+                            android:text="Salary"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivCandidateJobFiltersExpandSalary"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"
+                            android:paddingLeft="30dp"
+                            android:pointerIcon="hand"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCandidateFiltersSalary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <com.google.android.material.slider.RangeSlider
+                            android:id="@+id/salaryRangeSlider"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="15dp"
+                            android:valueFrom="0"
+                            android:valueTo="500000"
+                            app:haloRadius="50dp"
+                            app:thumbColor="@android:color/white"
+                            app:thumbRadius="50dp"
+
+                            app:thumbStrokeColor="@color/primary"
+                            app:thumbStrokeWidth="2dp"
+                            app:thumbTint="@color/primary"
+                            app:trackColorActive="@color/primary"
+                            app:trackColorInactive="@color/dadada"
+
+                            app:trackHeight="6dp"
+                            app:values="@array/default_salary_range" />
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="3.5dp"
+                app:cardUseCompatPadding="true"
+                app:contentPadding="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="80"
+                            android:text="Freshness"
+                            android:textColor="@color/black"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/ivCandidateJobFiltersExpandFreshness"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="20"
+                            android:paddingLeft="30dp"
+                            android:pointerIcon="hand"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/plus"
+                            app:tint="@color/primary" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/llCandidateFiltersFreshness"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <RadioGroup
+                            android:id="@+id/rgCandidateFiltersFreshness"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Last 24 Hours"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Last 3 Days"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Last 7 days"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Last 15 days"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
+
+                            <RadioButton
+                                android:layout_width="match_parent"
+                                android:layout_height="35dp"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="Last 30 days"
+                                android:textColor="@color/filter_checkbox_text_color"
+                                android:textSize="15sp" />
+
+
+                        </RadioGroup>
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:gravity="center_horizontal|center_vertical"
+                android:orientation="horizontal"
+                android:weightSum="100">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acbCandidateJobFiltersCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="15dp"
+                    android:layout_weight="50"
+                    android:background="@drawable/no_bg_cancel_filters"
+                    android:paddingHorizontal="60dp"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
+                    android:textColor="@color/primary" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/acbCandidateJobFiltersApply"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:background="@drawable/bg_apply_filters"
+                    android:paddingHorizontal="50dp"
+                    android:text="Apply"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
+
+
+    <!--
+    job Type ✅ chip ✅
+    Category ✅ checkbox ✅
+    Skills ✅ chip
+    Experience ✅ checkbox
+    Location ✅ chip
+    Salary Range ✅ RangeSlider
+    Posted Date ✅ checkbox
+    action buttons ✅ Buttons
+    -->
+
+    <!--
+    HOW DO WE HANDLE CHECKBOX FOR FILTERING..?
+
+    user selects the checkboxes
+    send a ll to method
+    then get childs of that ll
+    type cast
+    check if instance of Checkbox and then IsChecked
+    if true store in List like CategoryFilters
+    and then store list in JobFilters Object
+    and booom done ✅
+    -->
+
+    <!--chipgroup demo
+       <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/chipGroupJobType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:singleSelection="true"
+                            app:singleLine="false"
+                            android:layout_marginTop="6dp"
+                            app:chipSpacing="15dp"
+                            >
+
+                            <com.google.android.material.chip.Chip
+                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                android:text="Full-Time" />
+
+                            <com.google.android.material.chip.Chip
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                android:text="Part-Time" />
+
+                            <com.google.android.material.chip.Chip
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                android:text="Internship" />
+
+                            <com.google.android.material.chip.Chip
+                                android:layout_height="wrap_content"
+                                android:layout_width="wrap_content"
+                                style="@style/Widget.MaterialComponents.Chip.Filter"
+                                android:text="Remote" />
+
+                        </com.google.android.material.chip.ChipGroup>
+    -->
+
+    <!--
+    autocompletetextview demo
+
+    <AutoCompleteTextView
+                            android:id="@+id/autoLocation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Select Location"
+                            android:inputType="none"
+                            android:background="@drawable/input_shape"
+                            android:drawableTint="@color/primary"
+                            android:padding="10dp"
+                            android:layout_marginTop="15dp"
+                            android:focusable="false"
+                            android:drawableEnd="@android:drawable/arrow_down_float" />
+
+    -->
+
+    <!--  <TextView
+                            android:id="@+id/tvSalaryValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 LPA - 50 LPA" />-->
+
+

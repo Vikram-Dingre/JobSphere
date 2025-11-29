@@ -17,24 +17,24 @@
             android:id="@+id/jobsCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:shapeAppearanceOverlay="@style/CandidateJobsCardShape"
+            app:cardBackgroundColor="@color/primary"
             app:cardPreventCornerOverlap="true"
+            app:shapeAppearanceOverlay="@style/CandidateJobsCardShape"
             app:strokeColor="@android:color/transparent"
-            app:strokeWidth="0dp"
-            app:cardBackgroundColor="@color/primary">
+            app:strokeWidth="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingVertical="10dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingVertical="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingTop="10dp"
                     android:layout_marginBottom="40dp"
                     android:orientation="horizontal"
+                    android:paddingTop="10dp"
                     android:weightSum="100">
 
                     <ImageView
@@ -48,11 +48,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="60"
+                        android:fontFamily="sans-serif-medium"
                         android:text="Browse Jobs"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="24sp"
-                        android:fontFamily="sans-serif-medium"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -68,35 +68,38 @@
         </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.tabs.TabLayout
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
             android:id="@+id/jobsTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="45dp"
+            android:layout_marginBottom="10dp"
+            app:tabGravity="fill"
             app:tabIndicatorColor="@color/primary"
-            app:tabSelectedTextColor="@color/primary"
-            app:tabTextColor="@color/black"
             app:tabIndicatorHeight="3dp"
             app:tabMode="fixed"
-            app:tabGravity="fill" />
+            app:tabRippleColor="@color/transparent"
+            app:tabSelectedTextColor="@color/primary"
+            app:tabTextColor="#8F0C0C0C" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="100"
+            android:layout_marginVertical="25dp"
+            android:elevation="10dp"
             android:gravity="center_vertical"
+            android:orientation="horizontal"
             android:paddingHorizontal="10dp"
-            android:layout_marginVertical="20dp"
-            android:orientation="horizontal">
+            android:weightSum="100">
 
             <TextView
                 android:id="@+id/tvCandidateJobsAllResultCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="102"
+                android:fontFamily="sans-serif-medium"
+                android:text="0"
                 android:textColor="@color/lightDard"
                 android:textSize="22sp"
-                android:fontFamily="sans-serif-medium"
                 android:textStyle="bold" />
 
             <TextView
@@ -104,37 +107,37 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="65"
                 android:text=" Jobs Found"
-                android:textSize="22sp"
                 android:textColor="@color/lightDard"
+                android:textSize="22sp"
                 android:textStyle="bold" />
 
             <AutoCompleteTextView
                 android:id="@+id/sortDropDown"
                 android:layout_width="0dp"
-                android:layout_weight="33"
                 android:layout_height="wrap_content"
-                android:paddingHorizontal="10dp"
+                android:layout_weight="33"
                 android:background="@drawable/spinner_background"
                 android:drawableEnd="@android:drawable/arrow_down_float"
-                android:drawablePadding="8dp"
-                android:gravity="center_vertical"
-                android:paddingVertical="8dp"
-                android:inputType="none"
-                android:focusable="false"
-                android:textColorHint="@color/lightDard"
-                android:singleLine="true"
+                android:drawableTint="@color/primary"
                 android:ellipsize="end"
+                android:focusable="false"
+                android:gravity="center_vertical"
+                android:hint="Sort"
+                android:inputType="none"
+                android:paddingHorizontal="13dp"
+                android:paddingVertical="8dp"
+                android:singleLine="true"
+                android:textColor="@color/primary"
+                android:textColorHint="@color/primary"
                 android:textSize="14sp"
-                android:textStyle="bold"
-                android:hint="Sort" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCandidateJobsReycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -148,6 +151,7 @@
         android:layout_marginEnd="20dp"
         android:background="@drawable/candidate_jobs_searchbar_shape"
         android:drawableEnd="@drawable/search_24dp_1f1f1f_fill0_wght400_grad0_opsz24"
+        android:drawableTint="#8E8B8B"
         android:elevation="10dp"
         android:hint="Search Jobs"
         android:paddingHorizontal="15dp"
