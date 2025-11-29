@@ -19,6 +19,7 @@ import com.sphere.jobsphere.R;
 
 public class CandidateHomeActivity extends AppCompatActivity {
 
+    // change
 
     public BottomNavigationView bnvCandidateHomeActivityBottomMenu;
     public CandidateJobFilterModel lastAppliedFilter = null;
