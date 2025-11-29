@@ -22,6 +22,16 @@
     <color name="recentThree">#72BADC</color>
     <color name="recentFour">#A7FFE7</color>
 
+    <color name="color_on_the_way_application">#D83FAC43</color>
+    <color name="bg_on_the_way_application">#1B43A047</color>
+
+    <color name="color_delivered_application">#CD000000</color>
+    <color name="bg_delivered_application">#14000000</color>
+
+    <color name="color_rejected_application">#CBCD2E2E</color>
+    <color name="bg_rejected_application">#14FF0000</color>
+
+
     <color name="expand_collapse_button_color">#575454</color>
     <color name="filter_checkbox_text_color">#717171</color>
 </resources>
