@@ -267,7 +267,7 @@ public class CandidateHomeFragment extends Fragment {
         ibCandidateHomeNotifications.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             editor.putBoolean("isLoggedIn", false).apply();
-            makeText(getActivity(), "Logged out Successfully.", LENGTH_SHORT).show();
+            makeText(getActivity(), "Logged out Successfully."  , LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 startActivity(new Intent(getActivity(), CommonLoginActivity.class));
             }, 2000);
