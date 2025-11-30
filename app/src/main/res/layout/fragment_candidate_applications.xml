@@ -87,6 +87,7 @@
         android:background="@drawable/candidate_jobs_searchbar_shape"
         android:drawableEnd="@drawable/search_24dp_1f1f1f_fill0_wght400_grad0_opsz24"
         android:drawableTint="#8E8B8B"
+        android:textSize="16sp"
         android:elevation="10dp"
         android:hint="Search applications"
         android:paddingHorizontal="15dp"
