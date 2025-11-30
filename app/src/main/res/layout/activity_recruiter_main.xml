@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100"
+    android:orientation="vertical"
+    tools:context=".Recruiter.Activities.RecruiterMainActivity">
+        <FrameLayout
+            android:id="@+id/flRecruiterMainactivityFrameContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="92"/>
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bnvRecruiterMainActivityBottomMenu"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            app:labelVisibilityMode="auto"
+            app:itemIconTint="@null"
+            app:itemTextColor="@null"
+            style="@style/NoActiveIndicatorNavigation"
+            app:itemRippleColor="@android:color/transparent"
+            app:menu="@menu/recruiter_main_bottom_menu"/>
+
+</LinearLayout>
