@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.R;
-import com.sphere.jobsphere.Recruiter.Activities.RecruiterHomeActivity;
+import com.sphere.jobsphere.Recruiter.Activities.RecruiterMainActivity;
 
 public class CommonSplashActivity extends AppCompatActivity {
     SharedPreferences pref;
@@ -41,7 +41,7 @@ public class CommonSplashActivity extends AppCompatActivity {
                             startActivity(new Intent(this, CandidateHomeActivity.class));
                             finish();
                         } else {
-                            startActivity(new Intent(this, RecruiterHomeActivity.class));
+                            startActivity(new Intent(this, RecruiterMainActivity.class));
                             finish();
                         }
                     } else {

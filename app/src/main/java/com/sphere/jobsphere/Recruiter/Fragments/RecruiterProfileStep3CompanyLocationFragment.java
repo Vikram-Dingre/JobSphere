@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.sphere.jobsphere.R;
-import com.sphere.jobsphere.Recruiter.Activities.RecruiterHomeActivity;
+import com.sphere.jobsphere.Recruiter.Activities.RecruiterMainActivity;
 import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileSetupActivity;
 import com.sphere.jobsphere.Recruiter.Models.RecruiterCompanyLocation;
 
@@ -63,7 +63,7 @@ public class RecruiterProfileStep3CompanyLocationFragment extends Fragment {
                 activity.saveProfileToFirestore();
                 editor.putBoolean("isProfileSetupCompleted", true).apply();
                 new Handler().postDelayed(() -> {
-                    activity.startActivity(new Intent(getActivity(), RecruiterHomeActivity.class));
+                    activity.startActivity(new Intent(getActivity(), RecruiterMainActivity.class));
                     activity.finish();
                 }, 1000);
             } else {
