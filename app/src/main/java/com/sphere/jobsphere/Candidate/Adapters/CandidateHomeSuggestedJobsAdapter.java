@@ -77,8 +77,6 @@ public class CandidateHomeSuggestedJobsAdapter extends RecyclerView.Adapter<Cand
             holder.jobTypeChipGroup.addView(chip);
         }
 
-
-
     }
 
     @Override

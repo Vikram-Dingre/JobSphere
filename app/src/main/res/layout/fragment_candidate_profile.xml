@@ -42,8 +42,7 @@
                         android:layout_width="0dp"
                         android:layout_height="30dp"
                         android:layout_weight="20"
-                        android:src="@drawable/back_arrow"
-                        />
+                        android:src="@drawable/back_arrow" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -57,12 +56,10 @@
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/ibCandidateHomeNotifications"
                         android:layout_width="0dp"
                         android:layout_height="22dp"
                         android:layout_weight="20"
-                        android:src="@drawable/candidate_notifications"
-                        />
+                        android:src="@drawable/candidate_notifications" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -264,17 +261,14 @@
                             android:text="Personal Information"
                             android:textColor="@color/white"
                             android:textSize="16sp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_weight="20"
                             android:layout_height="wrap_content"
                             app:tint="@color/white"
-                            android:src="@drawable/arrow_right"
-                            />
-
+                            android:src="@drawable/arrow_right" />
 
 
                     </LinearLayout>
@@ -283,8 +277,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginHorizontal="23dp"
-                        android:background="@color/bg"
-                        />
+                        android:background="@color/bg" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -312,17 +305,14 @@
                             android:text="Work Experience"
                             android:textColor="@color/white"
                             android:textSize="16sp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_weight="20"
                             android:layout_height="wrap_content"
                             app:tint="@color/white"
-                            android:src="@drawable/arrow_right"
-                            />
-
+                            android:src="@drawable/arrow_right" />
 
 
                     </LinearLayout>
@@ -331,8 +321,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginHorizontal="23dp"
-                        android:background="@color/bg"
-                        />
+                        android:background="@color/bg" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -360,17 +349,14 @@
                             android:text="Education"
                             android:textColor="@color/white"
                             android:textSize="16sp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_weight="20"
                             android:layout_height="wrap_content"
                             app:tint="@color/white"
-                            android:src="@drawable/arrow_right"
-                            />
-
+                            android:src="@drawable/arrow_right" />
 
 
                     </LinearLayout>
@@ -379,8 +365,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:layout_marginHorizontal="23dp"
-                        android:background="@color/bg"
-                        />
+                        android:background="@color/bg" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -408,16 +393,14 @@
                             android:text="Log out"
                             android:textColor="@color/white"
                             android:textSize="16sp"
-                            android:textStyle="bold"
-                            />
+                            android:textStyle="bold" />
 
                         <ImageView
                             android:layout_width="0dp"
                             android:layout_weight="20"
                             android:layout_height="wrap_content"
                             app:tint="@color/white"
-                            android:src="@drawable/arrow_right"
-                            />
+                            android:src="@drawable/arrow_right" />
 
                     </LinearLayout>
 

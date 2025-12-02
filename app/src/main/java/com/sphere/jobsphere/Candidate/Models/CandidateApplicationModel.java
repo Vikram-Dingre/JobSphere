@@ -2,6 +2,7 @@ package com.sphere.jobsphere.Candidate.Models;
 
 public class CandidateApplicationModel {
     private String id;
+    private String companyId;
     private String companyLogo;
     private String jobName;
     private String companyName;

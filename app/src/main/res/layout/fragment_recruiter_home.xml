@@ -114,7 +114,6 @@
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/ibCandidateHomeNotifications"
                         app:tint="@color/white"
                         android:layout_width="0dp"
                         android:layout_height="22dp"
@@ -128,7 +127,6 @@
 
         <!-- Floating Search Bar outside CardView -->
         <EditText
-            android:id="@+id/etCandidateJobsSearch"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
@@ -151,7 +149,6 @@
             android:paddingHorizontal="8dp"
             android:layout_marginTop="20dp"
             android:scrollbars="none">
-
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -211,8 +208,7 @@
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <!-- Posted jobs -->
                 <TextView

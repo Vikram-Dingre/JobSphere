@@ -30,7 +30,7 @@ public class CandidateApplicationsFragment extends Fragment {
 
         applicationRecycler = view.findViewById(R.id.rvCandidateApplicationsRecycler);
 
-        for (int i = 1; i <=15; i++) {
+        for (int i = 1; i <= 15; i++) {
 
             String status;
             if (i % 3 == 0) status = "Delivered";
@@ -51,7 +51,7 @@ public class CandidateApplicationsFragment extends Fragment {
         }
 
         applicationRecycler.setLayoutManager(new LinearLayoutManager(getActivity()));
-        applicationsPageAdapter = new CandidateApplicationsPageAdapter(applications,getActivity());
+        applicationsPageAdapter = new CandidateApplicationsPageAdapter(applications, getActivity());
         applicationRecycler.setAdapter(applicationsPageAdapter);
 
         return view;

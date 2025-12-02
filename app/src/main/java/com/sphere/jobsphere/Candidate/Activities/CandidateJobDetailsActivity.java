@@ -18,8 +18,9 @@ import java.util.List;
 public class CandidateJobDetailsActivity extends AppCompatActivity {
     LinearLayout llRequirementsSkillsContainer;
     TabLayout candidateJobDetailsTabLayout;
-    LinearLayout candidateJobDetailsJobDescriptionTabContent,candidateJobDetailsCompanyTabContent;
+    LinearLayout candidateJobDetailsJobDescriptionTabContent, candidateJobDetailsCompanyTabContent;
     private String currentTab;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,10 +55,10 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
                 candidateJobDetailsJobDescriptionTabContent.setVisibility(GONE);
                 candidateJobDetailsCompanyTabContent.setVisibility(GONE);
 
-                if (currentTab.equalsIgnoreCase("Job Description")){
+                if (currentTab.equalsIgnoreCase("Job Description")) {
                     candidateJobDetailsJobDescriptionTabContent.setVisibility(VISIBLE);
                     candidateJobDetailsCompanyTabContent.setVisibility(GONE);
-                }else if (currentTab.equalsIgnoreCase("Company")){
+                } else if (currentTab.equalsIgnoreCase("Company")) {
                     candidateJobDetailsJobDescriptionTabContent.setVisibility(GONE);
                     candidateJobDetailsCompanyTabContent.setVisibility(VISIBLE);
                 }
@@ -84,8 +85,9 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
                 "Experience with Android Studio",
                 "Knowledge of Firebase",
                 "Good communication skills",
-                "Kiss With Ritu Baby",
-                "I Love You Ritu Jaanu"
+                "Having Hands On Experience",
+                "Effective Decision Making",
+                "Good Problem Solving SKills"
         );
         // Add each requirement as a bullet point
         for (String req : requirements) {

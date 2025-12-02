@@ -4,7 +4,7 @@ import java.util.List;
 
 public class CandidateJobModel {
 
-    private String id;                  // Firestore document ID
+    public String id;                  // Firestore document ID
     private String title;               // Job title
     private String description;         // Full job description
     private String companyName;         // Company name
@@ -37,7 +37,6 @@ public class CandidateJobModel {
     private int applicantsCount;        // Number of applicants
     private List<String> applicants;    // List of candidate userIds
 
-    private Double matchScore;          // For suggested jobs (null for recent)
 
     public CandidateJobModel() {
     } // Required for Firestore
@@ -49,8 +48,7 @@ public class CandidateJobModel {
                              String experienceLevel, String education,
                              long postedAt, long deadline,
                              String recruiterId, String recruiterName, String recruiterEmail,
-                             int applicantsCount, List<String> applicants,
-                             Double matchScore) {
+                             int applicantsCount, List<String> applicants) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -74,7 +72,6 @@ public class CandidateJobModel {
         this.recruiterEmail = recruiterEmail;
         this.applicantsCount = applicantsCount;
         this.applicants = applicants;
-        this.matchScore = matchScore;
     }
 
     // 🔹 Getters & Setters
@@ -263,11 +260,11 @@ public class CandidateJobModel {
         this.applicants = applicants;
     }
 
-    public Double getMatchScore() {
-        return matchScore;
-    }
-
-    public void setMatchScore(Double matchScore) {
-        this.matchScore = matchScore;
-    }
+//    public Double getMatchScore() {
+//        return matchScore;
+//    }
+//
+//    public void setMatchScore(Double matchScore) {
+//        this.matchScore = matchScore;
+//    }
 }

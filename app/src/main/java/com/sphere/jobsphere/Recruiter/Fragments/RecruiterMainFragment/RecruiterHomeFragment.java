@@ -1,14 +1,13 @@
 package com.sphere.jobsphere.Recruiter.Fragments.RecruiterMainFragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Adapters.RecruiterHomeRecentJobAdapter;
@@ -21,7 +20,7 @@ import java.util.List;
 
 public class RecruiterHomeFragment extends Fragment {
 
-    List<RecruiterJobModel> recentJobs=new ArrayList<>();
+    List<RecruiterJobModel> recentJobs = new ArrayList<>();
     RecyclerView recyclerView;
 
     LinearLayoutManager linearLayoutManager;
@@ -30,8 +29,8 @@ public class RecruiterHomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_recruiter_home, container, false);
-        recyclerView=view.findViewById(R.id.rvRecruiterHomeRecentJobs);
+        View view = inflater.inflate(R.layout.fragment_recruiter_home, container, false);
+        recyclerView = view.findViewById(R.id.rvRecruiterHomeRecentJobs);
         loadData();
         loadRecyclerView();
         return view;
@@ -39,9 +38,9 @@ public class RecruiterHomeFragment extends Fragment {
 
     private void loadRecyclerView() {
 
-        linearLayoutManager=new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+        linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        adapter=new RecruiterHomeRecentJobAdapter(recentJobs,getActivity());
+        adapter = new RecruiterHomeRecentJobAdapter(recentJobs, getActivity());
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
