@@ -51,8 +51,10 @@ public class CandidateApplicationsPageAdapter extends RecyclerView.Adapter<Candi
         holder.jobSalary.setText(application.getJobSalary());
         holder.jobLocation.setText(application.getJobLocation());
         holder.applicationStatus.setText(application.getApplicationStatus());
+
         holder.viewApplication.setOnClickListener(v -> {
             Intent intent = new Intent(context, CandidateApplicationDetailsActivity.class);
+            intent.putExtra("applicationId", application.getId());
             context.startActivity(intent);
 
         });

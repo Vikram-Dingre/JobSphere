@@ -10,7 +10,6 @@ package com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments;
 import android.app.AlertDialog;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,6 +55,7 @@ public class CandidateJobsFragment extends Fragment {
     JobFiltersBottomSheet jobFiltersBottomSheet;
     boolean isFragmentStartingFirstTime = true;
     CandidateHomeActivity activity;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TabLayout tabLayout;
     private AutoCompleteTextView customSpinner;
     private RecyclerView jobsRecycler;
@@ -64,8 +64,6 @@ public class CandidateJobsFragment extends Fragment {
     private AlertDialog progressDialog;
     private EditText etCandidateJobsSearch;
     private ImageView ivCandidateJobsFilter;
-
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -269,12 +267,12 @@ public class CandidateJobsFragment extends Fragment {
                 }
             }
 
-//            // ✅ Category
-//            if (matches && filters.getSelectedCategory() != null && !filters.getSelectedCategory().isEmpty()) {
-//                if (!filters.getSelectedCategory().contains(job.getCategory())) {
-//                    matches = false;
-//                }
-//            }
+            // ✅ Category
+            if (matches && filters.getSelectedCategory() != null && !filters.getSelectedCategory().isEmpty()) {
+                if (!filters.getSelectedCategory().contains(job.getCategory())) {
+                    matches = false;
+                }
+            }
 
             // ✅ Skills (at least one skill should match)
             if (matches && filters.getSelectedSkills() != null && !filters.getSelectedSkills().isEmpty()) {
@@ -290,17 +288,17 @@ public class CandidateJobsFragment extends Fragment {
 
             // ✅ Experience
             if (matches && filters.getSelectedExperience() != null && !filters.getSelectedExperience().isEmpty()) {
-                if (!job.getExperienceLevel().equalsIgnoreCase(filters.getSelectedExperience())) {
+                if (!filters.getSelectedExperience().contains(job.getExperienceLevel())) {
                     matches = false;
                 }
             }
 
             // ✅ Location
-//            if (matches && filters.getSelectedLocation() != null && !filters.getSelectedLocation().isEmpty()) {
-//                if (!filters.getSelectedLocation().contains(job.getLocation())) {
-//                    matches = false;
-//                }
-//            }
+            if (matches && filters.getSelectedLocation() != null && !filters.getSelectedLocation().isEmpty()) {
+                if (!filters.getSelectedLocation().contains(job.getLocation())) {
+                    matches = false;
+                }
+            }
 
 //            // ✅ Salary Range
 //            if (matches && (filters.getSelectedMinSalary() != null || filters.getSelectedMaxSalary() != null)) {
@@ -418,24 +416,51 @@ public class CandidateJobsFragment extends Fragment {
 //                        ));
 //                    }
 
-                    db.collection("jobs")
-                            .addSnapshotListener((snapshots, e) -> {
-                                if (e != null || snapshots == null) {
-                                    Log.e("Firestore", "Error loading Jobs.", e);
-                                    return;
-                                }
+//                    db.collection("jobs")
+//                            .addSnapshotListener((snapshots, e) -> {
+//                                if (e != null || snapshots == null) {
+//                                    Log.e("Firestore", "Error loading Jobs.", e);
+//                                    return;
+//                                }
+//
+//                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+//
+//                                    if (job != null) {
+//                                        job.id = doc.getId();
+//                                        cachedAllJobs.add(job);
+//                                    }
+//                                }
+//                            });
 
-                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
-                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                    db.collection("jobs").get().addOnSuccessListener(snapshots -> {
 
-                                    if (job != null) {
-                                        job.id = doc.getId();
-                                        cachedAllJobs.add(job);
-                                    }
-                                }
-                            });
+                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                            CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                            if (job != null) {
+                                job.id = doc.getId();
+                                cachedAllJobs.add(job);
+                            }
+                        }
+                        jobs.addAll(cachedAllJobs);
+//                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
 
-                    jobs.addAll(cachedAllJobs);
+                        // 🔹 Reapply search if active
+                        String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+                        if (!searchQuery.isEmpty()) {
+                            filterJobs(searchQuery);
+                        }
+
+                        // Reapply Filters if active
+                        if (activity.lastAppliedFilter != null) {
+                            applyFilters(activity.lastAppliedFilter);
+                        } else {
+                            jobsPageAdapter.notifyDataSetChanged();
+                        }
+                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+                    });
+
                 } else if (currentTab.equals("Suggested")) {
 //                    for (int i = 20; i >= 1; i--) {
 //                        cachedSuggestedJobs.add(new CandidateJobModel("job" + i, // id
@@ -463,23 +488,49 @@ public class CandidateJobsFragment extends Fragment {
 //                                Arrays.asList("cand1", "cand2", "cand3")
 //                        ));
 //                    }
-                    db.collection("jobs")
-                            .addSnapshotListener((snapshots, e) -> {
-                                if (e != null || snapshots == null) {
-                                    Log.e("Firestore", "Error loading Jobs.", e);
-                                    return;
-                                }
+//                    db.collection("jobs")
+//                            .addSnapshotListener((snapshots, e) -> {
+//                                if (e != null || snapshots == null) {
+//                                    Log.e("Firestore", "Error loading Jobs.", e);
+//                                    return;
+//                                }
+//
+//                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+//
+//                                    if (job != null) {
+//                                        job.id = doc.getId();
+//                                        cachedSuggestedJobs.add(job);
+//                                    }
+//                                }
+//                    );
 
-                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
-                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                    db.collection("jobs").limit(5).get().addOnSuccessListener(snapshots -> {
 
-                                    if (job != null) {
-                                        job.id = doc.getId();
-                                        cachedSuggestedJobs.add(job);
-                                    }
-                                }
-                            });
-                    jobs.addAll(cachedSuggestedJobs);
+                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                            CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                            if (job != null) {
+                                job.id = doc.getId();
+                                cachedSuggestedJobs.add(job);
+                            }
+                        }
+                        jobs.addAll(cachedSuggestedJobs);
+//                                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+                        // 🔹 Reapply search if active
+                        String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+                        if (!searchQuery.isEmpty()) {
+                            filterJobs(searchQuery);
+                        }
+                        // Reapply Filters if active
+                        if (activity.lastAppliedFilter != null) {
+                            applyFilters(activity.lastAppliedFilter);
+                        } else {
+                            jobsPageAdapter.notifyDataSetChanged();
+                        }
+                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+                    });
+
                 } else if (currentTab.equals("Recent")) {
 //                    for (int i = 1; i <= 10; i++) {
 //                        cachedRecentJobs.add(new CandidateJobModel("job" + i, // id
@@ -507,23 +558,50 @@ public class CandidateJobsFragment extends Fragment {
 //                                Arrays.asList("cand1", "cand2", "cand3")
 //                        ));
 //                    }
-                    db.collection("jobs")
-                            .addSnapshotListener((snapshots, e) -> {
-                                if (e != null || snapshots == null) {
-                                    Log.e("Firestore", "Error loading Jobs.", e);
-                                    return;
-                                }
+//                    db.collection("jobs")
+//                            .addSnapshotListener((snapshots, e) -> {
+//                                if (e != null || snapshots == null) {
+//                                    Log.e("Firestore", "Error loading Jobs.", e);
+//                                    return;
+//                                }
+//
+//                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+//
+//                                    if (job != null) {
+//                                        job.id = doc.getId();
+//                                        cachedRecentJobs.add(job);
+//                                    }
+//                                }
+//                            });
 
-                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
-                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                    db.collection("jobs").limit(4).get().addOnSuccessListener(snapshots -> {
 
-                                    if (job != null) {
-                                        job.id = doc.getId();
-                                        cachedRecentJobs.add(job);
-                                    }
-                                }
-                            });
-                    jobs.addAll(cachedRecentJobs);
+                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                            CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                            if (job != null) {
+                                job.id = doc.getId();
+                                cachedRecentJobs.add(job);
+                            }
+                        }
+                        jobs.addAll(cachedRecentJobs);
+//                                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+                        // 🔹 Reapply search if active
+                        String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+                        if (!searchQuery.isEmpty()) {
+                            filterJobs(searchQuery);
+                        }
+
+                        // Reapply Filters if active
+                        if (activity.lastAppliedFilter != null) {
+                            applyFilters(activity.lastAppliedFilter);
+                        } else {
+                            jobsPageAdapter.notifyDataSetChanged();
+                        }
+                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+                    });
+
                 } else {
                     for (int i = 15; i >= 1; i--) {
                         cachedAppliedJobs.add(new CandidateJobModel("job" + i, // id
@@ -548,25 +626,25 @@ public class CandidateJobsFragment extends Fragment {
                                 "Recruiter " + i, // recruiterName
                                 "recruiter" + i + "@company.com", // recruiterEmail
                                 i * 3, // applicantsCount
-                                Arrays.asList("cand1", "cand2", "cand3")
-                        ));
+                                Arrays.asList("cand1", "cand2", "cand3")));
                     }
                     jobs.addAll(cachedAppliedJobs);
                 }
 
-                jobsPageAdapter.notifyDataSetChanged();
-                tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+//jobsPageAdapter.notifyDataSetChanged();
+//tvCandidateJobsAllResultCount.setText(jobs.size() + "");
 
 // 🔹 Reapply filters if active
-                if (activity.lastAppliedFilter != null) {
-                    applyFilters(activity.lastAppliedFilter);
-                }
+//                if (activity.lastAppliedFilter != null) {
+//                    applyFilters(activity.lastAppliedFilter);
+//                }
 
-// 🔹 Reapply search if active
-                String searchQuery = etCandidateJobsSearch.getText().toString().trim();
-                if (!searchQuery.isEmpty()) {
-                    filterJobs(searchQuery);
-                }
+//// 🔹 Reapply search if active
+//                String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+//                if (!searchQuery.isEmpty()) {
+//                    filterJobs(searchQuery);
+//                }
+
                 loadedTabs.add(currentTab);
                 hideLoader();
             }, 700); //700

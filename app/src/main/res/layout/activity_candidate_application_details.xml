@@ -74,7 +74,7 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:id="@+id/ivCandidateApplicationsCompanyLogo"
+                            android:id="@+id/ivCandidateApplicationsDetailsCompanyLogo"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/image_shape"
@@ -94,7 +94,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
-                                    android:id="@+id/tvCandidateApplicationsJobName"
+                                    android:id="@+id/tvCandidateApplicationDetailsJobName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Mobile Apps Designer"
@@ -111,6 +111,7 @@
                                 android:orientation="horizontal">
 
                                 <TextView
+                                    android:id="@+id/tvCandidateApplicationDetailsCompanyName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="Company Name"
@@ -184,6 +185,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvCandidateApplicationDetailsSalary"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="8 LPA"
@@ -211,6 +213,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvCandidateApplicationDetailsType"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Freelance"
@@ -238,6 +241,7 @@
                             android:textStyle="bold" />
 
                         <TextView
+                            android:id="@+id/tvCandidateApplicationDetailsLocation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Singapore"
@@ -254,6 +258,7 @@
                         android:background="@color/dadada" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationDetailsRecruiterMessage"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -274,6 +279,7 @@
 
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/acbCandidateApplicationDetailsButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Waiting for review"

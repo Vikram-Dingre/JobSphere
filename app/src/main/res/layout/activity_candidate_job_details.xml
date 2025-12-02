@@ -88,7 +88,7 @@
                         android:weightSum="100">
 
                         <ImageView
-                            android:id="@+id/ivCandidateHomeSuggestedJobImage"
+                            android:id="@+id/ivCandidateApplicationsCompanyLogo"
                             android:layout_width="0dp"
                             android:padding="11dp"
                             android:layout_height="match_parent"
@@ -106,7 +106,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tvCandidateHomeSuggestedJobTitle"
+                                android:id="@+id/tvCandidateApplicationsJobName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
@@ -130,7 +130,7 @@
 
 
                                 <TextView
-                                    android:id="@+id/tvCandidateHomeSuggestedCompanyName"
+                                    android:id="@+id/tvCandidateApplicationsCompanyName"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="sans-serif-medium"
@@ -147,7 +147,7 @@
                     </LinearLayout>
 
                     <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/jobTypeChipGroup"
+                        android:id="@+id/cgCandidateApplicationJobTypeChipGroup"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
@@ -233,6 +233,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvCandidateApplicationsAboutRole"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#5A5959"
@@ -288,6 +289,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvCandidateApplicationsAboutCompany"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="This is an dummy text written to show inside the about this comapany section to see the about the comapany information.This is an dummy text written to show inside the about this comapany section to see the about the comapany information.This is an dummy text written to show inside the about this comapany section to see the about the comapany information."
@@ -320,6 +322,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsWebsite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="www.google.com"
@@ -359,6 +362,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsCity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sambhajinagar"
@@ -398,6 +402,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000 Persons"
@@ -437,6 +442,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsZipCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="431110"
@@ -476,6 +482,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsCountry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="United State"
@@ -493,6 +500,7 @@
     </ScrollView>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/acbCandidateApplicationsApplyButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Apply This Job"

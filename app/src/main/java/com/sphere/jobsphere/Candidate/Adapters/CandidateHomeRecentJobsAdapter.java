@@ -1,6 +1,7 @@
 package com.sphere.jobsphere.Candidate.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.sphere.jobsphere.Candidate.Activities.CandidateJobDetailsActivity;
 import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
 import com.sphere.jobsphere.R;
 
@@ -65,6 +67,13 @@ public class CandidateHomeRecentJobsAdapter extends RecyclerView.Adapter<Candida
             chip.setCheckable(false);
 
             holder.jobTypeChipGroup.addView(chip);
+
+            holder.exploreJob.setOnClickListener(v -> {
+                Intent intent = new Intent(context, CandidateJobDetailsActivity.class);
+                intent.putExtra("jobId", job.getId());
+                context.startActivity(intent);
+
+            });
         }
 
     }

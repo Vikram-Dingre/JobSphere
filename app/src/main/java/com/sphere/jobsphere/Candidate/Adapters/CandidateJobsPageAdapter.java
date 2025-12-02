@@ -1,6 +1,7 @@
 package com.sphere.jobsphere.Candidate.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.sphere.jobsphere.Candidate.Activities.CandidateJobDetailsActivity;
 import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
 import com.sphere.jobsphere.R;
 
@@ -50,6 +52,12 @@ public class CandidateJobsPageAdapter extends RecyclerView.Adapter<CandidateJobs
         holder.maxSalary.setText("₹" + job.getMaxSalary());
         holder.vacancyCount.setText("5");
         holder.postedDate.setText(job.getPostedAt() + "");
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, CandidateJobDetailsActivity.class);
+            intent.putExtra("jobId", job.getId());
+            context.startActivity(intent);
+        });
     }
 
     @Override
