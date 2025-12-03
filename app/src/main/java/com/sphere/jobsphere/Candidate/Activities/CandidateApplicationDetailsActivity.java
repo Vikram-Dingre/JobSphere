@@ -1,5 +1,8 @@
 package com.sphere.jobsphere.Candidate.Activities;
 
+import static android.widget.Toast.LENGTH_SHORT;
+import static android.widget.Toast.makeText;
+
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,23 +73,39 @@ public class CandidateApplicationDetailsActivity extends AppCompatActivity {
                     tvCandidateApplicationDetailsLocation.setText(application.getJobLocation());
                     tvCandidateApplicationDetailsRecruiterMessage.setText(application.getRecruiterMessage().isEmpty() ? "Waiting for review..." : application.getRecruiterMessage());
 
-                    if (application.getApplicationStatus().equalsIgnoreCase("on the way")) {
+                    if (application.getApplicationStatus().equalsIgnoreCase("Pending")) {
 
                         acbCandidateApplicationsApplicationStatus.setBackgroundTintList(
                                 ColorStateList.valueOf(Color.parseColor("#7943A047")) // Blue
                         );
                         acbCandidateApplicationsApplicationStatus.setTextColor(this.getColor(R.color.color_on_the_way_application));
 
-                    } else if (application.getApplicationStatus().equalsIgnoreCase("delivered")) {
+                        acbCandidateApplicationDetailsButton.setText("Waiting for Review");
+
+
+                    } else if (application.getApplicationStatus().equalsIgnoreCase("Accepted")) {
+                        acbCandidateApplicationsApplicationStatus.setTextColor(ContextCompat.getColor(this,R.color.dadada));
                         acbCandidateApplicationsApplicationStatus.setBackgroundTintList(
-                                ColorStateList.valueOf(Color.parseColor("#37000000")) // Blue
+                                ColorStateList.valueOf(Color.parseColor("#2B000000")) // Blue
                         );
-                        acbCandidateApplicationsApplicationStatus.setTextColor(this.getColor(R.color.color_delivered_application));
-                    } else if (application.getApplicationStatus().equalsIgnoreCase("rejected")) {
+
+                        acbCandidateApplicationDetailsButton.setText("Send Message to Recruitere Now");
+                        acbCandidateApplicationDetailsButton.setOnClickListener(v -> {
+                            makeText(this, "Send msg to Recruiter", LENGTH_SHORT).show();
+
+                        });
+
+                    } else if (application.getApplicationStatus().equalsIgnoreCase("Rejected")) {
                         acbCandidateApplicationsApplicationStatus.setBackgroundTintList(
-                                ColorStateList.valueOf(Color.parseColor("#34FF0000")) // Blue
+                                ColorStateList.valueOf(Color.parseColor("#29FF0000")) // Blue
                         );
-                        acbCandidateApplicationsApplicationStatus.setTextColor(this.getColor(R.color.color_rejected_application));
+                        acbCandidateApplicationsApplicationStatus.setTextColor(this.getColor(R.color.rejected));
+
+                        acbCandidateApplicationDetailsButton.setText("Discover another Job");
+                        acbCandidateApplicationDetailsButton.setOnClickListener(v -> {
+                            makeText(this, "Find another Job.", LENGTH_SHORT).show();
+
+                        });
                     }
 
                 });

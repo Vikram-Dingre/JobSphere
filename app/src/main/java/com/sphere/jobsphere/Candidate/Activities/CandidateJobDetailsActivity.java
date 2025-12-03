@@ -237,7 +237,7 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
 //        application.setRecruiterMessage("");
 //        application.setApplicationStatus("On the Way");
 
-        application = new CandidateApplicationModel("", jobId, job.getCompanyLogo(), job.getTitle(), job.getCompanyName(), job.getSalary(), job.getJobType(), job.getLocation(), "", "On the Way");
+        application = new CandidateApplicationModel("", jobId, job.getCompanyLogo(), job.getTitle(), job.getCompanyName(), job.getSalary(), job.getJobType(), job.getLocation(), "", "Pending");
 
         db.collection("CandidateApplications")
                 .document(currentUid)

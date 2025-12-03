@@ -31,6 +31,8 @@
     <color name="color_rejected_application">#CBCD2E2E</color>
     <color name="bg_rejected_application">#14FF0000</color>
 
+    <color name="rejected">#EFFF0000</color>
+
     <color name="bg">#4BEEECEC</color>
 
     <color name="chipColor">#4BEEECEC</color>

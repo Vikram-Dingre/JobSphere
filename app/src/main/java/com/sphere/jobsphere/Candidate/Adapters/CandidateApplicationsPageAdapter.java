@@ -59,19 +59,19 @@ public class CandidateApplicationsPageAdapter extends RecyclerView.Adapter<Candi
 
         });
 
-        if (application.getApplicationStatus().equalsIgnoreCase("on the way")) {
+        if (application.getApplicationStatus().equalsIgnoreCase("Pending")) {
 
             holder.applicationStatus.setBackgroundTintList(
                     ColorStateList.valueOf(Color.parseColor("#1B43A047")) // Blue
             );
             holder.applicationStatus.setTextColor(context.getColor(R.color.color_on_the_way_application));
 
-        } else if (application.getApplicationStatus().equalsIgnoreCase("delivered")) {
+        } else if (application.getApplicationStatus().equalsIgnoreCase("Accepted")) {
             holder.applicationStatus.setBackgroundTintList(
                     ColorStateList.valueOf(Color.parseColor("#14000000")) // Blue
             );
             holder.applicationStatus.setTextColor(context.getColor(R.color.color_delivered_application));
-        } else if (application.getApplicationStatus().equalsIgnoreCase("rejected")) {
+        } else if (application.getApplicationStatus().equalsIgnoreCase("Rejected")) {
             holder.applicationStatus.setBackgroundTintList(
                     ColorStateList.valueOf(Color.parseColor("#14FF0000")) // Blue
             );
