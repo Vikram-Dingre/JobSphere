@@ -33,6 +33,8 @@
 
     <color name="bg">#4BEEECEC</color>
 
+    <color name="chipColor">#4BEEECEC</color>
+
 
     <color name="expand_collapse_button_color">#575454</color>
     <color name="filter_checkbox_text_color">#717171</color>

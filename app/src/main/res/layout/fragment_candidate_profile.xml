@@ -161,6 +161,7 @@
                     android:orientation="vertical">
 
                     <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/acbCandidateProfileSavedJobs"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="10dp"
@@ -168,7 +169,7 @@
                         android:backgroundTint="@color/bg_rejected_application"
                         android:paddingHorizontal="20dp"
                         android:paddingVertical="8dp"
-                        android:text="20"
+                        android:text="0"
                         android:textColor="@color/color_rejected_application"
                         android:textSize="27sp" />
 
@@ -176,7 +177,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reviewed"
+                        android:text="Saved Jobs"
                         android:textSize="14sp"
                         android:textStyle="bold" />
 

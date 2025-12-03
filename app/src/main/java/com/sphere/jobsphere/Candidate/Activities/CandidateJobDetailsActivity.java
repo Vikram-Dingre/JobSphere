@@ -5,6 +5,9 @@ import static android.view.View.VISIBLE;
 import static android.widget.Toast.LENGTH_SHORT;
 import static android.widget.Toast.makeText;
 
+import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -12,16 +15,23 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Models.CandidateApplicationModel;
 import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
 import com.sphere.jobsphere.R;
+import com.sphere.jobsphere.Recruiter.Models.RecruiterProfile;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CandidateJobDetailsActivity extends AppCompatActivity {
     LinearLayout llRequirementsSkillsContainer;
@@ -31,14 +41,18 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     CandidateJobModel job;
-    ImageView ivCandidateApplicationsCompanyLogo;
+    ImageView ivCandidateApplicationsCompanyLogo, ivCandidateJobDetailsSaveJob;
     TextView tvCandidateApplicationsJobName, tvCandidateApplicationsCompanyName, tvCandidateApplicationsAboutRole, tvCandidateApplicationsAboutCompany, tvCandidateApplicationsWebsite, tvCandidateApplicationsCity, tvCandidateApplicationsSize, tvCandidateApplicationsZipCode, tvCandidateApplicationsCountry;
     ChipGroup cgCandidateApplicationJobTypeChipGroup;
     AppCompatButton acbCandidateApplicationsApplyButton;
+
+
     private String currentTab;
     private String jobId;
 
     CandidateApplicationModel application;
+
+    boolean isAlreadyApplied = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +79,7 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
         tvCandidateApplicationsZipCode = findViewById(R.id.tvCandidateApplicationsZipCode);
         tvCandidateApplicationsCountry = findViewById(R.id.tvCandidateApplicationsCountry);
         acbCandidateApplicationsApplyButton = findViewById(R.id.acbCandidateApplicationsApplyButton);
+        ivCandidateJobDetailsSaveJob = findViewById(R.id.ivCandidateJobDetailsSaveJob);
 
 
         jobId = getIntent().getStringExtra("jobId");
@@ -72,8 +87,47 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
         fetchJobDetails();
         tabsRelated();
 
+        ivCandidateJobDetailsSaveJob.setOnClickListener(v -> {
+            Map<String, Object> savedJob = new HashMap<>();
+
+            savedJob.put("jobId", job.getId());
+
+            db.collection("candidateSavedJobs")
+                    .document(currentUid)
+                    .collection("savedJobs")
+                    .add(savedJob);
+            makeText(this, "Job Saved", LENGTH_SHORT).show();
+
+        });
 
         acbCandidateApplicationsApplyButton.setOnClickListener(v -> {
+
+            if (job.getApplicants().contains(currentUid)) {
+
+                db.collection("CandidateApplications")
+                        .document(currentUid)
+                        .collection("applications")
+                        .get()
+                        .addOnSuccessListener(snapshots -> {
+                            for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                                if (doc.getString("jobId").equals(jobId)) {
+                                    Intent intent = new Intent(this, CandidateApplicationDetailsActivity.class);
+                                    intent.putExtra("applicationId", doc.getId());
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        });
+
+////                Intent intent = new Intent(this, CandidateApplicationsFragment.class);
+////                startActivity(intent);
+//                getSupportFragmentManager().beginTransaction()
+//                        .replace(R.id.flRecruiterProfileSetupFrameContainer, new CandidateApplicationsFragment())
+//                        .commit();
+////                finish();
+////                Toast.makeText(this, "Already Applied to this job...", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             createAndSaveApplicationToFirebase();
 
@@ -127,8 +181,64 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
                     tvCandidateApplicationsJobName.setText(job.getTitle());
                     tvCandidateApplicationsCompanyName.setText(job.getCompanyName());
                     tvCandidateApplicationsAboutRole.setText(job.getDescription());
+
+                    for (String type : job.getJobTypes()) {
+                        Chip chip = new Chip(this);
+                        chip.setText(type);
+
+// Remove default chip background tint + material overlay
+                        chip.setChipBackgroundColor(ColorStateList.valueOf(Color.TRANSPARENT));
+                        chip.setBackground(null); // removes white layer
+
+// Remove ripple by disabling interaction
+                        chip.setClickable(false);
+                        chip.setFocusable(false);
+
+// Text color
+                        chip.setTextColor(ContextCompat.getColor(this, R.color.white));
+
+// Radius
+                        chip.setChipCornerRadius(20f);
+
+// Not checkable
+                        chip.setCheckable(false);
+
+                        cgCandidateApplicationJobTypeChipGroup.addView(chip);
+
+                    }
+
                     addDummySkills();
+
+                    if (job.getApplicants().contains(currentUid)) {
+                        acbCandidateApplicationsApplyButton.setText("View Application");
+//                        acbCandidateApplicationsApplyButton.setBackgroundColor(ContextCompat.getColor(this,R.color.dadada));
+//                        acbCandidateApplicationsApplyButton.setTextColor(ContextCompat.getColor(this,R.color.black));
+                    }
+
+                    fetchCompanyDetails();
+
                 });
+    }
+
+    private void fetchCompanyDetails() {
+
+        db.collection("recruiters")
+                .document(job.getRecruiterId())
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+//                    Toast.makeText(this, "companyLocation " +documentSnapshot, Toast.LENGTH_SHORT).show();
+                    RecruiterProfile rp = documentSnapshot.toObject(RecruiterProfile.class);
+                    rp.setUid(documentSnapshot.getId());
+
+                    tvCandidateApplicationsAboutCompany.setText(rp.getCompanyLocation().getAbout());
+                    tvCandidateApplicationsWebsite.setText(rp.getCompanyDetails().getWebsite());
+                    tvCandidateApplicationsCity.setText(rp.getCompanyLocation().getCity());
+                    tvCandidateApplicationsSize.setText(rp.getCompanyDetails().getSize());
+                    tvCandidateApplicationsZipCode.setText(rp.getCompanyLocation().getZipCode());
+                    tvCandidateApplicationsCountry.setText(rp.getCompanyLocation().getCountry());
+
+                });
+
     }
 
     private void addDummySkills() {
