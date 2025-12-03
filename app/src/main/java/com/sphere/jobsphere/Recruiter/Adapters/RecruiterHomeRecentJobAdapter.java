@@ -59,13 +59,12 @@ public class RecruiterHomeRecentJobAdapter extends RecyclerView.Adapter<Recruite
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView companyLogo, saveJob;
+        ImageView companyLogo;
         TextView jobTitle, companyName, jobLocation, workingType, experienceLevel, minSalary, maxSalary, vacancyCount, postedDate;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             companyLogo = itemView.findViewById(R.id.ivRecruiterJobsCompanyLogo);
-            saveJob = itemView.findViewById(R.id.ivRecruiterJobsSaveJob);
             jobTitle = itemView.findViewById(R.id.tvRecruiterJobsJobTitle);
             companyName = itemView.findViewById(R.id.tvRecruiterJobsCompanyName);
             jobLocation = itemView.findViewById(R.id.tvRecruiterJobsLocation);

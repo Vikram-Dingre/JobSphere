@@ -17,12 +17,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:padding="10dp">
 
             <ImageView
                 android:id="@+id/ivChatProfilePhoto"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:background="@drawable/applicant_profile_photo_shape"
                 android:clipToOutline="true"
                 android:scaleType="centerCrop"
@@ -36,12 +37,14 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
                 android:text="Hariom Thosar"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/tvRecentChatTime"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/ivChatProfilePhoto"
-                app:layout_constraintTop_toTopOf="@id/ivChatProfilePhoto"
-                app:layout_constraintEnd_toStartOf="@id/tvRecentChatTime" />
+                app:layout_constraintTop_toTopOf="@id/ivChatProfilePhoto" />
 
             <TextView
                 android:id="@+id/tvRecentChat"
@@ -50,10 +53,12 @@
                 android:layout_marginStart="10dp"
                 android:text="Ok, I will come on time..."
                 android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/tvRecentChatTime"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@id/ivChatProfilePhoto"
                 app:layout_constraintTop_toBottomOf="@id/tvMessageSenderName"
-                app:layout_constraintEnd_toStartOf="@id/tvRecentChatTime"
-                app:layout_constraintBottom_toBottomOf="parent" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/tvRecentChatTime"

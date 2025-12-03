@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp">
@@ -16,14 +17,15 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="15dp">
+            android:padding="11dp">
 
             <!-- Profile Image -->
             <ImageView
                 android:id="@+id/ivApplicantProfilePhoto"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:clipToOutline="true"
+
                 android:scaleType="centerCrop"
                 android:background="@drawable/applicant_profile_photo_shape"
                 android:src="@drawable/profile_selected"
@@ -31,21 +33,25 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <!-- Applicant Name -->
+
+            <!-- Applicant Specification -->
+
             <TextView
                 android:id="@+id/tvApplicantName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:maxLines="1"
                 android:text="Shivam Thosar"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:ellipsize="end"
-                android:maxLines="1"
-                app:layout_constraintStart_toEndOf="@id/ivApplicantProfilePhoto"
-                app:layout_constraintTop_toTopOf="@id/ivApplicantProfilePhoto"
                 app:layout_constraintEnd_toStartOf="@id/ivApplicantChatOption"
-                android:layout_marginStart="12dp" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/ivApplicantProfilePhoto"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <!-- Applicant Specification -->
             <TextView
                 android:id="@+id/tvApplicantSpecification"
                 android:layout_width="0dp"
@@ -64,8 +70,10 @@
                 android:id="@+id/ivApplicantChatOption"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
+                android:padding="5dp"
+                android:background="@drawable/candidate_job_details_skills_shape"
                 android:src="@drawable/recruiter_bottom_menu_chat_icon"
-                android:tint="#691B99"
+                app:tint="#691B99"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

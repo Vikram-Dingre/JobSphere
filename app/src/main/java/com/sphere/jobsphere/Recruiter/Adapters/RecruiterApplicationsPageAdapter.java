@@ -66,7 +66,7 @@ public class RecruiterApplicationsPageAdapter extends RecyclerView.Adapter<Recru
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             companyLogo = itemView.findViewById(R.id.ivRecruiterApplicationCompanyLogo);
-            saveJob = itemView.findViewById(R.id.ivRecruiterJobsSaveJob);
+
             applicationTitle = itemView.findViewById(R.id.tvRecruiterApplicationTitle);
             companyName = itemView.findViewById(R.id.tvRecruiterApplicationCompanyName);
             applicationLocation = itemView.findViewById(R.id.tvRecruiterApplicationLocation);
