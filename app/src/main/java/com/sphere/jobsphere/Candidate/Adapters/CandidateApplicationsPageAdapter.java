@@ -1,6 +1,7 @@
 package com.sphere.jobsphere.Candidate.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -8,13 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.sphere.jobsphere.Candidate.Activities.CandidateApplicationDetailsActivity;
 import com.sphere.jobsphere.Candidate.Models.CandidateApplicationModel;
 import com.sphere.jobsphere.R;
 
@@ -50,23 +51,27 @@ public class CandidateApplicationsPageAdapter extends RecyclerView.Adapter<Candi
         holder.jobSalary.setText(application.getJobSalary());
         holder.jobLocation.setText(application.getJobLocation());
         holder.applicationStatus.setText(application.getApplicationStatus());
+
         holder.viewApplication.setOnClickListener(v -> {
-            Toast.makeText(context,"Application Clicked...",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, CandidateApplicationDetailsActivity.class);
+            intent.putExtra("applicationId", application.getId());
+            context.startActivity(intent);
+
         });
 
-        if (application.getApplicationStatus().equalsIgnoreCase("on the way")){
+        if (application.getApplicationStatus().equalsIgnoreCase("on the way")) {
 
             holder.applicationStatus.setBackgroundTintList(
                     ColorStateList.valueOf(Color.parseColor("#1B43A047")) // Blue
             );
             holder.applicationStatus.setTextColor(context.getColor(R.color.color_on_the_way_application));
 
-        }else if (application.getApplicationStatus().equalsIgnoreCase("delivered")){
+        } else if (application.getApplicationStatus().equalsIgnoreCase("delivered")) {
             holder.applicationStatus.setBackgroundTintList(
                     ColorStateList.valueOf(Color.parseColor("#14000000")) // Blue
             );
             holder.applicationStatus.setTextColor(context.getColor(R.color.color_delivered_application));
-        }else if (application.getApplicationStatus().equalsIgnoreCase("rejected")){
+        } else if (application.getApplicationStatus().equalsIgnoreCase("rejected")) {
             holder.applicationStatus.setBackgroundTintList(
                     ColorStateList.valueOf(Color.parseColor("#14FF0000")) // Blue
             );

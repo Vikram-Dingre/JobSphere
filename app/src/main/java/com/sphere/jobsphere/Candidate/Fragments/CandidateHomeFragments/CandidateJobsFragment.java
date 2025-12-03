@@ -27,6 +27,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.Candidate.Adapters.CandidateJobsPageAdapter;
 import com.sphere.jobsphere.Candidate.Classes.CandidateJobFilterModel;
@@ -53,6 +55,7 @@ public class CandidateJobsFragment extends Fragment {
     JobFiltersBottomSheet jobFiltersBottomSheet;
     boolean isFragmentStartingFirstTime = true;
     CandidateHomeActivity activity;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TabLayout tabLayout;
     private AutoCompleteTextView customSpinner;
     private RecyclerView jobsRecycler;
@@ -141,6 +144,8 @@ public class CandidateJobsFragment extends Fragment {
 
                 // Load jobs for selected tab
                 loadJobs(currentTab, currentSort);
+//                makeText(getActivity(), "currentTab --> "+currentTab+"  "+cachedSuggestedJobs.size(), LENGTH_SHORT).show();
+
 
                 if (!loadedTabs.contains(currentTab)) {
                     // if fetching jobs for first time in that tab then wait until data fetched and then apply filters
@@ -211,6 +216,7 @@ public class CandidateJobsFragment extends Fragment {
     // new code adding
 
     private void fetchJobsForFirstTimeWithFilters() {
+
         loadJobs(currentTab, currentSort);
 
         new Handler().postDelayed(() -> {
@@ -261,12 +267,12 @@ public class CandidateJobsFragment extends Fragment {
                 }
             }
 
-//            // ✅ Category
-//            if (matches && filters.getSelectedCategory() != null && !filters.getSelectedCategory().isEmpty()) {
-//                if (!filters.getSelectedCategory().contains(job.getCategory())) {
-//                    matches = false;
-//                }
-//            }
+            // ✅ Category
+            if (matches && filters.getSelectedCategory() != null && !filters.getSelectedCategory().isEmpty()) {
+                if (!filters.getSelectedCategory().contains(job.getCategory())) {
+                    matches = false;
+                }
+            }
 
             // ✅ Skills (at least one skill should match)
             if (matches && filters.getSelectedSkills() != null && !filters.getSelectedSkills().isEmpty()) {
@@ -282,17 +288,17 @@ public class CandidateJobsFragment extends Fragment {
 
             // ✅ Experience
             if (matches && filters.getSelectedExperience() != null && !filters.getSelectedExperience().isEmpty()) {
-                if (!job.getExperienceLevel().equalsIgnoreCase(filters.getSelectedExperience())) {
+                if (!filters.getSelectedExperience().contains(job.getExperienceLevel())) {
                     matches = false;
                 }
             }
 
             // ✅ Location
-//            if (matches && filters.getSelectedLocation() != null && !filters.getSelectedLocation().isEmpty()) {
-//                if (!filters.getSelectedLocation().contains(job.getLocation())) {
-//                    matches = false;
-//                }
-//            }
+            if (matches && filters.getSelectedLocation() != null && !filters.getSelectedLocation().isEmpty()) {
+                if (!filters.getSelectedLocation().contains(job.getLocation())) {
+                    matches = false;
+                }
+            }
 
 //            // ✅ Salary Range
 //            if (matches && (filters.getSelectedMinSalary() != null || filters.getSelectedMaxSalary() != null)) {
@@ -383,92 +389,219 @@ public class CandidateJobsFragment extends Fragment {
 
             new Handler().postDelayed(() -> {
                 if (currentTab.equals("All")) {
-                    for (int i = 1; i <= 30; i++) {
-                        cachedAllJobs.add(new CandidateJobModel("job" + i, // id
-                                "Software Engineer " + i, // title
-                                "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
-                                "Company " + i, // companyName
-                                "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
-                                i % 2 == 0 ? "Bangalore" : "Mumbai", // location
-                                i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
-                                Arrays.asList("Remote", "Hybrid"), // jobTypes
-                                i % 3 == 0 ? "IT" : "Finance", // category
-                                "Java, Spring Boot, SQL", // skillsRequired
-                                Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
-                                "₹" + (5 + i) + " LPA", // salary
-                                5000.0 + i, // minSalary
-                                10000.0 + i, // maxSalary
-                                i % 2 == 0 ? "Mid Level" : "Entry Level", // experienceLevel
-                                "B.Tech / M.Tech", // education
-                                System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
-                                System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
-                                "recruiter" + i, // recruiterId
-                                "Recruiter " + i, // recruiterName
-                                "recruiter" + i + "@company.com", // recruiterEmail
-                                i * 3, // applicantsCount
-                                Arrays.asList("cand1", "cand2", "cand3"), // applicants
-                                Math.random() * 100 // matchScore
-                        ));
-                    }
-                    jobs.addAll(cachedAllJobs);
+//                    for (int i = 1; i <= 30; i++) {
+//                        cachedAllJobs.add(new CandidateJobModel("job" + i, // id
+//                                "Software Engineer " + i, // title
+//                                "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
+//                                "Company " + i, // companyName
+//                                "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
+//                                i % 2 == 0 ? "Bangalore" : "Mumbai", // location
+//                                i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
+//                                Arrays.asList("Remote", "Hybrid"), // jobTypes
+//                                i % 3 == 0 ? "IT" : "Finance", // category
+//                                "Java, Spring Boot, SQL", // skillsRequired
+//                                Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
+//                                "₹" + (5 + i) + " LPA", // salary
+//                                5000.0 + i, // minSalary
+//                                10000.0 + i, // maxSalary
+//                                i % 2 == 0 ? "Mid Level" : "Entry Level", // experienceLevel
+//                                "B.Tech / M.Tech", // education
+//                                System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
+//                                System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
+//                                "recruiter" + i, // recruiterId
+//                                "Recruiter " + i, // recruiterName
+//                                "recruiter" + i + "@company.com", // recruiterEmail
+//                                i * 3, // applicantsCount
+//                                Arrays.asList("cand1", "cand2", "cand3")
+//                        ));
+//                    }
+
+//                    db.collection("jobs")
+//                            .addSnapshotListener((snapshots, e) -> {
+//                                if (e != null || snapshots == null) {
+//                                    Log.e("Firestore", "Error loading Jobs.", e);
+//                                    return;
+//                                }
+//
+//                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+//
+//                                    if (job != null) {
+//                                        job.id = doc.getId();
+//                                        cachedAllJobs.add(job);
+//                                    }
+//                                }
+//                            });
+
+                    db.collection("jobs").get().addOnSuccessListener(snapshots -> {
+
+                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                            CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                            if (job != null) {
+                                job.id = doc.getId();
+                                cachedAllJobs.add(job);
+                            }
+                        }
+                        jobs.addAll(cachedAllJobs);
+//                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+                        // 🔹 Reapply search if active
+                        String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+                        if (!searchQuery.isEmpty()) {
+                            filterJobs(searchQuery);
+                        }
+
+                        // Reapply Filters if active
+                        if (activity.lastAppliedFilter != null) {
+                            applyFilters(activity.lastAppliedFilter);
+                        } else {
+                            jobsPageAdapter.notifyDataSetChanged();
+                        }
+                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+                    });
+
                 } else if (currentTab.equals("Suggested")) {
-                    for (int i = 20; i >= 1; i--) {
-                        cachedSuggestedJobs.add(new CandidateJobModel("job" + i, // id
-                                "Software Engineer " + i, // title
-                                "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
-                                "Company " + i, // companyName
-                                "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
-                                i % 2 == 0 ? "Bangalore" : "Mumbai", // location
-                                i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
-                                Arrays.asList("Remote", "Hybrid"), // jobTypes
-                                i % 3 == 0 ? "IT" : "Finance", // category
-                                "Java, Spring Boot, SQL", // skillsRequired
-                                Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
-                                "₹" + (5 + i) + " LPA", // salary
-                                5000.0 + i, // minSalary
-                                10000.0 + i, // maxSalary
-                                i % 2 == 0 ? "Mid" : "Entry", // experienceLevel
-                                "B.Tech / M.Tech", // education
-                                System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
-                                System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
-                                "recruiter" + i, // recruiterId
-                                "Recruiter " + i, // recruiterName
-                                "recruiter" + i + "@company.com", // recruiterEmail
-                                i * 3, // applicantsCount
-                                Arrays.asList("cand1", "cand2", "cand3"), // applicants
-                                Math.random() * 100 // matchScore
-                        ));
-                    }
-                    jobs.addAll(cachedSuggestedJobs);
+//                    for (int i = 20; i >= 1; i--) {
+//                        cachedSuggestedJobs.add(new CandidateJobModel("job" + i, // id
+//                                "Software Engineer " + i, // title
+//                                "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
+//                                "Company " + i, // companyName
+//                                "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
+//                                i % 2 == 0 ? "Bangalore" : "Mumbai", // location
+//                                i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
+//                                Arrays.asList("Remote", "Hybrid"), // jobTypes
+//                                i % 3 == 0 ? "IT" : "Finance", // category
+//                                "Java, Spring Boot, SQL", // skillsRequired
+//                                Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
+//                                "₹" + (5 + i) + " LPA", // salary
+//                                5000.0 + i, // minSalary
+//                                10000.0 + i, // maxSalary
+//                                i % 2 == 0 ? "Mid" : "Entry", // experienceLevel
+//                                "B.Tech / M.Tech", // education
+//                                System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
+//                                System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
+//                                "recruiter" + i, // recruiterId
+//                                "Recruiter " + i, // recruiterName
+//                                "recruiter" + i + "@company.com", // recruiterEmail
+//                                i * 3, // applicantsCount
+//                                Arrays.asList("cand1", "cand2", "cand3")
+//                        ));
+//                    }
+//                    db.collection("jobs")
+//                            .addSnapshotListener((snapshots, e) -> {
+//                                if (e != null || snapshots == null) {
+//                                    Log.e("Firestore", "Error loading Jobs.", e);
+//                                    return;
+//                                }
+//
+//                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+//
+//                                    if (job != null) {
+//                                        job.id = doc.getId();
+//                                        cachedSuggestedJobs.add(job);
+//                                    }
+//                                }
+//                    );
+
+                    db.collection("jobs").limit(5).get().addOnSuccessListener(snapshots -> {
+
+                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                            CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                            if (job != null) {
+                                job.id = doc.getId();
+                                cachedSuggestedJobs.add(job);
+                            }
+                        }
+                        jobs.addAll(cachedSuggestedJobs);
+//                                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+                        // 🔹 Reapply search if active
+                        String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+                        if (!searchQuery.isEmpty()) {
+                            filterJobs(searchQuery);
+                        }
+                        // Reapply Filters if active
+                        if (activity.lastAppliedFilter != null) {
+                            applyFilters(activity.lastAppliedFilter);
+                        } else {
+                            jobsPageAdapter.notifyDataSetChanged();
+                        }
+                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+                    });
+
                 } else if (currentTab.equals("Recent")) {
-                    for (int i = 1; i <= 10; i++) {
-                        cachedRecentJobs.add(new CandidateJobModel("job" + i, // id
-                                "Software Engineer " + i, // title
-                                "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
-                                "Company " + i, // companyName
-                                "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
-                                i % 2 == 0 ? "Bangalore" : "Mumbai", // location
-                                i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
-                                Arrays.asList("Remote", "Hybrid"), // jobTypes
-                                i % 3 == 0 ? "IT" : "Finance", // category
-                                "Java, Spring Boot, SQL", // skillsRequired
-                                Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
-                                "₹" + (5 + i) + " LPA", // salary
-                                5000.0 + i, // minSalary
-                                10000.0 + i, // maxSalary
-                                i % 2 == 0 ? "Mid" : "Entry", // experienceLevel
-                                "B.Tech / M.Tech", // education
-                                System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
-                                System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
-                                "recruiter" + i, // recruiterId
-                                "Recruiter " + i, // recruiterName
-                                "recruiter" + i + "@company.com", // recruiterEmail
-                                i * 3, // applicantsCount
-                                Arrays.asList("cand1", "cand2", "cand3"), // applicants
-                                Math.random() * 100 // matchScore
-                        ));
-                    }
-                    jobs.addAll(cachedRecentJobs);
+//                    for (int i = 1; i <= 10; i++) {
+//                        cachedRecentJobs.add(new CandidateJobModel("job" + i, // id
+//                                "Software Engineer " + i, // title
+//                                "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
+//                                "Company " + i, // companyName
+//                                "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
+//                                i % 2 == 0 ? "Bangalore" : "Mumbai", // location
+//                                i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
+//                                Arrays.asList("Remote", "Hybrid"), // jobTypes
+//                                i % 3 == 0 ? "IT" : "Finance", // category
+//                                "Java, Spring Boot, SQL", // skillsRequired
+//                                Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
+//                                "₹" + (5 + i) + " LPA", // salary
+//                                5000.0 + i, // minSalary
+//                                10000.0 + i, // maxSalary
+//                                i % 2 == 0 ? "Mid" : "Entry", // experienceLevel
+//                                "B.Tech / M.Tech", // education
+//                                System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
+//                                System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
+//                                "recruiter" + i, // recruiterId
+//                                "Recruiter " + i, // recruiterName
+//                                "recruiter" + i + "@company.com", // recruiterEmail
+//                                i * 3, // applicantsCount
+//                                Arrays.asList("cand1", "cand2", "cand3")
+//                        ));
+//                    }
+//                    db.collection("jobs")
+//                            .addSnapshotListener((snapshots, e) -> {
+//                                if (e != null || snapshots == null) {
+//                                    Log.e("Firestore", "Error loading Jobs.", e);
+//                                    return;
+//                                }
+//
+//                                for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//                                    CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+//
+//                                    if (job != null) {
+//                                        job.id = doc.getId();
+//                                        cachedRecentJobs.add(job);
+//                                    }
+//                                }
+//                            });
+
+                    db.collection("jobs").limit(4).get().addOnSuccessListener(snapshots -> {
+
+                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                            CandidateJobModel job = doc.toObject(CandidateJobModel.class);
+                            if (job != null) {
+                                job.id = doc.getId();
+                                cachedRecentJobs.add(job);
+                            }
+                        }
+                        jobs.addAll(cachedRecentJobs);
+//                                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+
+                        // 🔹 Reapply search if active
+                        String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+                        if (!searchQuery.isEmpty()) {
+                            filterJobs(searchQuery);
+                        }
+
+                        // Reapply Filters if active
+                        if (activity.lastAppliedFilter != null) {
+                            applyFilters(activity.lastAppliedFilter);
+                        } else {
+                            jobsPageAdapter.notifyDataSetChanged();
+                        }
+                        tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+                    });
+
                 } else {
                     for (int i = 15; i >= 1; i--) {
                         cachedAppliedJobs.add(new CandidateJobModel("job" + i, // id
@@ -493,29 +626,28 @@ public class CandidateJobsFragment extends Fragment {
                                 "Recruiter " + i, // recruiterName
                                 "recruiter" + i + "@company.com", // recruiterEmail
                                 i * 3, // applicantsCount
-                                Arrays.asList("cand1", "cand2", "cand3"), // applicants
-                                Math.random() * 100 // matchScore
-                        ));
+                                Arrays.asList("cand1", "cand2", "cand3")));
                     }
                     jobs.addAll(cachedAppliedJobs);
                 }
 
-                jobsPageAdapter.notifyDataSetChanged();
-                tvCandidateJobsAllResultCount.setText(jobs.size() + "");
+//jobsPageAdapter.notifyDataSetChanged();
+//tvCandidateJobsAllResultCount.setText(jobs.size() + "");
 
 // 🔹 Reapply filters if active
-                if (activity.lastAppliedFilter != null) {
-                    applyFilters(activity.lastAppliedFilter);
-                }
+//                if (activity.lastAppliedFilter != null) {
+//                    applyFilters(activity.lastAppliedFilter);
+//                }
 
-// 🔹 Reapply search if active
-                String searchQuery = etCandidateJobsSearch.getText().toString().trim();
-                if (!searchQuery.isEmpty()) {
-                    filterJobs(searchQuery);
-                }
+//// 🔹 Reapply search if active
+//                String searchQuery = etCandidateJobsSearch.getText().toString().trim();
+//                if (!searchQuery.isEmpty()) {
+//                    filterJobs(searchQuery);
+//                }
+
                 loadedTabs.add(currentTab);
                 hideLoader();
-            }, 700);
+            }, 700); //700
         } else {
             jobs.clear();
 

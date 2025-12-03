@@ -6,74 +6,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Candidate.Fragments.CandidateHomeFragments.CandidateApplicationsFragment">
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-       <!-- CardView Header -->
-       <com.google.android.material.card.MaterialCardView
-           android:id="@+id/jobsCard"
-           app:cardBackgroundColor="@color/primary"
-           app:cardPreventCornerOverlap="true"
-           app:shapeAppearanceOverlay="@style/CandidateJobsCardShape"
-           app:strokeColor="@android:color/transparent"
-           app:strokeWidth="0dp"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
+        <!-- CardView Header -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/jobsCard"
+            app:cardBackgroundColor="@color/primary"
+            app:cardPreventCornerOverlap="true"
+            app:shapeAppearanceOverlay="@style/CandidateJobsCardShape"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:orientation="vertical"
-               android:paddingVertical="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingVertical="10dp">
 
-               <LinearLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content"
-                   android:layout_marginBottom="40dp"
-                   android:orientation="horizontal"
-                   android:paddingTop="10dp"
-                   android:weightSum="100">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:weightSum="100">
 
-                   <ImageView
-                       app:tint="@color/white"
-                       android:layout_width="0dp"
-                       android:layout_height="match_parent"
-                       android:layout_weight="20"
-                       android:src="@drawable/back_arrow" />
+                    <ImageView
+                        app:tint="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/back_arrow" />
 
-                   <TextView
-                       android:layout_width="0dp"
-                       android:layout_height="wrap_content"
-                       android:layout_weight="60"
-                       android:fontFamily="sans-serif-medium"
-                       android:text="Your Applications"
-                       android:textAlignment="center"
-                       android:textColor="@color/white"
-                       android:textSize="24sp"
-                       android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Your Applications"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
 
-                   <ImageView
-                       android:id="@+id/ivCandidateJobsFilter"
-                       app:tint="@color/white"
-                       android:layout_width="0dp"
-                       android:layout_height="match_parent"
-                       android:layout_weight="20"
-                       android:src="@drawable/search" />
-               </LinearLayout>
+                    <ImageView
+                        android:id="@+id/ivCandidateJobsFilter"
+                        app:tint="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="20"
+                        android:src="@drawable/search" />
+                </LinearLayout>
 
-           </LinearLayout>
-       </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
 
-       <androidx.recyclerview.widget.RecyclerView
-           android:layout_marginTop="45dp"
-           android:id="@+id/rvCandidateApplicationsRecycler"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="45dp"
+            android:id="@+id/rvCandidateApplicationsRecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
 
-   </LinearLayout>
+    </LinearLayout>
 
 
     <!-- Floating Search Bar outside CardView -->

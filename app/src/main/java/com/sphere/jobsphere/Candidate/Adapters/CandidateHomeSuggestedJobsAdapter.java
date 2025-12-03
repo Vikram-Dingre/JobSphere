@@ -52,8 +52,9 @@ public class CandidateHomeSuggestedJobsAdapter extends RecyclerView.Adapter<Cand
                 .load(job.getCompanyLogo())
                 .into(holder.companyLogo);
 
-        holder.companyLogo.setOnClickListener(v -> {
+        holder.apply.setOnClickListener(v -> {
             Intent intent = new Intent(context, CandidateJobDetailsActivity.class);
+            intent.putExtra("jobId", job.id);
             context.startActivity(intent);
 
         });
@@ -76,8 +77,6 @@ public class CandidateHomeSuggestedJobsAdapter extends RecyclerView.Adapter<Cand
 
             holder.jobTypeChipGroup.addView(chip);
         }
-
-
 
     }
 

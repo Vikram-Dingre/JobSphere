@@ -8,12 +8,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.sphere.jobsphere.Candidate.Adapters.CandidateJobsPageAdapter;
-import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterJobModel;
 
@@ -24,9 +21,9 @@ public class RecruiterHomeRecentJobAdapter extends RecyclerView.Adapter<Recruite
     List<RecruiterJobModel> recentJobs;
     Context context;
 
-    public RecruiterHomeRecentJobAdapter(List<RecruiterJobModel> recentJobs, Context context){
-        this.recentJobs=recentJobs;
-        this.context=context;
+    public RecruiterHomeRecentJobAdapter(List<RecruiterJobModel> recentJobs, Context context) {
+        this.recentJobs = recentJobs;
+        this.context = context;
     }
 
     @NonNull
@@ -38,7 +35,7 @@ public class RecruiterHomeRecentJobAdapter extends RecyclerView.Adapter<Recruite
 
 
     public void onBindViewHolder(@NonNull RecruiterHomeRecentJobAdapter.MyViewHolder holder, int position) {
-        RecruiterJobModel recentJob =recentJobs.get(position);
+        RecruiterJobModel recentJob = recentJobs.get(position);
 
         Glide.with(context)
                 .load(recentJob.getCompanyLogo())
@@ -59,6 +56,7 @@ public class RecruiterHomeRecentJobAdapter extends RecyclerView.Adapter<Recruite
     public int getItemCount() {
         return recentJobs.size();
     }
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView companyLogo, saveJob;

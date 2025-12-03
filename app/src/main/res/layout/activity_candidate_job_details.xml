@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="100"
     tools:context=".Candidate.Activities.CandidateJobDetailsActivity"
     android:orientation="vertical">
 
@@ -21,40 +22,38 @@
             android:layout_width="0dp"
             android:layout_weight="10"
             android:layout_height="wrap_content"
+            android:padding="5dp"
             android:src="@drawable/back_arrow"
-            android:background="@drawable/image_shape"
-            android:backgroundTint="@color/dadada"
-            />
+            android:background="@drawable/candidate_job_details_skills_shape" />
 
         <TextView
             android:layout_width="0dp"
             android:width="0dp"
-            android:layout_weight="80"
+            android:layout_weight="79"
             android:layout_height="wrap_content"
             android:text="Details"
             android:textSize="18sp"
             android:gravity="center_horizontal"
             android:textStyle="bold"
-            android:textColor="#C6000000"/>
+            android:textColor="#C6000000" />
 
         <ImageView
             android:id="@+id/ivCandidateJobDetailsSaveJob"
             android:layout_width="0dp"
-            android:layout_weight="10"
+            android:layout_weight="10.5"
             android:layout_height="wrap_content"
             android:src="@drawable/bookmark"
             app:tint="@color/black"
-            android:background="@drawable/image_shape"
-            android:backgroundTint="@color/dadada"
-            />
-
-
+            android:background="@drawable/candidate_job_details_skills_shape"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="5dp" />
 
     </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="100">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -66,10 +65,11 @@
                 android:id="@+id/cvCandidateSuggestedJobCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="#7d66ff"
+                app:cardBackgroundColor="#F46A1B9A"
                 app:cardCornerRadius="15dp"
                 app:cardElevation="3dp"
-                app:cardUseCompatPadding="true"
+                app:cardUseCompatPadding="false"
+                android:layout_marginTop="5dp"
                 app:contentPadding="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +86,9 @@
                         android:gravity="center_vertical"
                         android:orientation="horizontal"
                         android:weightSum="100">
+
                         <ImageView
-                            android:id="@+id/ivCandidateHomeSuggestedJobImage"
+                            android:id="@+id/ivCandidateApplicationsCompanyLogo"
                             android:layout_width="0dp"
                             android:padding="11dp"
                             android:layout_height="match_parent"
@@ -105,7 +106,7 @@
                             android:orientation="vertical">
 
                             <TextView
-                                android:id="@+id/tvCandidateHomeSuggestedJobTitle"
+                                android:id="@+id/tvCandidateApplicationsJobName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
@@ -114,32 +115,31 @@
                                 android:textSize="18sp"
                                 android:textStyle="bold" />
 
-                           <LinearLayout
-                               android:layout_width="match_parent"
-                               android:layout_height="match_parent"
-                               android:gravity="center_vertical"
-                               android:layout_marginVertical="7dp"
-                               android:orientation="horizontal">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:layout_marginVertical="7dp"
+                                android:orientation="horizontal">
 
-                               <ImageView
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="11dp"
-                                   android:src="@drawable/button"
-                                   android:layout_marginRight="3dp"
-                                   />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="11dp"
+                                    android:src="@drawable/button"
+                                    android:layout_marginRight="3dp" />
 
 
-                               <TextView
-                                   android:id="@+id/tvCandidateHomeSuggestedCompanyName"
-                                   android:layout_width="wrap_content"
-                                   android:layout_height="wrap_content"
-                                   android:fontFamily="sans-serif-medium"
-                                   android:text="Company Name"
-                                   android:textColor="#dadada"
-                                   android:textSize="14sp"
-                                   android:textStyle="normal" />
+                                <TextView
+                                    android:id="@+id/tvCandidateApplicationsCompanyName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-medium"
+                                    android:text="Company Name"
+                                    android:textColor="#dadada"
+                                    android:textSize="14sp"
+                                    android:textStyle="normal" />
 
-                           </LinearLayout>
+                            </LinearLayout>
 
 
                         </LinearLayout>
@@ -147,13 +147,13 @@
                     </LinearLayout>
 
                     <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/jobTypeChipGroup"
+                        android:id="@+id/cgCandidateApplicationJobTypeChipGroup"
                         android:layout_width="match_parent"
                         android:layout_height="45dp"
                         android:layout_marginTop="10dp"
                         app:chipSpacing="8dp"
                         app:singleLine="true"
-                        app:singleSelection="false" >
+                        app:singleSelection="false">
 
                         <com.google.android.material.chip.Chip
                             android:layout_width="wrap_content"
@@ -162,9 +162,8 @@
                             android:checkable="false"
                             app:chipCornerRadius="5dp"
                             android:text="Part-Time"
-                            android:backgroundTint="@color/lightPurple"
-                            android:textColor="@color/white"
-                            />
+                            android:backgroundTint="@color/bg"
+                            android:textColor="@color/white" />
 
                         <com.google.android.material.chip.Chip
                             android:layout_width="wrap_content"
@@ -173,9 +172,8 @@
                             android:checkable="false"
                             app:chipCornerRadius="5dp"
                             android:text="Full-Time"
-                            android:backgroundTint="@color/lightPurple"
-                            android:textColor="@color/white"
-                            />
+                            android:backgroundTint="@color/bg"
+                            android:textColor="@color/white" />
 
                         <com.google.android.material.chip.Chip
                             android:layout_width="wrap_content"
@@ -184,9 +182,8 @@
                             android:checkable="false"
                             app:chipCornerRadius="5dp"
                             android:text="Remote"
-                            android:backgroundTint="@color/lightPurple"
-                            android:textColor="@color/white"
-                            />
+                            android:backgroundTint="@color/bg"
+                            android:textColor="@color/white" />
                     </com.google.android.material.chip.ChipGroup>
 
 
@@ -212,7 +209,7 @@
                 app:tabSelectedTextColor="@color/primary"
                 app:tabTextColor="#8F0C0C0C" />
 
-<!--             content for the job description tab-->
+            <!--             content for the job description tab-->
 
             <LinearLayout
                 android:visibility="visible"
@@ -221,6 +218,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="20dp"
+                android:paddingBottom="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -231,13 +229,15 @@
                     android:layout_height="wrap_content"
                     android:text="About This Role"
                     android:textSize="18sp"
-                    android:layout_marginVertical="10dp"
+                    android:layout_marginVertical="7dp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvCandidateApplicationsAboutRole"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="This is an demo content that is written for the role description tab of the tablayout show the dummy text in the about this role section "
+                    android:textColor="#5A5959"
+                    android:text="This is an demo content that is written for the role description tab of the tablayout show the dummy text in the about this role section. This is an demo content that is written for the role description tab of the tablayout show the dummy text in the about this role section "
                     android:textSize="14sp"
                     android:textStyle="normal" />
 
@@ -251,7 +251,7 @@
                         android:layout_height="wrap_content"
                         android:text="Required Skills For This Role"
                         android:textSize="18sp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="15dp"
                         android:layout_marginBottom="10dp"
                         android:textStyle="bold" />
 
@@ -259,15 +259,14 @@
                         android:id="@+id/llRequirementsSkillsContainer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        />
+                        android:orientation="vertical" />
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
-<!--            Content For the Company tab-->
+            <!--            Content For the Company tab-->
 
             <LinearLayout
                 android:visibility="gone"
@@ -276,6 +275,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:layout_marginTop="20dp"
+                android:paddingBottom="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/candidateJobDetailsTabLayout">
@@ -285,14 +285,16 @@
                     android:layout_height="wrap_content"
                     android:text="About This Company"
                     android:textSize="18sp"
-                    android:layout_marginVertical="10dp"
+                    android:layout_marginVertical="7dp"
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvCandidateApplicationsAboutCompany"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="This is an dummy text written to show inside the about this comapany section to see the about the comapany information.This is an dummy text written to show inside the about this comapany section to see the about the comapany information.This is an dummy text written to show inside the about this comapany section to see the about the comapany information."
                     android:textSize="14sp"
+                    android:textColor="#5A5959"
                     android:textStyle="normal" />
 
                 <LinearLayout
@@ -309,8 +311,7 @@
                         android:layout_weight="11"
                         android:layout_marginRight="5dp"
                         android:scaleType="fitStart"
-                        android:src="@drawable/website"
-                        />
+                        android:src="@drawable/website" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -321,6 +322,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsWebsite"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="www.google.com"
@@ -330,10 +332,15 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="15dp"
+                    android:background="@color/dadada" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:weightSum="100"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -344,8 +351,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="11"
                         android:scaleType="fitStart"
-                        android:src="@drawable/city"
-                        />
+                        android:src="@drawable/city" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -356,6 +362,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsCity"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Sambhajinagar"
@@ -365,10 +372,15 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="15dp"
+                    android:background="@color/dadada" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:weightSum="100"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -379,8 +391,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="11"
                         android:scaleType="fitStart"
-                        android:src="@drawable/size"
-                        />
+                        android:src="@drawable/size" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -391,6 +402,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsSize"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1000 Persons"
@@ -400,10 +412,15 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="15dp"
+                    android:background="@color/dadada" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:weightSum="100"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -414,8 +431,7 @@
                         android:layout_weight="8"
                         android:layout_marginRight="8dp"
                         android:scaleType="fitStart"
-                        android:src="@drawable/zip_code"
-                        />
+                        android:src="@drawable/zip_code" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -426,19 +442,25 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsZipCode"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="431130"
+                        android:text="431110"
                         android:textSize="14.5sp"
                         android:textStyle="normal" />
 
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="15dp"
+                    android:background="@color/dadada" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
                     android:weightSum="100"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
@@ -449,8 +471,7 @@
                         android:layout_marginRight="5dp"
                         android:layout_weight="10"
                         android:scaleType="fitStart"
-                        android:src="@drawable/country"
-                        />
+                        android:src="@drawable/country" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -461,6 +482,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/tvCandidateApplicationsCountry"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="United State"
@@ -470,26 +492,32 @@
 
                 </LinearLayout>
 
-
-
-
             </LinearLayout>
-
-            
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
     </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/acbCandidateApplicationsApplyButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply This Job"
+        android:background="@drawable/button_shape_with_bg_gradient"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:layout_marginHorizontal="15dp"
+        android:layout_marginBottom="10dp" />
 
 
 </LinearLayout>
 
 
-<!--
-website
-city
-size
-zipCode
-country
--->
+    <!--
+    website
+    city
+    size
+    zipCode
+    country
+    -->

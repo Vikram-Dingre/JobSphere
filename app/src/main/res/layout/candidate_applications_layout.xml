@@ -10,178 +10,170 @@
     app:contentPadding="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-    
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
-
-    <ImageView
-        android:id="@+id/ivCandidateApplicationsCompanyLogo"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/image_shape"
-        android:layout_marginRight="15dp"
-        android:src="@drawable/applications_selected"
-        />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tvCandidateApplicationsJobName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mobile Apps Designer"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+            <ImageView
+                android:id="@+id/ivCandidateApplicationsCompanyLogo"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/image_shape"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/applications_selected" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_marginLeft="10dp"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="7dp"
-                    android:layout_height="7dp"
-                    android:src="@drawable/button"
-                    android:layout_marginRight="5dp"
-                    />
-
-                <TextView
-                    android:id="@+id/tvCandidateApplicationsCompanyName"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Google"
-                    android:textSize="11sp"
-                    android:textStyle="normal" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvCandidateApplicationsJobName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile Apps Designer"
+                        android:textSize="15sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
+                            android:src="@drawable/button"
+                            android:layout_marginRight="5dp" />
+
+                        <TextView
+                            android:id="@+id/tvCandidateApplicationsCompanyName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Google"
+                            android:textSize="11sp"
+                            android:textStyle="normal" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="11dp"
+                            android:layout_height="11dp"
+                            android:src="@drawable/wallet"
+                            android:layout_marginRight="7dp" />
+
+                        <TextView
+                            android:id="@+id/tvCandidateApplicationsSalary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="8K/Month"
+                            android:textSize="14sp"
+                            android:textColor="@color/lightDard"
+                            android:textStyle="normal" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_marginRight="7dp"
+                            android:src="@drawable/location" />
+
+                        <TextView
+                            android:id="@+id/tvCandidateApplicationsLocation"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="United States"
+                            android:textSize="14sp"
+                            android:textColor="@color/lightDard"
+                            android:textStyle="normal" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
 
             </LinearLayout>
+
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:weightSum="100"
+            android:layout_marginTop="13dp"
             android:orientation="horizontal">
 
-           <LinearLayout
-               android:layout_width="match_parent"
-               android:layout_height="match_parent"
-               android:gravity="center_vertical"
-               android:orientation="horizontal">
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acbCandidateApplicationsApplicationStatus"
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_weight="50"
+                android:text="On the Way"
+                android:textAllCaps="false"
+                android:textColor="@color/color_on_the_way_application"
+                android:backgroundTint="@color/bg_on_the_way_application"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:background="@drawable/canaidate_application_two_button_common_shape" />
 
-               <ImageView
-                   android:layout_width="11dp"
-                   android:layout_height="11dp"
-                   android:src="@drawable/wallet"
-                   android:layout_marginRight="7dp"
-                   />
-
-               <TextView
-                   android:id="@+id/tvCandidateApplicationsSalary"
-                   android:layout_width="wrap_content"
-                   android:layout_height="wrap_content"
-                   android:text="8K/Month"
-                   android:textSize="14sp"
-                   android:textColor="@color/lightDard"
-                   android:textStyle="normal" />
-
-           </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/acbCandidateApplicationsViewApplicationButton"
+                android:layout_width="0dp"
+                android:layout_height="33dp"
+                android:layout_weight="50"
                 android:layout_marginLeft="15dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginRight="7dp"
-                    android:src="@drawable/location"
-                    />
-
-                <TextView
-                    android:id="@+id/tvCandidateApplicationsLocation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="United States"
-                    android:textSize="14sp"
-                    android:textColor="@color/lightDard"
-                    android:textStyle="normal" />
-
-            </LinearLayout>
-
+                android:text="View Application"
+                android:textAllCaps="false"
+                android:textColor="#CB3949AB"
+                android:backgroundTint="#1B3949AB"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:background="@drawable/canaidate_application_two_button_common_shape" />
 
 
         </LinearLayout>
 
 
     </LinearLayout>
-
-
-
-</LinearLayout>
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:weightSum="100"
-    android:layout_marginTop="13dp"
-    android:orientation="horizontal">
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/acbCandidateApplicationsApplicationStatus"
-        android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:layout_weight="50"
-        android:text="On the Way"
-        android:textAllCaps="false"
-        android:textColor="#CBCD2E2E"
-        android:backgroundTint="#14FF0000"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        android:background="@drawable/canaidate_application_two_button_common_shape"
-        />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/acbCandidateApplicationsViewApplicationButton"
-        android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:layout_weight="50"
-        android:layout_marginLeft="15dp"
-        android:text="View Application"
-        android:textAllCaps="false"
-        android:textColor="#CB3949AB"
-        android:backgroundTint="#1B3949AB"
-        android:textSize="13sp"
-        android:textStyle="bold"
-        android:background="@drawable/canaidate_application_two_button_common_shape"
-        />
-
-
-</LinearLayout>
-
-
-</LinearLayout>
 
 
 </androidx.cardview.widget.CardView>
