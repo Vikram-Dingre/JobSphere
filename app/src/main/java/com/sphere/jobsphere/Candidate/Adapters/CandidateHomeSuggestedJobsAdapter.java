@@ -67,7 +67,7 @@ public class CandidateHomeSuggestedJobsAdapter extends RecyclerView.Adapter<Cand
                     for (DocumentSnapshot doc : snapshots.getDocuments()) {
                         if (doc.getString("jobId").equals(job.getId())) {
                             Glide.with(context)
-                                    .load(R.drawable.plus)
+                                    .load(R.drawable.savedjob)
                                     .into(holder.saveJob);
                             a = 1;
                             break;
