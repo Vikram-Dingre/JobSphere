@@ -1,14 +1,232 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Recruiter.Fragments.RecruiterMainFragment.RecruiterApplicationsFragment">
+    tools:context=".Recruiter.Fragments.RecruiterMainFragment.RecruiterHomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Hello application Blank Fragment" />
+        android:background="#F8F5F5"
+        android:orientation="vertical"
+        android:weightSum="100">
 
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="0dp"-->
+        <!--            android:layout_weight="10"-->
+        <!--            android:background="@color/primary"-->
+        <!--            android:gravity="center_vertical"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:padding="10dp"-->
+        <!--            android:weightSum="100">-->
+
+        <!--            <ImageView-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="43dp"-->
+        <!--                android:layout_marginRight="10dp"-->
+        <!--                android:layout_weight="12"-->
+        <!--                android:scaleType="centerCrop"-->
+        <!--                android:src="@drawable/profile" />-->
+
+        <!--            <LinearLayout-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="match_parent"-->
+        <!--                android:layout_weight="76"-->
+        <!--                android:gravity="center_vertical"-->
+        <!--                android:orientation="vertical">-->
+
+        <!--                <TextView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:fontFamily="sans-serif-medium"-->
+        <!--                    android:text="Welcome Back!"-->
+        <!--                    android:textColor="@color/textSecondary"-->
+        <!--                    android:textSize="13sp"-->
+        <!--                    android:textStyle="bold" />-->
+
+        <!--                <TextView-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:text="Vikram Dingre"-->
+        <!--                    android:textColor="@color/white"-->
+        <!--                    android:textSize="20sp"-->
+        <!--                    android:textStyle="bold" />-->
+
+        <!--            </LinearLayout>-->
+
+        <!--            <ImageButton-->
+        <!--                android:id="@+id/ibCandidateHomeNotifications"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="44dp"-->
+        <!--                android:layout_weight="10"-->
+        <!--                android:backgroundTint="@color/transparent"-->
+        <!--                android:scaleType="centerCrop"-->
+        <!--                android:src="@drawable/candidate_notifications"-->
+        <!--                app:tint="@color/white" />-->
+
+        <!--        </LinearLayout>-->
+
+        <!-- CardView Header -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/jobsCard"
+            app:cardBackgroundColor="@color/primary"
+            app:cardPreventCornerOverlap="true"
+            app:shapeAppearanceOverlay="@style/CandidateJobsCardShape"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingVertical="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="40dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="10dp"
+                    android:weightSum="100">
+
+                    <ImageView
+                        android:id="@+id/ivApplicationBack"
+                        app:tint="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="20"
+                        android:src="@drawable/back_arrow" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Applications"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/ibCandidateHomeNotifications"
+                        app:tint="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="22dp"
+                        android:layout_weight="20"
+                        android:src="@drawable/add_jobs_icon" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Floating Search Bar outside CardView -->
+        <EditText
+            android:id="@+id/etRecruiterApplicationsSearch"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="-22.5dp"
+            android:background="@drawable/candidate_jobs_searchbar_shape"
+            android:drawableEnd="@drawable/search_24dp_1f1f1f_fill0_wght400_grad0_opsz24"
+            android:drawableTint="#8E8B8B"
+            android:elevation="10dp"
+            android:hint="Search Applications"
+            android:textSize="16sp"
+            android:clickable="false"
+            android:paddingHorizontal="15dp"
+            android:textColorHint="#848484" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="100"
+            android:paddingHorizontal="8dp"
+            android:layout_marginTop="20dp"
+            android:scrollbars="none">
+
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <!--<ImageView
+                    android:id="@+id/ivCandidateHomeBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="145dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/input_shape"
+                    android:clipToOutline="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/candidate_home_banner"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />-->
+
+
+                <!-- Posted jobs -->
+                <!--<TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="Posted Jobs"
+                    android:textSize="19sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+
+                <TextView
+                    android:id="@+id/tvRecruiterHomeSeeAllPostedJobs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:text="See All"
+                    android:textColor="@color/primary"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.921"
+                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    tools:ignore="MissingConstraints" />-->
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvRecruiterAFApplications"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="none"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+
+    </LinearLayout>
 </FrameLayout>
+
+    <!--
+    model
+    adapter
+    recyclerview ✅
+    layout
+    set adapter
+    -->

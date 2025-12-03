@@ -128,7 +128,7 @@
 
         <!-- Floating Search Bar outside CardView -->
         <EditText
-            android:id="@+id/etCandidateJobsSearch"
+            android:id="@+id/etRecruiterHomeSearch"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
@@ -138,7 +138,7 @@
             android:drawableEnd="@drawable/search_24dp_1f1f1f_fill0_wght400_grad0_opsz24"
             android:drawableTint="#8E8B8B"
             android:elevation="10dp"
-            android:hint="Search jobs"
+            android:hint="Search "
             android:textSize="16sp"
             android:clickable="false"
             android:paddingHorizontal="15dp"
@@ -173,14 +173,14 @@
                     app:layout_constraintTop_toTopOf="parent" />-->
 
 
-                <!-- Recent jobs -->
+                <!-- Posted jobs -->
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Recent Jobs"
+                    android:text="Posted Jobs"
                     android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -190,7 +190,7 @@
 
 
                 <TextView
-                    android:id="@+id/tvRecruiterHomeSeeAllRecentJobs"
+                    android:id="@+id/tvRecruiterHomeSeeAllPostedJobs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
@@ -204,7 +204,7 @@
                     tools:ignore="MissingConstraints" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvRecruiterHomeRecentJobs"
+                    android:id="@+id/rvRecruiterHomePostedJobs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -214,23 +214,23 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView3"
                     />
 
-                <!-- Posted jobs -->
+                <!--  Applicants -->
                 <TextView
-                    android:id="@+id/tvPostedJobs"
+                    android:id="@+id/tvApplicants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Posted Jobs"
+                    android:text="Applicants"
                     android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvRecruiterHomeRecentJobs" />
+                    app:layout_constraintTop_toBottomOf="@+id/rvRecruiterHomePostedJobs" />
 
                 <TextView
-                    android:id="@+id/tvRecruiterHomeSeeAllPostedJobs"
+                    android:id="@+id/tvRecruiterHomeSeeApplicants"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
@@ -240,36 +240,36 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.932"
-                    app:layout_constraintStart_toEndOf="@+id/tvPostedJobs"
-                    app:layout_constraintTop_toBottomOf="@+id/rvRecruiterHomeRecentJobs" />
+                    app:layout_constraintStart_toEndOf="@+id/tvApplicants"
+                    app:layout_constraintTop_toBottomOf="@+id/rvRecruiterHomePostedJobs" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvRecruiterHomePostedJobs"
+                    android:id="@+id/rvRecruiterHomeApplicants"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPostedJobs" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvApplicants" />
 
-                <!-- Pendinng Chats -->
+                <!-- Recent Chats -->
                 <TextView
-                    android:id="@+id/tvPendingChats"
+                    android:id="@+id/textview5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Pending Chats"
+                    android:text="Recent Chats"
                     android:textSize="19sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvRecruiterHomePostedJobs" />
+                    app:layout_constraintTop_toBottomOf="@+id/rvRecruiterHomeApplicants" />
 
                 <TextView
-                    android:id="@+id/tvRecruiterHomeSeeAllPendingChats"
+                    android:id="@+id/tvRecruiterHomeSeeAllRecentChats"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"
@@ -279,18 +279,18 @@
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.932"
-                    app:layout_constraintStart_toEndOf="@+id/tvPostedJobs"
-                    app:layout_constraintTop_toBottomOf="@+id/rvRecruiterHomePostedJobs" />
+                    app:layout_constraintStart_toEndOf="@+id/tvApplicants"
+                    app:layout_constraintTop_toBottomOf="@+id/rvRecruiterHomeApplicants" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCandidateHomeRecentJobs"
+                    android:id="@+id/rvHomeRecentChats"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPendingChats" />
+                    app:layout_constraintTop_toBottomOf="@+id/textview5" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
