@@ -70,7 +70,7 @@ public class CandidateHomeRecentJobsAdapter extends RecyclerView.Adapter<Candida
 
             holder.exploreJob.setOnClickListener(v -> {
                 Intent intent = new Intent(context, CandidateJobDetailsActivity.class);
-                intent.putExtra("jobId", job.getId());
+                intent.putExtra("jobId", job.id);
                 context.startActivity(intent);
 
             });

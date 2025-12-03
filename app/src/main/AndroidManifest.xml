@@ -13,9 +13,8 @@
         android:theme="@style/Theme.JobSphere"
         tools:targetApi="31">
         <activity
-            android:name=".Recruiter.Activities.RecruiterApplicantDetailActivity"
+            android:name=".Candidate.Activities.CandidateSavedJobsActivity"
             android:exported="false" />
-
         <activity
             android:name=".Candidate.Activities.CandidateApplicationDetailsActivity"
             android:exported="false" />

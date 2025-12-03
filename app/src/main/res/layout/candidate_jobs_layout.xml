@@ -21,9 +21,10 @@
         <ImageView
             android:id="@+id/ivCandidateJobsCompanyLogo"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_weight="15"
             android:layout_marginTop="10dp"
+            android:padding="5dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/image_shape"
             android:layout_gravity="top"
@@ -216,10 +217,9 @@
             android:id="@+id/ivCandidateJobsSaveJob"
             android:layout_width="0dp"
             android:layout_gravity="top"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_weight="15"
-            android:src="@drawable/bookmark" />
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_weight="15" />
 
 
     </LinearLayout>

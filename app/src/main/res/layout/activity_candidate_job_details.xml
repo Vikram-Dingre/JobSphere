@@ -41,8 +41,7 @@
             android:id="@+id/ivCandidateJobDetailsSaveJob"
             android:layout_width="0dp"
             android:layout_weight="10.5"
-            android:layout_height="wrap_content"
-            android:src="@drawable/bookmark"
+            android:layout_height="match_parent"
             app:tint="@color/black"
             android:background="@drawable/candidate_job_details_skills_shape"
             android:paddingHorizontal="7dp"
@@ -146,45 +145,20 @@
 
                     </LinearLayout>
 
-                    <com.google.android.material.chip.ChipGroup
-                        android:id="@+id/cgCandidateApplicationJobTypeChipGroup"
+                    <HorizontalScrollView
                         android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginTop="10dp"
-                        app:chipSpacing="8dp"
-                        app:singleLine="true"
-                        app:singleSelection="false">
+                        android:layout_height="wrap_content">
 
-                        <com.google.android.material.chip.Chip
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="false"
-                            android:checkable="false"
-                            app:chipCornerRadius="5dp"
-                            android:text="Part-Time"
-                            android:backgroundTint="@color/bg"
-                            android:textColor="@color/white" />
+                        <com.google.android.material.chip.ChipGroup
+                            android:id="@+id/cgCandidateApplicationJobTypeChipGroup"
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:layout_marginTop="10dp"
+                            app:chipSpacing="8dp"
+                            app:singleLine="true"
+                            app:singleSelection="false" />
 
-                        <com.google.android.material.chip.Chip
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="false"
-                            android:checkable="false"
-                            app:chipCornerRadius="5dp"
-                            android:text="Full-Time"
-                            android:backgroundTint="@color/bg"
-                            android:textColor="@color/white" />
-
-                        <com.google.android.material.chip.Chip
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:clickable="false"
-                            android:checkable="false"
-                            app:chipCornerRadius="5dp"
-                            android:text="Remote"
-                            android:backgroundTint="@color/bg"
-                            android:textColor="@color/white" />
-                    </com.google.android.material.chip.ChipGroup>
+                    </HorizontalScrollView>
 
 
                 </LinearLayout>
@@ -521,3 +495,35 @@
     zipCode
     country
     -->
+
+
+    <!--
+                                <com.google.android.material.chip.Chip
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"
+                                    android:checkable="false"
+                                    app:chipCornerRadius="5dp"
+                                    android:text="Part-Time"
+                                    android:backgroundTint="@color/bg"
+                                    android:textColor="@color/white" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"
+                                    android:checkable="false"
+                                    app:chipCornerRadius="5dp"
+                                    android:text="Full-Time"
+                                    android:backgroundTint="@color/bg"
+                                    android:textColor="@color/white" />
+
+                                <com.google.android.material.chip.Chip
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:clickable="false"
+                                    android:checkable="false"
+                                    app:chipCornerRadius="5dp"
+                                    android:text="Remote"
+                                    android:backgroundTint="@color/bg"
+                                    android:textColor="@color/white" />-->

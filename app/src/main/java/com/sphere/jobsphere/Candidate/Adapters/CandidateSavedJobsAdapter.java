@@ -12,14 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.google.android.material.chip.Chip;
-import com.google.android.material.chip.ChipGroup;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,86 +26,41 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class CandidateHomeSuggestedJobsAdapter extends RecyclerView.Adapter<CandidateHomeSuggestedJobsAdapter.MyViewHolder> {
-
+public class CandidateSavedJobsAdapter extends RecyclerView.Adapter<CandidateSavedJobsAdapter.MyViewHolder> {
+    List<CandidateJobModel> savedJobs;
     Context context;
-    List<CandidateJobModel> suggestedJobs;
-    int[] colors = new int[]{R.color.one, R.color.two, R.color.three};
 
-    public CandidateHomeSuggestedJobsAdapter(Context context, List<CandidateJobModel> suggestedJobs) {
+    public CandidateSavedJobsAdapter(Context context, List<CandidateJobModel> savedJobs) {
         this.context = context;
-        this.suggestedJobs = suggestedJobs;
+        this.savedJobs = savedJobs;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.candidate_home_suggested_jobs_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.candidate_saved_job_layout, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
-        CandidateJobModel job = suggestedJobs.get(position);
-
-        holder.cvCandidateSuggestedJobCard.setCardBackgroundColor(ContextCompat.getColor(context, colors[position]));
-
-        // i can add a field in job model khonw as savedByCandidates and in this field i will add the id of the candidate who had saved the job and then here i will check if savedByCandidates.contains(currentUid)
-
+        CandidateJobModel job = savedJobs.get(position);
 
         Glide.with(context)
                 .load(job.getCompanyLogo())
                 .into(holder.companyLogo);
 
+        holder.jobName.setText(job.getTitle());
+        holder.companyName.setText(job.getCompanyName());
+        holder.jobSalary.setText(job.getSalary());
+        holder.jobLocation.setText(job.getLocation());
 
-        holder.apply.setOnClickListener(v -> {
+        holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, CandidateJobDetailsActivity.class);
-            intent.putExtra("jobId", job.id);
+            intent.putExtra("jobId", job.getId());
             context.startActivity(intent);
 
         });
-
-        holder.companyName.setText(job.getCompanyName());
-        holder.jobTitle.setText(job.getTitle());
-        holder.salary.setText(job.getSalary());
-
-
-        holder.jobTypeChipGroup.removeAllViews(); // clear old chips
-
-        for (String type : job.getJobTypes()) {
-            Chip chip = new Chip(context);
-            chip.setText(type);
-            chip.setChipBackgroundColorResource(R.color.lightPurple); // light bg
-            chip.setTextColor(ContextCompat.getColor(context, R.color.white));
-            chip.setChipCornerRadius(20f);
-            chip.setClickable(false);
-            chip.setCheckable(false);
-
-            holder.jobTypeChipGroup.addView(chip);
-        }
-
-//        FirebaseFirestore.getInstance().collection("candidateSavedJobs")
-//                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-//                .collection("savedJobs")
-//                .get()
-//                .addOnSuccessListener(snapshots -> {
-//                    int a = 0;
-//                    for (DocumentSnapshot doc : snapshots.getDocuments()) {
-//                        if (doc.getString("jobId").equals(job.getId())) {
-//                            Glide.with(context)
-//                                    .load(R.drawable.savedjob)
-//                                    .into(holder.saveJob);
-//                            a = 1;
-//                            break;
-//                        }
-//                    }
-//                    if (a == 0) {
-//                        Glide.with(context)
-//                                .load(R.drawable.bookmark)
-//                                .into(holder.saveJob);
-//                    }
-//                });
 
         FirebaseFirestore.getInstance().collection("candidateSavedJobs")
                 .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -209,30 +159,26 @@ public class CandidateHomeSuggestedJobsAdapter extends RecyclerView.Adapter<Cand
 
         });
 
+
     }
 
     @Override
     public int getItemCount() {
-        return suggestedJobs.size();
+        return savedJobs.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView companyLogo, saveJob;
-        TextView companyName, jobTitle, salary;
-        AppCompatButton apply;
-        ChipGroup jobTypeChipGroup;
-        CardView cvCandidateSuggestedJobCard;
+        TextView jobName, companyName, jobSalary, jobLocation;
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder(View itemView) {
             super(itemView);
-            companyLogo = itemView.findViewById(R.id.ivCandidateHomeSuggestedJobImage);
-            saveJob = itemView.findViewById(R.id.ivCandidateHomeSuggestedSaveJob);
-            jobTitle = itemView.findViewById(R.id.tvCandidateHomeSuggestedJobTitle);
-            companyName = itemView.findViewById(R.id.tvCandidateHomeSuggestedCompanyName);
-            salary = itemView.findViewById(R.id.tvCandidateHomeSuggestedSalary);
-            apply = itemView.findViewById(R.id.acbCandidateHomeSuggestedApplyJob);
-            jobTypeChipGroup = itemView.findViewById(R.id.jobTypeChipGroup);
-            cvCandidateSuggestedJobCard = itemView.findViewById(R.id.cvCandidateSuggestedJobCard);
+            companyLogo = itemView.findViewById(R.id.ivCandidateSavedJobCompanyLogo);
+            jobName = itemView.findViewById(R.id.tvCandidateSavedJobJobName);
+            companyName = itemView.findViewById(R.id.tvCandidateSavedJobCompanyName);
+            jobSalary = itemView.findViewById(R.id.tvCandidateSavedJobSalary);
+            saveJob = itemView.findViewById(R.id.ivCandidateSavedJobSaveImage);
+            jobLocation = itemView.findViewById(R.id.tvCandidateSavedJobLocation);
         }
     }
 
