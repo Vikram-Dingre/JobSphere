@@ -18,7 +18,7 @@
 
         <activity
             android:name=".Recruiter.Activities.RecruiterMainActivity"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,12 +58,12 @@
             android:exported="false" />
         <activity
             android:name=".Common.Activities.CommonSplashActivity"
-            android:exported="false">
-            <!--<intent-filter>
+            android:exported="true">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
         <meta-data
