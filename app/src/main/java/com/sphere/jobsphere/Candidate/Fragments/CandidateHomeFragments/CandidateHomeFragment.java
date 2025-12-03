@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +44,7 @@ public class CandidateHomeFragment extends Fragment {
     TextView tvCandidateHomeSeeAllSuggestedJobs, tvCandidateHomeSeeAllRecentJobs;
 
     ImageView ibCandidateHomeNotifications;
-
+    EditText etCandidateHomeJobsSearch;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
 
@@ -66,6 +67,7 @@ public class CandidateHomeFragment extends Fragment {
         tvCandidateHomeSeeAllRecentJobs = view.findViewById(R.id.tvCandidateHomeSeeAllRecentJobs);
         tvCandidateHomeSeeAllSuggestedJobs = view.findViewById(R.id.tvCandidateHomeSeeAllSuggestedJobs);
         ibCandidateHomeNotifications = view.findViewById(R.id.ibCandidateHomeNotifications);
+        etCandidateHomeJobsSearch = view.findViewById(R.id.etCandidateHomeJobsSearch);
 
 
         candidateSuggestedJobsRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
@@ -73,9 +75,9 @@ public class CandidateHomeFragment extends Fragment {
         candidateRecentJobsRecycler.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false));
 
         categories.add(new CandidateHomeCategoryModel(R.drawable.remote, "Remote"));
-        categories.add(new CandidateHomeCategoryModel(R.drawable.full_time_job, "Full Time"));
-        categories.add(new CandidateHomeCategoryModel(R.drawable.part_time_job, "Part Time"));
-        categories.add(new CandidateHomeCategoryModel(R.drawable.freelance, "Freelancer"));
+        categories.add(new CandidateHomeCategoryModel(R.drawable.full_time_job, "Full-Time"));
+        categories.add(new CandidateHomeCategoryModel(R.drawable.part_time_job, "Part-Time"));
+        categories.add(new CandidateHomeCategoryModel(R.drawable.freelance, "Internship"));
 
 
 //        suggestedJobs.add(new CandidateJobModel("1", "Software Engineer", "We are looking for a passionate Software Engineer to join our team.", "Google", "https://logo.clearbit.com/google.com",   // companyLogo URL
@@ -104,6 +106,7 @@ public class CandidateHomeFragment extends Fragment {
         suggestedJobsAdapter = new CandidateHomeSuggestedJobsAdapter(getActivity(), suggestedJobs);
         candidateSuggestedJobsRecycler.setAdapter(suggestedJobsAdapter);
 
+
         fetchSuggestedJobs();
 
         recentJobsAdapter = new CandidateHomeRecentJobsAdapter(recentJobs, getActivity());
@@ -131,6 +134,13 @@ public class CandidateHomeFragment extends Fragment {
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, candidateJobsFragment).commit();
         });
 
+        etCandidateHomeJobsSearch.setOnClickListener(v -> {
+            Fragment candidateJobsFragment = new CandidateJobsFragment();
+            CandidateHomeActivity activity = (CandidateHomeActivity) getActivity();
+            activity.bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_jobs);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, candidateJobsFragment).commit();
+        });
+
         ibCandidateHomeNotifications.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             editor.putBoolean("isLoggedIn", false).apply();
@@ -138,6 +148,7 @@ public class CandidateHomeFragment extends Fragment {
             new Handler().postDelayed(() -> {
                 startActivity(new Intent(getActivity(), CommonLoginActivity.class));
             }, 2000);
+
 
 //            Toast.makeText(getActivity(), "Clicked...", Toast.LENGTH_SHORT).show();
 

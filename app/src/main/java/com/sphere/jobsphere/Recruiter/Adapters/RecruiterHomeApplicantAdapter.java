@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterApplicantsModel;
 
@@ -21,9 +20,9 @@ public class RecruiterHomeApplicantAdapter extends RecyclerView.Adapter<Recruite
     List<RecruiterApplicantsModel> applicants;
     Context context;
 
-    public RecruiterHomeApplicantAdapter(List<RecruiterApplicantsModel> applicants, Context context){
-        this.applicants=applicants;
-        this.context=context;
+    public RecruiterHomeApplicantAdapter(List<RecruiterApplicantsModel> applicants, Context context) {
+        this.applicants = applicants;
+        this.context = context;
     }
 
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,7 +32,7 @@ public class RecruiterHomeApplicantAdapter extends RecyclerView.Adapter<Recruite
 
     @Override
     public void onBindViewHolder(@NonNull RecruiterHomeApplicantAdapter.MyViewHolder holder, int position) {
-        RecruiterApplicantsModel applicant=applicants.get(position);
+        RecruiterApplicantsModel applicant = applicants.get(position);
 
         Glide.with(context)
                 .load(applicant.getApplicantProfilePhoto())
@@ -50,14 +49,14 @@ public class RecruiterHomeApplicantAdapter extends RecyclerView.Adapter<Recruite
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView applicantProfilePhoto;
-        TextView applicantName,applicantSpecificatin;
+        TextView applicantName, applicantSpecificatin;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            applicantProfilePhoto=itemView.findViewById(R.id.ivApplicantProfilePhoto);
-            applicantName=itemView.findViewById(R.id.tvApplicantName);
-            applicantSpecificatin=itemView.findViewById(R.id.tvApplicantSpecification);
+            applicantProfilePhoto = itemView.findViewById(R.id.ivApplicantProfilePhoto);
+            applicantName = itemView.findViewById(R.id.tvApplicantName);
+            applicantSpecificatin = itemView.findViewById(R.id.tvApplicantSpecification);
         }
     }
 }

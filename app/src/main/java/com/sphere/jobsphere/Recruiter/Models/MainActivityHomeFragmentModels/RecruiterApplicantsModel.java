@@ -5,10 +5,10 @@ public class RecruiterApplicantsModel {
     public String applicantName;
     public String applicantSpecification;
 
-    public RecruiterApplicantsModel(String applicantProfilePhoto, String applicantName , String applicantSpecification){
-        this.applicantProfilePhoto=applicantProfilePhoto;
-        this.applicantName=applicantName;
-        this.applicantSpecification=applicantSpecification;
+    public RecruiterApplicantsModel(String applicantProfilePhoto, String applicantName, String applicantSpecification) {
+        this.applicantProfilePhoto = applicantProfilePhoto;
+        this.applicantName = applicantName;
+        this.applicantSpecification = applicantSpecification;
     }
 
     public String getApplicantProfilePhoto() {

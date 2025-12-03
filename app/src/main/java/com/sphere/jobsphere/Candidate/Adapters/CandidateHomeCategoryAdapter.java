@@ -1,6 +1,8 @@
 package com.sphere.jobsphere.Candidate.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
+import com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments.CandidateJobsFragment;
 import com.sphere.jobsphere.Candidate.Models.CandidateHomeCategoryModel;
 import com.sphere.jobsphere.R;
 
@@ -18,10 +23,11 @@ import java.util.List;
 public class CandidateHomeCategoryAdapter extends RecyclerView.Adapter<CandidateHomeCategoryAdapter.MyViewHolder> {
     List<CandidateHomeCategoryModel> categories;
     Context context;
+    Activity activity;
 
-    public CandidateHomeCategoryAdapter(List<CandidateHomeCategoryModel> categories, Context context) {
+    public CandidateHomeCategoryAdapter(List<CandidateHomeCategoryModel> categories, Activity activity) {
         this.categories = categories;
-        this.context = context;
+        this.activity = activity;
     }
 
     @NonNull
@@ -42,6 +48,23 @@ public class CandidateHomeCategoryAdapter extends RecyclerView.Adapter<Candidate
         holder.categoryImage.setImageResource(category.getCategoryImage());
 
         holder.categoryName.setText(category.getCategoryName());
+
+        holder.itemView.setOnClickListener(v -> {
+            Fragment jobFragment = new CandidateJobsFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("category", category.getCategoryName());
+            jobFragment.setArguments(bundle);
+            CandidateHomeActivity homeactivity = (CandidateHomeActivity) activity;
+            homeactivity.bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_jobs);
+            homeactivity.getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flCandidateHomeActivityFrameContainer, jobFragment)
+                    .addToBackStack(null)
+                    .commit();
+
+        });
+
+
     }
 
     @Override

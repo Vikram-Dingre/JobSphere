@@ -70,12 +70,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="100"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -138,6 +139,7 @@
                             app:singleSelection="false">
 
                             <com.google.android.material.chip.Chip
+                                android:id="@+id/chipFullTime"
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -147,6 +149,7 @@
                                 app:checkedIconTint="@color/primary" />
 
                             <com.google.android.material.chip.Chip
+                                android:id="@+id/chipPartTime"
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -155,6 +158,7 @@
                                 app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
+                                android:id="@+id/chipInternship"
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -163,6 +167,7 @@
                                 app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
+                                android:id="@+id/chipOnSite"
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -171,6 +176,7 @@
                                 app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
+                                android:id="@+id/chipHybrid"
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -179,6 +185,7 @@
                                 app:checkedIcon="@drawable/checked" />
 
                             <com.google.android.material.chip.Chip
+                                android:id="@+id/chipRemote"
                                 style="@style/Widget.Material3.Chip.Filter.Elevated"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -904,42 +911,43 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="30dp"
-                android:gravity="center_horizontal|center_vertical"
-                android:orientation="horizontal"
-                android:weightSum="100">
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/acbCandidateJobFiltersCancel"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="15dp"
-                    android:layout_weight="50"
-                    android:background="@drawable/no_bg_cancel_filters"
-                    android:paddingHorizontal="60dp"
-                    android:text="Cancel"
-                    android:textAllCaps="false"
-                    android:textColor="@color/primary" />
-
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/acbCandidateJobFiltersApply"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="50"
-                    android:background="@drawable/bg_apply_filters"
-                    android:paddingHorizontal="50dp"
-                    android:text="Apply"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
         </LinearLayout>
 
     </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        android:weightSum="100">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/acbCandidateJobFiltersCancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_weight="50"
+            android:background="@drawable/no_bg_cancel_filters"
+            android:paddingHorizontal="60dp"
+            android:text="Cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/primary" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/acbCandidateJobFiltersApply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:background="@drawable/bg_apply_filters"
+            android:paddingHorizontal="50dp"
+            android:text="Apply"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 </LinearLayout>
 
 

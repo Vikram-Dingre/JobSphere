@@ -128,19 +128,19 @@
 
         <!-- Floating Search Bar outside CardView -->
         <EditText
-            android:id="@+id/etCandidateJobsSearch"
+            android:id="@+id/etCandidateHomeJobsSearch"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="-22.5dp"
+            android:editable="false"
             android:background="@drawable/candidate_jobs_searchbar_shape"
             android:drawableEnd="@drawable/search_24dp_1f1f1f_fill0_wght400_grad0_opsz24"
             android:drawableTint="#8E8B8B"
             android:elevation="10dp"
             android:hint="Search jobs"
             android:textSize="16sp"
-            android:clickable="false"
             android:paddingHorizontal="15dp"
             android:textColorHint="#848484" />
 

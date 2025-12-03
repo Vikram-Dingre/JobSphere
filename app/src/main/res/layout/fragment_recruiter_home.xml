@@ -153,7 +153,6 @@
             android:scrollbars="none">
 
 
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -211,8 +210,7 @@
                     android:scrollbars="none"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3"
-                    />
+                    app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
                 <!--  Applicants -->
                 <TextView

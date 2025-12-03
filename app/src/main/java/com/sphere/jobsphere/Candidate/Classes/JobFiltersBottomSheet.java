@@ -1,5 +1,9 @@
 package com.sphere.jobsphere.Candidate.Classes;
 
+import static android.view.View.VISIBLE;
+import static android.widget.Toast.LENGTH_SHORT;
+import static android.widget.Toast.makeText;
+
 import android.animation.LayoutTransition;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -57,8 +61,10 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
     ChipGroup chipGroupJobType, chipGroupSkills, chipGroupLocation;
     RangeSlider salaryRangeSlider;
     RadioGroup rgCandidateFiltersExperience, rgCandidateFiltersFreshness;
+    String homePageCategory = "";
 
     CandidateJobFilterState state;
+
     private OnFilterAppliedListener listener;
 
     @Nullable
@@ -71,6 +77,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         findViews(view);
+
 
         state = CandidateJobFilterState.getInstance();
 
@@ -86,6 +93,28 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
 
         // RADIO BUTTON LISTENERS
         allOncViewCreatedRadioCheckedChangeListeners();
+
+        if (!homePageCategory.isEmpty()) {
+            llCandidateFiltersJobType.setVisibility(VISIBLE);
+            ivCandidateJobFiltersExpandJobTypes.setImageResource(R.drawable.minus);
+            int childCount = llCandidateFiltersJobType.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View child = llCandidateFiltersJobType.getChildAt(i);
+                if (child instanceof ChipGroup) {
+                    ChipGroup chipGroup = (ChipGroup) child;
+                    int count = chipGroup.getChildCount();
+                    for (int j = 0; j < count; j++) {
+                        Chip chip = (Chip) chipGroup.getChildAt(j);
+
+                        makeText(getContext(), "chip " + chip.getText(), LENGTH_SHORT).show();
+                        if (chip.getText().toString().equalsIgnoreCase(homePageCategory)) {
+                            chip.setChecked(true);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
 
     }
 
@@ -286,7 +315,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 llCandidateFiltersJobType.setVisibility(View.GONE);
                 ivCandidateJobFiltersExpandJobTypes.setImageResource(R.drawable.plus);
             } else {
-                llCandidateFiltersJobType.setVisibility(View.VISIBLE);
+                llCandidateFiltersJobType.setVisibility(VISIBLE);
                 ivCandidateJobFiltersExpandJobTypes.setImageResource(R.drawable.minus);
             }
             isShowJobTypes = !isShowJobTypes;
@@ -299,7 +328,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 llCandidateFiltersCategory.setVisibility(View.GONE);
                 ivCandidateJobFiltersExpandCategory.setImageResource(R.drawable.plus);
             } else {
-                llCandidateFiltersCategory.setVisibility(View.VISIBLE);
+                llCandidateFiltersCategory.setVisibility(VISIBLE);
                 ivCandidateJobFiltersExpandCategory.setImageResource(R.drawable.minus);
             }
             isShowCategory = !isShowCategory;
@@ -311,7 +340,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 llCandidateFiltersSkills.setVisibility(View.GONE);
                 ivCandidateJobFiltersExpandSkills.setImageResource(R.drawable.plus);
             } else {
-                llCandidateFiltersSkills.setVisibility(View.VISIBLE);
+                llCandidateFiltersSkills.setVisibility(VISIBLE);
                 ivCandidateJobFiltersExpandSkills.setImageResource(R.drawable.minus);
             }
             isShowSkills = !isShowSkills;
@@ -324,7 +353,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 llCandidateFiltersExperience.setVisibility(View.GONE);
                 ivCandidateJobFiltersExpandExperience.setImageResource(R.drawable.plus);
             } else {
-                llCandidateFiltersExperience.setVisibility(View.VISIBLE);
+                llCandidateFiltersExperience.setVisibility(VISIBLE);
                 ivCandidateJobFiltersExpandExperience.setImageResource(R.drawable.minus);
             }
             isShowExperience = !isShowExperience;
@@ -337,7 +366,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 llCandidateFiltersLocation.setVisibility(View.GONE);
                 ivCandidateJobFiltersExpandLocation.setImageResource(R.drawable.plus);
             } else {
-                llCandidateFiltersLocation.setVisibility(View.VISIBLE);
+                llCandidateFiltersLocation.setVisibility(VISIBLE);
                 ivCandidateJobFiltersExpandLocation.setImageResource(R.drawable.minus);
             }
             isShowLocation = !isShowLocation;
@@ -350,7 +379,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 llCandidateFiltersSalary.setVisibility(View.GONE);
                 ivCandidateJobFiltersExpandSalary.setImageResource(R.drawable.plus);
             } else {
-                llCandidateFiltersSalary.setVisibility(View.VISIBLE);
+                llCandidateFiltersSalary.setVisibility(VISIBLE);
                 ivCandidateJobFiltersExpandSalary.setImageResource(R.drawable.minus);
             }
             isSHowSalary = !isSHowSalary;
@@ -362,7 +391,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 llCandidateFiltersFreshness.setVisibility(View.GONE);
                 ivCandidateJobFiltersExpandFreshness.setImageResource(R.drawable.plus);
             } else {
-                llCandidateFiltersFreshness.setVisibility(View.VISIBLE);
+                llCandidateFiltersFreshness.setVisibility(VISIBLE);
                 ivCandidateJobFiltersExpandFreshness.setImageResource(R.drawable.minus);
             }
             isShowFreshness = !isShowFreshness;
@@ -379,7 +408,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 if (checkBox.isChecked()) {
                     addOrRemoveSelectedFilterChip(checkBox.getText().toString(), checkBox.isChecked());
                     isShowCategory = true;
-                    llCandidateFiltersCategory.setVisibility(View.VISIBLE);
+                    llCandidateFiltersCategory.setVisibility(VISIBLE);
                     ivCandidateJobFiltersExpandCategory.setImageResource(R.drawable.minus);
                 }
             }
@@ -398,7 +427,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                         radioButton.setChecked(true);
                         addOrRemoveSelectedFilterChip(radioButton.getText().toString(), true);
                         isShowExperience = true;
-                        llCandidateFiltersExperience.setVisibility(View.VISIBLE);
+                        llCandidateFiltersExperience.setVisibility(VISIBLE);
                         ivCandidateJobFiltersExpandExperience.setImageResource(R.drawable.minus);
                         break;
                     }
@@ -416,7 +445,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                         radioButton.setChecked(true);
                         addOrRemoveSelectedFilterChip(radioButton.getText().toString(), true);
                         isShowFreshness = true;
-                        llCandidateFiltersFreshness.setVisibility(View.VISIBLE);
+                        llCandidateFiltersFreshness.setVisibility(VISIBLE);
                         ivCandidateJobFiltersExpandFreshness.setImageResource(R.drawable.minus);
                         break;
                     }
@@ -434,7 +463,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 if (chip.isChecked()) {
                     addOrRemoveSelectedFilterChip(chip.getText().toString(), chip.isChecked());
                     isShowJobTypes = true;
-                    llCandidateFiltersJobType.setVisibility(View.VISIBLE);
+                    llCandidateFiltersJobType.setVisibility(VISIBLE);
                     ivCandidateJobFiltersExpandJobTypes.setImageResource(R.drawable.minus);
                 }
             }
@@ -449,7 +478,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 if (chip.isChecked()) {
                     addOrRemoveSelectedFilterChip(chip.getText().toString(), chip.isChecked());
                     isShowSkills = true;
-                    llCandidateFiltersSkills.setVisibility(View.VISIBLE);
+                    llCandidateFiltersSkills.setVisibility(VISIBLE);
                     ivCandidateJobFiltersExpandSkills.setImageResource(R.drawable.minus);
                 }
             }
@@ -465,7 +494,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                 if (chip.isChecked()) {
                     addOrRemoveSelectedFilterChip(chip.getText().toString(), chip.isChecked());
                     isShowLocation = true;
-                    llCandidateFiltersLocation.setVisibility(View.VISIBLE);
+                    llCandidateFiltersLocation.setVisibility(VISIBLE);
                     ivCandidateJobFiltersExpandLocation.setImageResource(R.drawable.minus);
                 }
             }
@@ -499,8 +528,10 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
 
     }
 
-    public void setOnFilterAppliedListener(OnFilterAppliedListener listener) {
+    public void setOnFilterAppliedListener(OnFilterAppliedListener listener, String category) {
         this.listener = listener;
+        this.homePageCategory = category;
+
     }
 
     private void unselectFilterFromSections(String filterName) {
