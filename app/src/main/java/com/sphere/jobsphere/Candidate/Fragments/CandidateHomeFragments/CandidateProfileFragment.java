@@ -2,7 +2,6 @@ package com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.AggregateSource;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Activities.CandidateSavedJobsActivity;
 import com.sphere.jobsphere.R;
@@ -41,15 +39,29 @@ public class CandidateProfileFragment extends Fragment {
     }
 
     private void calculateBoxCounts() {
+
         db.collection("candidateSavedJobs")
                 .document(currentUid)
                 .collection("savedJobs")
-                .count()
-                .get(AggregateSource.SERVER)
-                .addOnSuccessListener(snapshot -> {
-                    long count = snapshot.getCount();
-                    acbCandidateProfileSavedJobs.setText(count + "");
-                })
-                .addOnFailureListener(e -> Log.e("COUNT", "Error:", e));
+                .addSnapshotListener((snapshots, error) -> {
+
+                    if (error != null || snapshots == null) return;
+
+                    long count = snapshots.size();  // realtime count
+
+                    acbCandidateProfileSavedJobs.setText(String.valueOf(count));
+                });
+
+
+        //        db.collection("candidateSavedJobs")
+//                .document(currentUid)
+//                .collection("savedJobs")
+//                .count()
+//                .get(AggregateSource.SERVER)
+//                .addOnSuccessListener(snapshot -> {
+//                    long count = snapshot.getCount();
+//                    acbCandidateProfileSavedJobs.setText(count + "");
+//                })
+//                .addOnFailureListener(e -> Log.e("COUNT", "Error:", e));
     }
 }

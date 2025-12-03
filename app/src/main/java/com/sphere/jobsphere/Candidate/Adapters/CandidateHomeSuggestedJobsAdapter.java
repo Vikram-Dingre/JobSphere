@@ -58,27 +58,6 @@ public class CandidateHomeSuggestedJobsAdapter extends RecyclerView.Adapter<Cand
 
         // i can add a field in job model khonw as savedByCandidates and in this field i will add the id of the candidate who had saved the job and then here i will check if savedByCandidates.contains(currentUid)
 
-        FirebaseFirestore.getInstance().collection("candidateSavedJobs")
-                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                .collection("savedJobs")
-                .get()
-                .addOnSuccessListener(snapshots -> {
-                    int a = 0;
-                    for (DocumentSnapshot doc : snapshots.getDocuments()) {
-                        if (doc.getString("jobId").equals(job.getId())) {
-                            Glide.with(context)
-                                    .load(R.drawable.savedjob)
-                                    .into(holder.saveJob);
-                            a = 1;
-                            break;
-                        }
-                    }
-                    if (a == 0) {
-                        Glide.with(context)
-                                .load(R.drawable.bookmark)
-                                .into(holder.saveJob);
-                    }
-                });
 
         Glide.with(context)
                 .load(job.getCompanyLogo())
@@ -111,16 +90,123 @@ public class CandidateHomeSuggestedJobsAdapter extends RecyclerView.Adapter<Cand
             holder.jobTypeChipGroup.addView(chip);
         }
 
-        holder.saveJob.setOnClickListener(v -> {
-            Map<String, Object> savedJob = new HashMap<>();
+//        FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+//                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                .collection("savedJobs")
+//                .get()
+//                .addOnSuccessListener(snapshots -> {
+//                    int a = 0;
+//                    for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//                        if (doc.getString("jobId").equals(job.getId())) {
+//                            Glide.with(context)
+//                                    .load(R.drawable.savedjob)
+//                                    .into(holder.saveJob);
+//                            a = 1;
+//                            break;
+//                        }
+//                    }
+//                    if (a == 0) {
+//                        Glide.with(context)
+//                                .load(R.drawable.bookmark)
+//                                .into(holder.saveJob);
+//                    }
+//                });
 
-            savedJob.put("jobId", job.getId());
+        FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+                .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                .collection("savedJobs")
+                .whereEqualTo("jobId", job.getId())
+                .get()
+                .addOnSuccessListener(snapshots -> {
+                    if (snapshots.size() != 0) {
+                        Glide.with(context)
+                                .load(R.drawable.savedjob)
+                                .into(holder.saveJob);
+                    } else {
+                        Glide.with(context)
+                                .load(R.drawable.bookmark)
+                                .into(holder.saveJob);
+                    }
+                });
+
+        holder.saveJob.setOnClickListener(v -> {
 
             FirebaseFirestore.getInstance().collection("candidateSavedJobs")
                     .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .collection("savedJobs")
-                    .add(savedJob);
-            makeText(context, "Job Saved", LENGTH_SHORT).show();
+                    .whereEqualTo("jobId", job.getId())
+                    .get()
+                    .addOnSuccessListener(snapshots -> {
+                        if (snapshots.size() != 0) {
+                            for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                                doc.getReference().delete().addOnSuccessListener(aVoid -> {
+                                    Glide.with(context)
+                                            .load(R.drawable.bookmark)
+                                            .into(holder.saveJob);
+                                    makeText(context, "Unsaved", LENGTH_SHORT).show();
+                                });
+                            }
+                        } else {
+                            Map<String, Object> savedJob = new HashMap<>();
+                            savedJob.put("jobId", job.getId());
+                            FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+                                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .collection("savedJobs")
+                                    .add(savedJob)
+                                    .addOnSuccessListener(aVoid -> {
+                                        Glide.with(context)
+                                                .load(R.drawable.savedjob)
+                                                .into(holder.saveJob);
+                                        makeText(context, "Saved", LENGTH_SHORT).show();
+                                    });
+                        }
+                    });
+
+//            FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+//                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                    .collection("savedJobs")
+//                    .get()
+//                    .addOnSuccessListener(snapshots -> {
+//                        int a = 0;
+//                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//
+//                            if (doc.getString("jobId").equals(job.getId())) {
+//                                Glide.with(context)
+//                                        .load(R.drawable.bookmark)
+//                                        .into(holder.saveJob);
+//
+//                                FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+//                                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                        .collection("savedJobs")
+//                                        .whereEqualTo("jobId",job.getId())
+//                                        .get()
+//                                        .addOnSuccessListener(query ->{
+//                                            for (DocumentSnapshot saveJobDoc : query.getDocuments()){
+//                                                saveJobDoc.getReference().delete().addOnSuccessListener(aVoid ->{
+//                                                    makeText(context, "Unsaved Successfully.", LENGTH_SHORT).show();
+//                                                });
+//                                            }
+//                                        });
+//                                a = 1;
+//                                break;
+//                            }
+//                        }
+//                        if (a == 0) {
+//                            Glide.with(context)
+//                                    .load(R.drawable.savedjob)
+//                                    .into(holder.saveJob);
+//
+//                            Map<String, Object> savedJob = new HashMap<>();
+//                            savedJob.put("jobId", job.getId());
+//                            FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+//                                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                    .collection("savedJobs")
+//                                    .add(savedJob);
+//                            makeText(context, "Saved Successfully.", LENGTH_SHORT).show();
+//                        }
+//                    });
+
+
         });
 
     }

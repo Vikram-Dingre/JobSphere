@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,14 +46,10 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
     TextView tvCandidateApplicationsJobName, tvCandidateApplicationsCompanyName, tvCandidateApplicationsAboutRole, tvCandidateApplicationsAboutCompany, tvCandidateApplicationsWebsite, tvCandidateApplicationsCity, tvCandidateApplicationsSize, tvCandidateApplicationsZipCode, tvCandidateApplicationsCountry;
     ChipGroup cgCandidateApplicationJobTypeChipGroup;
     AppCompatButton acbCandidateApplicationsApplyButton;
-
-
+    CandidateApplicationModel application;
+    boolean isAlreadyApplied = false;
     private String currentTab;
     private String jobId;
-
-    CandidateApplicationModel application;
-
-    boolean isAlreadyApplied = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,18 +84,99 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
         fetchJobDetails();
         tabsRelated();
 
+
         ivCandidateJobDetailsSaveJob.setOnClickListener(v -> {
-            Map<String, Object> savedJob = new HashMap<>();
 
-            savedJob.put("jobId", job.getId());
-
-            db.collection("candidateSavedJobs")
-                    .document(currentUid)
+            FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
                     .collection("savedJobs")
-                    .add(savedJob);
-            makeText(this, "Job Saved", LENGTH_SHORT).show();
+                    .whereEqualTo("jobId", job.getId())
+                    .get()
+                    .addOnSuccessListener(snapshots -> {
+                        if (snapshots.size() != 0) {
+                            for (DocumentSnapshot doc : snapshots.getDocuments()) {
+                                doc.getReference().delete().addOnSuccessListener(aVoid -> {
+                                    Glide.with(this)
+                                            .load(R.drawable.bookmark)
+                                            .into(ivCandidateJobDetailsSaveJob);
+                                    makeText(this, "Unsaved", LENGTH_SHORT).show();
+                                });
+                            }
+                        } else {
+                            Map<String, Object> savedJob = new HashMap<>();
+                            savedJob.put("jobId", job.getId());
+                            FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+                                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .collection("savedJobs")
+                                    .add(savedJob)
+                                    .addOnSuccessListener(aVoid -> {
+                                        Glide.with(this)
+                                                .load(R.drawable.savedjob)
+                                                .into(ivCandidateJobDetailsSaveJob);
+                                        makeText(this, "Saved", LENGTH_SHORT).show();
+                                    });
+                        }
+                    });
+
+//            FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+//                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                    .collection("savedJobs")
+//                    .get()
+//                    .addOnSuccessListener(snapshots -> {
+//                        int a = 0;
+//                        for (DocumentSnapshot doc : snapshots.getDocuments()) {
+//
+//                            if (doc.getString("jobId").equals(job.getId())) {
+//                                Glide.with(context)
+//                                        .load(R.drawable.bookmark)
+//                                        .into(holder.saveJob);
+//
+//                                FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+//                                        .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                        .collection("savedJobs")
+//                                        .whereEqualTo("jobId",job.getId())
+//                                        .get()
+//                                        .addOnSuccessListener(query ->{
+//                                            for (DocumentSnapshot saveJobDoc : query.getDocuments()){
+//                                                saveJobDoc.getReference().delete().addOnSuccessListener(aVoid ->{
+//                                                    makeText(context, "Unsaved Successfully.", LENGTH_SHORT).show();
+//                                                });
+//                                            }
+//                                        });
+//                                a = 1;
+//                                break;
+//                            }
+//                        }
+//                        if (a == 0) {
+//                            Glide.with(context)
+//                                    .load(R.drawable.savedjob)
+//                                    .into(holder.saveJob);
+//
+//                            Map<String, Object> savedJob = new HashMap<>();
+//                            savedJob.put("jobId", job.getId());
+//                            FirebaseFirestore.getInstance().collection("candidateSavedJobs")
+//                                    .document(FirebaseAuth.getInstance().getCurrentUser().getUid())
+//                                    .collection("savedJobs")
+//                                    .add(savedJob);
+//                            makeText(context, "Saved Successfully.", LENGTH_SHORT).show();
+//                        }
+//                    });
+
 
         });
+
+//        ivCandidateJobDetailsSaveJob.setOnClickListener(v -> {
+//            Map<String, Object> savedJob = new HashMap<>();
+//
+//            savedJob.put("jobId", job.getId());
+//
+//            db.collection("candidateSavedJobs")
+//                    .document(currentUid)
+//                    .collection("savedJobs")
+//                    .add(savedJob);
+//            makeText(this, "Job Saved", LENGTH_SHORT).show();
+//
+//        });
 
         acbCandidateApplicationsApplyButton.setOnClickListener(v -> {
 
@@ -215,31 +293,85 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
 //                        acbCandidateApplicationsApplyButton.setTextColor(ContextCompat.getColor(this,R.color.black));
                     }
 
+                    db.collection("candidateSavedJobs")
+                            .document(currentUid)
+                            .collection("savedJobs")
+                            .whereEqualTo("jobId", job.getId())
+                            .get()
+                            .addOnSuccessListener(snapshots -> {
+                                if (snapshots.size() != 0) {
+                                    Glide.with(this)
+                                            .load(R.drawable.savedjob)
+                                            .into(ivCandidateJobDetailsSaveJob);
+                                } else {
+                                    Glide.with(this)
+                                            .load(R.drawable.bookmark)
+                                            .into(ivCandidateJobDetailsSaveJob);
+                                }
+                            });
+
                     fetchCompanyDetails();
 
                 });
     }
 
+//    private void fetchCompanyDetails() {
+
+//        db.collection("recruiters")
+//                .document(job.getRecruiterId())
+//                .get()
+//                .addOnSuccessListener(documentSnapshot -> {
+
+    /// /                    Toast.makeText(this, "companyLocation " +documentSnapshot, Toast.LENGTH_SHORT).show();
+//                    RecruiterProfile rp = documentSnapshot.toObject(RecruiterProfile.class);
+//
+//                    rp.setUid(documentSnapshot.getId());
+//                    tvCandidateApplicationsAboutCompany.setText(rp.getCompanyLocation().getAbout());
+//                    tvCandidateApplicationsWebsite.setText(rp.getCompanyDetails().getWebsite());
+//                    tvCandidateApplicationsCity.setText(rp.getCompanyLocation().getCity());
+//                    tvCandidateApplicationsSize.setText(rp.getCompanyDetails().getSize());
+//                    tvCandidateApplicationsZipCode.setText(rp.getCompanyLocation().getZipCode());
+//                    tvCandidateApplicationsCountry.setText(rp.getCompanyLocation().getCountry());
+//
+//                });
+//    }
     private void fetchCompanyDetails() {
 
         db.collection("recruiters")
                 .document(job.getRecruiterId())
                 .get()
                 .addOnSuccessListener(documentSnapshot -> {
-//                    Toast.makeText(this, "companyLocation " +documentSnapshot, Toast.LENGTH_SHORT).show();
+
+                    if (!documentSnapshot.exists()) {
+                        Log.e("FETCH", "Recruiter doc does not exist");
+                        return;
+                    }
+
                     RecruiterProfile rp = documentSnapshot.toObject(RecruiterProfile.class);
+
+                    if (rp == null) {
+                        makeText(this, "Null pointer Exception", LENGTH_SHORT).show();
+                        Log.e("FETCH", "RecruiterProfile is null (mapping error)");
+                        return;
+                    }
+
                     rp.setUid(documentSnapshot.getId());
 
-                    tvCandidateApplicationsAboutCompany.setText(rp.getCompanyLocation().getAbout());
-                    tvCandidateApplicationsWebsite.setText(rp.getCompanyDetails().getWebsite());
-                    tvCandidateApplicationsCity.setText(rp.getCompanyLocation().getCity());
-                    tvCandidateApplicationsSize.setText(rp.getCompanyDetails().getSize());
-                    tvCandidateApplicationsZipCode.setText(rp.getCompanyLocation().getZipCode());
-                    tvCandidateApplicationsCountry.setText(rp.getCompanyLocation().getCountry());
+                    // SAFE GETTERS – avoid NPE
+                    if (rp.getCompanyLocation() != null) {
+                        tvCandidateApplicationsAboutCompany.setText(rp.getCompanyLocation().getAbout());
+                        tvCandidateApplicationsCity.setText(rp.getCompanyLocation().getCity());
+                        tvCandidateApplicationsZipCode.setText(rp.getCompanyLocation().getZipCode());
+                        tvCandidateApplicationsCountry.setText(rp.getCompanyLocation().getCountry());
+                    }
 
+                    if (rp.getCompanyDetails() != null) {
+                        tvCandidateApplicationsWebsite.setText(rp.getCompanyDetails().getWebsite());
+                        tvCandidateApplicationsSize.setText(rp.getCompanyDetails().getSize());
+                    }
                 });
-
     }
+
 
     private void addDummySkills() {
 //        List<String> requirements = Arrays.asList(

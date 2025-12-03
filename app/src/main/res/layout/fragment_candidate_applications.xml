@@ -78,7 +78,7 @@
 
     <!-- Floating Search Bar outside CardView -->
     <EditText
-        android:id="@+id/etCandidateJobsSearch"
+        android:id="@+id/etCandidateApplicationsJobsSearch"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginStart="20dp"
