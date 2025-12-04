@@ -5,71 +5,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Recruiter.Activities.RecruiterProfileUpdateActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#F8F5F5"
         android:orientation="vertical"
         android:weightSum="100">
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/jobsCard"
-        app:cardBackgroundColor="@color/primary"
-        app:cardPreventCornerOverlap="true"
-        app:shapeAppearanceOverlay="@style/CandidateJobsCardShape"
-        app:strokeColor="@android:color/transparent"
-        app:strokeWidth="0dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        android:layout_marginTop="-20dp">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/jobsCard"
+            app:cardBackgroundColor="@color/primary"
+            app:cardPreventCornerOverlap="true"
+            app:shapeAppearanceOverlay="@style/CandidateJobsCardShape"
+            app:strokeColor="@android:color/transparent"
+            app:strokeWidth="0dp"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingVertical="10dp"
-            >
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="20dp"
+            android:layout_marginTop="-20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:paddingTop="10dp"
-                android:weightSum="100"
-                android:layout_marginTop="20dp">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingVertical="10dp">
 
-                <ImageView
-                    app:tint="@color/white"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_weight="20"
-                    android:src="@drawable/back_arrow" />
-
-                <TextView
-                    android:layout_width="0dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="Update Profile"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
+                    android:layout_marginBottom="30dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingTop="10dp"
+                    android:weightSum="100"
+                    android:layout_marginTop="20dp">
 
-                <ImageView
-                    android:id="@+id/ibCandidateHomeNotifications"
-                    app:tint="@color/white"
-                    android:layout_width="0dp"
-                    android:layout_height="22dp"
-                    android:layout_weight="20"
-                    android:src="@drawable/check" />
+                    <ImageView
+                        app:tint="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_weight="20"
+                        android:src="@drawable/back_arrow" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="Update Profile"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="24sp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/ibCandidateHomeNotifications"
+                        app:tint="@color/white"
+                        android:layout_width="0dp"
+                        android:layout_height="22dp"
+                        android:layout_weight="20"
+                        android:src="@drawable/save" />
+                </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -77,6 +78,7 @@
             android:layout_height="0dp"
             android:layout_weight="100"
             android:layout_marginTop="20dp">
+
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"
@@ -84,28 +86,26 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                >
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/ivRecruiterProfileUpdateProfilePhoto"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/applicant_profile_photo_shape"
-                android:clipToOutline="true"
-                android:src="@drawable/app_logo"
-                 />
-            <ImageView
-                android:id="@+id/ivRecruiterProfileUpdateProfilePhotoUpdate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/edit"
-                android:layout_gravity="end"
-                android:layout_marginTop="-30dp"
-                android:background="@drawable/edit_icon_bg"
-                app:tint="@color/primary"
-                android:padding="2dp"
-                />
+                <ImageView
+                    android:id="@+id/ivRecruiterProfileUpdateProfilePhoto"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:background="@drawable/applicant_profile_photo_shape"
+                    android:clipToOutline="true"
+                    android:src="@drawable/app_logo" />
+
+                <ImageView
+                    android:id="@+id/ivRecruiterProfileUpdateProfilePhotoUpdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/edit"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="-30dp"
+                    android:background="@drawable/edit_icon_bg"
+                    app:tint="@color/primary"
+                    android:padding="2dp" />
             </LinearLayout>
 
             <TextView

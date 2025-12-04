@@ -92,8 +92,8 @@ public class CandidateJobDetailsUploadResumeActivity extends AppCompatActivity {
 
         acbCandidateJobDetailsUploadResumeApplyButton.setOnClickListener(v -> {
 
-//            createAndSaveApplicationToFirebase();
-//            updateJobApplicantsAndCount();
+            createAndSaveApplicationToFirebase();
+            updateJobApplicantsAndCount();
 
             llCandidateJobDetailsUploadResumeTextViews.setVisibility(GONE);
             cvCandidateJobDetailsUploadResumeCardViewButton.setVisibility(GONE);

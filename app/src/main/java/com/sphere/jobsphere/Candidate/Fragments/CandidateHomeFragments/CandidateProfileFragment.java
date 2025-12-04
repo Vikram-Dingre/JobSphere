@@ -1,17 +1,27 @@
 package com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidateEducationActivity;
+import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidatePersonalInfoActivity;
+import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidateWorkExperienceActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateSavedJobsActivity;
+import com.sphere.jobsphere.Common.Activities.CommonLoginActivity;
 import com.sphere.jobsphere.R;
 
 public class CandidateProfileFragment extends Fragment {
@@ -20,6 +30,11 @@ public class CandidateProfileFragment extends Fragment {
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String currentUid;
 
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+
+    LinearLayout llCandidateProfilePersonalInfo, llCandidateProfileWorkExperience, llCandidateProfileEducation, llCandidateProfileLogOut;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_profile, container, false);
@@ -27,12 +42,46 @@ public class CandidateProfileFragment extends Fragment {
         currentUid = auth.getCurrentUser().getUid();
 
         acbCandidateProfileSavedJobs = view.findViewById(R.id.acbCandidateProfileSavedJobs);
+        llCandidateProfilePersonalInfo = view.findViewById(R.id.llCandidateProfilePersonalInfo);
+        llCandidateProfileWorkExperience = view.findViewById(R.id.llCandidateProfileWorkExperience);
+        llCandidateProfileEducation = view.findViewById(R.id.llCandidateProfileEducation);
+        llCandidateProfileLogOut = view.findViewById(R.id.llCandidateProfileLogOut);
 
+        pref = getActivity().getSharedPreferences("settings", MODE_PRIVATE);
+        editor = pref.edit();
         calculateBoxCounts();
 
         acbCandidateProfileSavedJobs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CandidateSavedJobsActivity.class);
             startActivity(intent);
+        });
+
+        llCandidateProfilePersonalInfo.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CandidatePersonalInfoActivity.class);
+            startActivity(intent);
+
+        });
+
+        llCandidateProfileWorkExperience.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CandidateWorkExperienceActivity.class);
+            startActivity(intent);
+
+        });
+
+        llCandidateProfileEducation.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), CandidateEducationActivity.class);
+            startActivity(intent);
+
+        });
+
+        llCandidateProfileLogOut.setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            editor.putBoolean("isLoggedIn", false).apply();
+            Toast.makeText(getActivity(), "Logged out Successfully.", Toast.LENGTH_SHORT).show();
+            new Handler().postDelayed(() -> {
+                startActivity(new Intent(getActivity(), CommonLoginActivity.class));
+                getActivity().finish();
+            }, 2000);
         });
 
         return view;
