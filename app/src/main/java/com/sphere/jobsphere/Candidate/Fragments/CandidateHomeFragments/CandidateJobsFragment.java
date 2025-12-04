@@ -38,7 +38,6 @@ import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
 import com.sphere.jobsphere.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -145,7 +144,7 @@ public class CandidateJobsFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("All"));
         tabLayout.addTab(tabLayout.newTab().setText("Suggested"));
         tabLayout.addTab(tabLayout.newTab().setText("Recent"));
-        tabLayout.addTab(tabLayout.newTab().setText("Applied"));
+//        tabLayout.addTab(tabLayout.newTab().setText("Applied"));
 
         if (currentTab.equals("All")) {
             tabLayout.getTabAt(0).select();
@@ -622,34 +621,35 @@ public class CandidateJobsFragment extends Fragment {
                         tvCandidateJobsAllResultCount.setText(jobs.size() + "");
                     });
 
-                } else {
-                    for (int i = 15; i >= 1; i--) {
-                        cachedAppliedJobs.add(new CandidateJobModel("job" + i, // id
-                                "Software Engineer " + i, // title
-                                "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
-                                "Company " + i, // companyName
-                                "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
-                                i % 2 == 0 ? "Bangalore" : "Mumbai", // location
-                                i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
-                                Arrays.asList("Remote", "Hybrid"), // jobTypes
-                                i % 3 == 0 ? "IT" : "Finance", // category
-                                "Java, Spring Boot, SQL", // skillsRequired
-                                Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
-                                "₹" + (5 + i) + " LPA", // salary
-                                5000.0 + i, // minSalary
-                                10000.0 + i, // maxSalary
-                                i % 2 == 0 ? "Mid" : "Entry", // experienceLevel
-                                "B.Tech / M.Tech", // education
-                                System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
-                                System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
-                                "recruiter" + i, // recruiterId
-                                "Recruiter " + i, // recruiterName
-                                "recruiter" + i + "@company.com", // recruiterEmail
-                                i * 3, // applicantsCount
-                                Arrays.asList("cand1", "cand2", "cand3")));
-                    }
-                    jobs.addAll(cachedAppliedJobs);
                 }
+//                else {
+//                    for (int i = 15; i >= 1; i--) {
+//                        cachedAppliedJobs.add(new CandidateJobModel("job" + i, // id
+//                                "Software Engineer " + i, // title
+//                                "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
+//                                "Company " + i, // companyName
+//                                "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
+//                                i % 2 == 0 ? "Bangalore" : "Mumbai", // location
+//                                i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
+//                                Arrays.asList("Remote", "Hybrid"), // jobTypes
+//                                i % 3 == 0 ? "IT" : "Finance", // category
+//                                "Java, Spring Boot, SQL", // skillsRequired
+//                                Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
+//                                "₹" + (5 + i) + " LPA", // salary
+//                                5000.0 + i, // minSalary
+//                                10000.0 + i, // maxSalary
+//                                i % 2 == 0 ? "Mid" : "Entry", // experienceLevel
+//                                "B.Tech / M.Tech", // education
+//                                System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
+//                                System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
+//                                "recruiter" + i, // recruiterId
+//                                "Recruiter " + i, // recruiterName
+//                                "recruiter" + i + "@company.com", // recruiterEmail
+//                                i * 3, // applicantsCount
+//                                Arrays.asList("cand1", "cand2", "cand3")));
+//                    }
+//                    jobs.addAll(cachedAppliedJobs);
+//                }
 
 //jobsPageAdapter.notifyDataSetChanged();
 //tvCandidateJobsAllResultCount.setText(jobs.size() + "");

@@ -11,11 +11,12 @@ public class CandidateApplicationModel {
     private String jobLocation;
     private String recruiterMessage;
     private String applicationStatus;
+    private String resume;
 
     // student apply --> application saved --> displayed at app. frag. --> show details if clicked
     // view job details --> see the job applicants --> see details button --> show deatils and option for msg,status change things --> use that user id an update that status and message into student application
 
-    public CandidateApplicationModel(String id, String jobId, String companyLogo, String jobName, String companyName, String jobSalary, String jobType, String jobLocation, String recruiterMessage, String applicationStatus) {
+    public CandidateApplicationModel(String id, String jobId, String companyLogo, String jobName, String companyName, String jobSalary, String jobType, String jobLocation, String recruiterMessage, String applicationStatus, String resume) {
         this.id = id;
         this.jobId = jobId;
         this.companyLogo = companyLogo;
@@ -26,10 +27,21 @@ public class CandidateApplicationModel {
         this.jobLocation = jobLocation;
         this.recruiterMessage = recruiterMessage;
         this.applicationStatus = applicationStatus;
+        this.resume = resume;
     }
 
     public CandidateApplicationModel() {
     }
+
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
+    }
+
 
     public String getId() {
         return id;

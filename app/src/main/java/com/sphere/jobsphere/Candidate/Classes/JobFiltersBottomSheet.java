@@ -1,8 +1,6 @@
 package com.sphere.jobsphere.Candidate.Classes;
 
 import static android.view.View.VISIBLE;
-import static android.widget.Toast.LENGTH_SHORT;
-import static android.widget.Toast.makeText;
 
 import android.animation.LayoutTransition;
 import android.app.Dialog;
@@ -105,8 +103,7 @@ public class JobFiltersBottomSheet extends BottomSheetDialogFragment {
                     int count = chipGroup.getChildCount();
                     for (int j = 0; j < count; j++) {
                         Chip chip = (Chip) chipGroup.getChildAt(j);
-
-                        makeText(getContext(), "chip " + chip.getText(), LENGTH_SHORT).show();
+//                        makeText(getContext(), "chip " + chip.getText(), LENGTH_SHORT).show();
                         if (chip.getText().toString().equalsIgnoreCase(homePageCategory)) {
                             chip.setChecked(true);
                             return;

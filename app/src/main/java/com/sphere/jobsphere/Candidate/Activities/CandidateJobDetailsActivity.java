@@ -207,11 +207,16 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
                 return;
             }
 
-            createAndSaveApplicationToFirebase();
+            Intent intent = new Intent(this, CandidateJobDetailsUploadResumeActivity.class);
+            intent.putExtra("jobId", jobId);
+            startActivity(intent);
 
-            updateJobApplicantsAndCount();
 
-            makeText(this, "Job Applied Successfully.", LENGTH_SHORT).show();
+//            createAndSaveApplicationToFirebase();
+//
+//            updateJobApplicantsAndCount();
+//
+//            makeText(this, "Job Applied Successfully.", LENGTH_SHORT).show();
 
         });
     }
@@ -237,7 +242,7 @@ public class CandidateJobDetailsActivity extends AppCompatActivity {
 //        application.setRecruiterMessage("");
 //        application.setApplicationStatus("On the Way");
 
-        application = new CandidateApplicationModel("", jobId, job.getCompanyLogo(), job.getTitle(), job.getCompanyName(), job.getSalary(), job.getJobType(), job.getLocation(), "", "Pending");
+        application = new CandidateApplicationModel("", jobId, job.getCompanyLogo(), job.getTitle(), job.getCompanyName(), job.getSalary(), job.getJobType(), job.getLocation(), "", "Pending", "");
 
         db.collection("CandidateApplications")
                 .document(currentUid)

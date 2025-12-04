@@ -34,9 +34,35 @@ public class CandidateHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_home);
 
+        String openFragment = getIntent().getStringExtra("openFragment");
+
+
         bnvCandidateHomeActivityBottomMenu = findViewById(R.id.bnvCandidateHomeActivityBottomMenu);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateHomeFragment()).commit();
+        if ("applications".equals(openFragment)) {
+            // Set Applications tab selected
+            bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_applications);
+
+            // Load ApplicationsFragment
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateApplicationsFragment())
+                    .addToBackStack(null)
+                    .commit();
+        } else if ("jobs".equals(openFragment)) {
+            // Set Applications tab selected
+            bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_jobs);
+
+            // Load ApplicationsFragment
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateJobsFragment())
+                    .addToBackStack(null)
+                    .commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateHomeFragment()).commit();
+        }
+
 
         bnvCandidateHomeActivityBottomMenu.setOnItemSelectedListener((item -> {
             Fragment fragment;
