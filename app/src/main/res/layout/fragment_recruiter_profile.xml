@@ -57,10 +57,11 @@
                         android:textStyle="bold" />
 
                     <ImageView
+                        android:id="@+id/ivRecruiterProfileEditProfile"
                         android:layout_width="0dp"
                         android:layout_height="22dp"
                         android:layout_weight="20"
-                        android:src="@drawable/candidate_notifications" />
+                        android:src="@drawable/edit" />
                 </LinearLayout>
 
             </LinearLayout>
