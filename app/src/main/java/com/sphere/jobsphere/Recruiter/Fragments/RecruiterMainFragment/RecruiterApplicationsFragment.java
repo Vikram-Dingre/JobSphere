@@ -1,19 +1,17 @@
 package com.sphere.jobsphere.Recruiter.Fragments.RecruiterMainFragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Adapters.RecruiterApplicationsPageAdapter;
 import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterApplicationsModel;
-import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterJobModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,17 +20,16 @@ import java.util.List;
 
 public class RecruiterApplicationsFragment extends Fragment {
     RecyclerView applicationsRecyclerView;
-    List<RecruiterApplicationsModel> applications=new ArrayList<>();
+    List<RecruiterApplicationsModel> applications = new ArrayList<>();
 
     RecruiterApplicationsPageAdapter adapter;
-
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_recruiter_applications, container, false);
-        applicationsRecyclerView=view.findViewById(R.id.rvRecruiterAFApplications);
+        View view = inflater.inflate(R.layout.fragment_recruiter_applications, container, false);
+        applicationsRecyclerView = view.findViewById(R.id.rvRecruiterAFApplications);
 
         loadApplicationsData();
         loadApplicationsRecyclerView();
@@ -40,8 +37,8 @@ public class RecruiterApplicationsFragment extends Fragment {
     }
 
     private void loadApplicationsRecyclerView() {
-        applicationsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
-        adapter=new RecruiterApplicationsPageAdapter(applications,getActivity());
+        applicationsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+        adapter = new RecruiterApplicationsPageAdapter(applications, getActivity());
         applicationsRecyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }

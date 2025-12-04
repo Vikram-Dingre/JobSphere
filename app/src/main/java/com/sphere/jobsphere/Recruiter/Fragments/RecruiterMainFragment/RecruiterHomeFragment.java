@@ -1,14 +1,13 @@
 package com.sphere.jobsphere.Recruiter.Fragments.RecruiterMainFragment;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Adapters.RecruiterHomeApplicantAdapter;
@@ -25,10 +24,10 @@ import java.util.List;
 
 public class RecruiterHomeFragment extends Fragment {
 
-    List<RecruiterJobModel> recentJobs=new ArrayList<>();
-    List<RecruiterApplicantsModel> applicants=new ArrayList<>();
-    List<RecruiterRecentChatsModel> recentChats=new ArrayList<>();
-    RecyclerView PostedJobsRecyclerView,applicantsRecyclerView,recentChatsRecyclerView;
+    List<RecruiterJobModel> recentJobs = new ArrayList<>();
+    List<RecruiterApplicantsModel> applicants = new ArrayList<>();
+    List<RecruiterRecentChatsModel> recentChats = new ArrayList<>();
+    RecyclerView PostedJobsRecyclerView, applicantsRecyclerView, recentChatsRecyclerView;
 
     LinearLayoutManager linearLayoutManager;
     RecruiterHomeRecentJobAdapter recentJobAdapter;
@@ -38,10 +37,10 @@ public class RecruiterHomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_recruiter_home, container, false);
-        PostedJobsRecyclerView=view.findViewById(R.id.rvRecruiterHomePostedJobs);
-        applicantsRecyclerView=view.findViewById(R.id.rvRecruiterHomeApplicants);
-        recentChatsRecyclerView=view.findViewById(R.id.rvHomeRecentChats);
+        View view = inflater.inflate(R.layout.fragment_recruiter_home, container, false);
+        PostedJobsRecyclerView = view.findViewById(R.id.rvRecruiterHomePostedJobs);
+        applicantsRecyclerView = view.findViewById(R.id.rvRecruiterHomeApplicants);
+        recentChatsRecyclerView = view.findViewById(R.id.rvHomeRecentChats);
 
         // For Posted Jobs
         loadPostedJobsData();
@@ -58,8 +57,8 @@ public class RecruiterHomeFragment extends Fragment {
     }
 
     private void loadRecentChatData() {
-        for (int i = 1; i <=3; i++) {
-            recentChats.add(new RecruiterRecentChatsModel(i % 2 == 1?"Shivam Thosar":"Vikram Dingre",
+        for (int i = 1; i <= 3; i++) {
+            recentChats.add(new RecruiterRecentChatsModel(i % 2 == 1 ? "Shivam Thosar" : "Vikram Dingre",
                     "https://dummyimage.com/100x100/000/fff&text=" + i,
                     i % 2 == 0 ? "Ok" : "Bye",
                     i % 2 == 0 ? "12:55" : "4:35"));
@@ -67,32 +66,32 @@ public class RecruiterHomeFragment extends Fragment {
     }
 
     private void loadRecentChatsRecyclerView() {
-        recentChatsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(),RecyclerView.VERTICAL,false));
-        recentChatsAdapter=new RecruiterHomeRecentChatsAdapter(getActivity(),recentChats);
+        recentChatsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+        recentChatsAdapter = new RecruiterHomeRecentChatsAdapter(getActivity(), recentChats);
         recentChatsRecyclerView.setAdapter(recentChatsAdapter);
         recentChatsAdapter.notifyDataSetChanged();
     }
 
     private void loadApplicantsRecyclerView() {
         applicantsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
-        applicantAdapter=new RecruiterHomeApplicantAdapter(applicants,getActivity());
+        applicantAdapter = new RecruiterHomeApplicantAdapter(applicants, getActivity());
         applicantsRecyclerView.setAdapter(applicantAdapter);
         applicantAdapter.notifyDataSetChanged();
     }
 
     private void loadApplicantsData() {
-        for (int i = 1; i <=5 ; i++) {
+        for (int i = 1; i <= 5; i++) {
             applicants.add(new RecruiterApplicantsModel("https://dummyimage.com/100x100/000/fff&text=" + i,
-                    i % 2 == 1?"Shivam Thosar":"Vikram Dingre",
-                    i % 2 == 1?"Frontend Devloper":"Backend Devloper"));
+                    i % 2 == 1 ? "Shivam Thosar" : "Vikram Dingre",
+                    i % 2 == 1 ? "Frontend Devloper" : "Backend Devloper"));
         }
     }
 
     private void loadPostedJobRecyclerView() {
 
-        linearLayoutManager=new LinearLayoutManager(getActivity(),RecyclerView.HORIZONTAL,false);
+        linearLayoutManager = new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, false);
         PostedJobsRecyclerView.setLayoutManager(linearLayoutManager);
-        recentJobAdapter=new RecruiterHomeRecentJobAdapter(recentJobs,getActivity());
+        recentJobAdapter = new RecruiterHomeRecentJobAdapter(recentJobs, getActivity());
         PostedJobsRecyclerView.setAdapter(recentJobAdapter);
         recentJobAdapter.notifyDataSetChanged();
     }

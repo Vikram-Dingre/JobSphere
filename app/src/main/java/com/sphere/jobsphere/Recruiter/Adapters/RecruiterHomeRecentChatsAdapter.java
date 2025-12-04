@@ -14,8 +14,6 @@ import com.bumptech.glide.Glide;
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterRecentChatsModel;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class RecruiterHomeRecentChatsAdapter extends RecyclerView.Adapter<RecruiterHomeRecentChatsAdapter.MyViewHolder> {
@@ -38,7 +36,7 @@ public class RecruiterHomeRecentChatsAdapter extends RecyclerView.Adapter<Recrui
 
     @Override
     public void onBindViewHolder(@NonNull RecruiterHomeRecentChatsAdapter.MyViewHolder holder, int position) {
-        RecruiterRecentChatsModel recentChat=recentChats.get(position);
+        RecruiterRecentChatsModel recentChat = recentChats.get(position);
         Glide.with(context)
                 .load(recentChat.getCandidateProfilePhoto())
                 .into(holder.candidateProfilePhoto);
@@ -54,15 +52,16 @@ public class RecruiterHomeRecentChatsAdapter extends RecyclerView.Adapter<Recrui
         return recentChats.size();
     }
 
-    public class MyViewHolder extends  RecyclerView.ViewHolder{
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView candidateProfilePhoto;
-        TextView candidateName,recentChat,recentChatTime;
+        TextView candidateName, recentChat, recentChatTime;
+
         public MyViewHolder(View view) {
             super(view);
-            candidateProfilePhoto=view.findViewById(R.id.ivChatProfilePhoto);
-            candidateName=view.findViewById(R.id.tvMessageSenderName);
-            recentChat=view.findViewById(R.id.tvRecentChat);
-            recentChatTime=view.findViewById(R.id.tvRecentChatTime);
+            candidateProfilePhoto = view.findViewById(R.id.ivChatProfilePhoto);
+            candidateName = view.findViewById(R.id.tvMessageSenderName);
+            recentChat = view.findViewById(R.id.tvRecentChat);
+            recentChatTime = view.findViewById(R.id.tvRecentChatTime);
         }
     }
 }

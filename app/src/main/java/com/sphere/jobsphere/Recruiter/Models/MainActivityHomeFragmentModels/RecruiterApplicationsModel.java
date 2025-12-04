@@ -1,7 +1,6 @@
 package com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels;
 
 
-
 import java.util.List;
 
 public class RecruiterApplicationsModel {
@@ -45,14 +44,14 @@ public class RecruiterApplicationsModel {
     } // Required for Firestore
 
     public RecruiterApplicationsModel(String id, String title, String description, String companyName,
-                             String companyLogo, String location, String jobType, List<String> jobTypes,
-                             String category, String skillsRequired, List<String> skillsList,
-                             String salary, Double minSalary, Double maxSalary,
-                             String experienceLevel, String education,
-                             long postedAt, long deadline,
-                             String recruiterId, String recruiterName, String recruiterEmail,
-                             int applicantsCount, List<String> applicants,
-                             Double matchScore) {
+                                      String companyLogo, String location, String jobType, List<String> jobTypes,
+                                      String category, String skillsRequired, List<String> skillsList,
+                                      String salary, Double minSalary, Double maxSalary,
+                                      String experienceLevel, String education,
+                                      long postedAt, long deadline,
+                                      String recruiterId, String recruiterName, String recruiterEmail,
+                                      int applicantsCount, List<String> applicants,
+                                      Double matchScore) {
         this.id = id;
         this.title = title;
         this.description = description;

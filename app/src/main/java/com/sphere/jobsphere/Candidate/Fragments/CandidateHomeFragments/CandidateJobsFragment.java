@@ -27,6 +27,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.progressindicator.CircularProgressIndicator;
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
@@ -56,11 +57,13 @@ public class CandidateJobsFragment extends Fragment {
     boolean isFragmentStartingFirstTime = true;
     CandidateHomeActivity activity;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    String currentUid;
     private TabLayout tabLayout;
     private AutoCompleteTextView customSpinner;
     private RecyclerView jobsRecycler;
     private TextView tvCandidateJobsAllResultCount;
-    private String currentTab;
+    private String currentTab, homePageCategory = "";
     private AlertDialog progressDialog;
     private EditText etCandidateJobsSearch;
     private ImageView ivCandidateJobsFilter;
@@ -68,12 +71,15 @@ public class CandidateJobsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_jobs, container, false);
-
+        currentUid = auth.getCurrentUser().getUid();
         if (getArguments() != null) {
-            currentTab = getArguments().getString("currentJobsTab");
+            currentTab = getArguments().getString("currentJobsTab", "All");
+            homePageCategory = getArguments().getString("category", "");
         } else {
             currentTab = "All";
         }
+//        makeText(getActivity(), ""+homePageCategory, LENGTH_SHORT).show();
+
 
         tabLayout = view.findViewById(R.id.jobsTabLayout);
         customSpinner = view.findViewById(R.id.sortDropDown);
@@ -89,6 +95,20 @@ public class CandidateJobsFragment extends Fragment {
 
         activity = (CandidateHomeActivity) getActivity();
 //        fetchJobsForFirstTimeWithFilters();
+
+        if (!homePageCategory.isEmpty()) {
+            jobFiltersBottomSheet = new JobFiltersBottomSheet();
+
+            jobFiltersBottomSheet.setOnFilterAppliedListener(filterModel -> {
+                // Save filter in activity
+                activity.lastAppliedFilter = filterModel;
+
+                // Apply filter immediately
+                applyFilters(filterModel);
+            }, homePageCategory);
+
+            jobFiltersBottomSheet.show(getActivity().getSupportFragmentManager(), "JobFiltersBottomSheet");
+        }
 
         etCandidateJobsSearch.addTextChangedListener(new android.text.TextWatcher() {
             @Override
@@ -115,7 +135,7 @@ public class CandidateJobsFragment extends Fragment {
 
                 // Apply filter immediately
                 applyFilters(filterModel);
-            });
+            }, homePageCategory);
 
             jobFiltersBottomSheet.show(getActivity().getSupportFragmentManager(), "JobFiltersBottomSheet");
         });
@@ -434,7 +454,7 @@ public class CandidateJobsFragment extends Fragment {
 //                            });
 
                     db.collection("jobs").get().addOnSuccessListener(snapshots -> {
-
+//                        cachedAllJobs.clear();
                         for (DocumentSnapshot doc : snapshots.getDocuments()) {
                             CandidateJobModel job = doc.toObject(CandidateJobModel.class);
                             if (job != null) {
@@ -652,6 +672,16 @@ public class CandidateJobsFragment extends Fragment {
             jobs.clear();
 
             if (currentTab.equals("All")) {
+//                for (CandidateJobModel job : cachedAllJobs) {
+//                    db.collection("jobs")
+//                            .document(job.getId())
+//                            .get()
+//                            .addOnSuccessListener(documentSnapshot -> {
+//                               CandidateJobModel docJob = documentSnapshot.toObject(CandidateJobModel.class);
+//                               docJob.id = documentSnapshot.getId();
+//                               jobs.add(docJob);
+//                            });
+//                }
                 jobs.addAll(cachedAllJobs);
             } else if (currentTab.equals("Suggested")) {
                 jobs.addAll(cachedSuggestedJobs);

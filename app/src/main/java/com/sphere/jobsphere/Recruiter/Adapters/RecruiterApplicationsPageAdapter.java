@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterApplicationsModel;
 
@@ -22,16 +21,16 @@ public class RecruiterApplicationsPageAdapter extends RecyclerView.Adapter<Recru
     List<RecruiterApplicationsModel> applications;
     Context context;
 
-    public  RecruiterApplicationsPageAdapter (List<RecruiterApplicationsModel> applications, Context context) {
+    public RecruiterApplicationsPageAdapter(List<RecruiterApplicationsModel> applications, Context context) {
         this.applications = applications;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public  RecruiterApplicationsPageAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public RecruiterApplicationsPageAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recruiter_applications_layout, parent, false);
-        return new  RecruiterApplicationsPageAdapter .MyViewHolder(view);
+        return new RecruiterApplicationsPageAdapter.MyViewHolder(view);
     }
 
     @Override

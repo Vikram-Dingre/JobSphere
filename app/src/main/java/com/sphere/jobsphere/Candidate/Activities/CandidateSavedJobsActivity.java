@@ -85,8 +85,8 @@ public class CandidateSavedJobsActivity extends AppCompatActivity {
     }
 
     private void fetchSavedJobs() {
-        savedJobs.clear();
-        filteredSavedJobs.clear();
+//        savedJobs.clear();
+//        filteredSavedJobs.clear();
 //        db.collection("candidateSavedJobs")
 //                .document(currentUid)
 //                .collection("savedJobs")
@@ -128,6 +128,7 @@ public class CandidateSavedJobsActivity extends AppCompatActivity {
                     AtomicInteger loaded = new AtomicInteger(0);
 
                     savedJobs.clear();
+                    filteredSavedJobs.clear();
 
                     for (DocumentSnapshot savedJobId : snapshots.getDocuments()) {
 

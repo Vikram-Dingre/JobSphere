@@ -84,7 +84,7 @@ public class CandidateApplicationDetailsActivity extends AppCompatActivity {
 
 
                     } else if (application.getApplicationStatus().equalsIgnoreCase("Accepted")) {
-                        acbCandidateApplicationsApplicationStatus.setTextColor(ContextCompat.getColor(this,R.color.dadada));
+                        acbCandidateApplicationsApplicationStatus.setTextColor(ContextCompat.getColor(this, R.color.dadada));
                         acbCandidateApplicationsApplicationStatus.setBackgroundTintList(
                                 ColorStateList.valueOf(Color.parseColor("#2B000000")) // Blue
                         );
