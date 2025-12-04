@@ -20,7 +20,7 @@
     <item
         android:id="@+id/recruiter_main_bottom_menu_chats"
         android:title="Chats"
-        android:icon="@drawable/recruiter_bottom_menu_chat_icon" />
+        android:icon="@drawable/chat_outline_icon" />
 
     <item
         android:id="@+id/recruiter_main_bottom_menu_profile"
