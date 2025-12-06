@@ -2,10 +2,8 @@ package com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +11,11 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
@@ -28,7 +24,6 @@ import com.sphere.jobsphere.Candidate.Adapters.CandidateHomeRecentJobsAdapter;
 import com.sphere.jobsphere.Candidate.Adapters.CandidateHomeSuggestedJobsAdapter;
 import com.sphere.jobsphere.Candidate.Models.CandidateHomeCategoryModel;
 import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
-import com.sphere.jobsphere.Common.Activities.CommonLoginActivity;
 import com.sphere.jobsphere.R;
 
 import java.util.ArrayList;
@@ -142,12 +137,12 @@ public class CandidateHomeFragment extends Fragment {
         });
 
         ibCandidateHomeNotifications.setOnClickListener(v -> {
-            FirebaseAuth.getInstance().signOut();
-            editor.putBoolean("isLoggedIn", false).apply();
-            Toast.makeText(getActivity(), "Logged out Successfully.", Toast.LENGTH_SHORT).show();
-            new Handler().postDelayed(() -> {
-                startActivity(new Intent(getActivity(), CommonLoginActivity.class));
-            }, 2000);
+//            FirebaseAuth.getInstance().signOut();
+//            editor.putBoolean("isLoggedIn", false).apply();
+//            Toast.makeText(getActivity(), "Logged out Successfully.", Toast.LENGTH_SHORT).show();
+//            new Handler().postDelayed(() -> {
+//                startActivity(new Intent(getActivity(), CommonLoginActivity.class));
+//            }, 2000);
 
 
 //            Toast.makeText(getActivity(), "Clicked...", Toast.LENGTH_SHORT).show();
