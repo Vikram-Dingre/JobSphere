@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EEECEC"
+    tools:context=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterCompanyLocationInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:paddingVertical="20dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="10"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow"
+            android:background="@drawable/candidate_job_details_skills_shape" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:width="0dp"
+            android:layout_weight="79"
+            android:layout_height="wrap_content"
+            android:text="Company Location"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="#C6000000" />
+
+        <ImageView
+            android:id="@+id/ivCandidateJobDetailsSaveJob"
+            android:layout_width="0dp"
+            android:layout_weight="10.5"
+            android:layout_height="match_parent"
+            app:tint="@color/black"
+            android:background="@drawable/candidate_job_details_skills_shape"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="5dp" />
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginTop="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="City"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRecruiterCompanyLocationCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Georai"
+                android:textSize="14sp"
+                android:textColor="#5A5959"
+                android:background="@drawable/image_shape"
+                android:backgroundTint="@color/white"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="State"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRecruiterCompanyLocationState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Maharastra"
+                android:textSize="14sp"
+                android:textColor="#5A5959"
+                android:background="@drawable/image_shape"
+                android:backgroundTint="@color/white"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="10dp" />
+
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Country"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRecruiterCompanyLocationCountry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="India"
+                android:textSize="14sp"
+                android:textColor="#5A5959"
+                android:background="@drawable/image_shape"
+                android:backgroundTint="@color/white"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zip Code"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRecruiterCompanyLocationZipcode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="431127"
+                android:textSize="14sp"
+                android:textColor="#5A5959"
+                android:background="@drawable/image_shape"
+                android:backgroundTint="@color/white"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company address"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRecruiterCompanyLocationCompanyAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Takadgoan road Sant nagar,Georai"
+                android:textSize="14sp"
+                android:textColor="#5A5959"
+                android:background="@drawable/image_shape"
+                android:backgroundTint="@color/white"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="10dp" />
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About your company"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvRecruiterCompanyLocationAboutYourCompany"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="I dont know..."
+                android:textSize="14sp"
+                android:textColor="#5A5959"
+                android:background="@drawable/image_shape"
+                android:backgroundTint="@color/white"
+                android:paddingHorizontal="15dp"
+                android:paddingVertical="10dp"
+                android:layout_marginTop="10dp" />
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

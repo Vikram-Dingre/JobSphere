@@ -13,6 +13,27 @@
         android:theme="@style/Theme.JobSphere"
         tools:targetApi="31">
         <activity
+            android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdateComapnyLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Activities.RecruiterProfileUpdateActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdateCompanyDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdatePersonalInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterCompanyLocationInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterCompanyDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterPersonalInfoActivity"
+            android:exported="false" />
+        <activity
             android:name=".Candidate.Activities.CandidateEditProfileActivities.CandidateEditEducationActivity"
             android:exported="false" />
         <activity

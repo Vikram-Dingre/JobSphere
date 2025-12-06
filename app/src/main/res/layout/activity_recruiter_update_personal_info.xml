@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EEECEC"
+    tools:context=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdatePersonalInfoActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:paddingVertical="20dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="10"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow"
+            android:background="@drawable/candidate_job_details_skills_shape" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:width="0dp"
+            android:layout_weight="79"
+            android:layout_height="wrap_content"
+            android:text="Personal Information"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="#C6000000" />
+
+        <ImageView
+            android:id="@+id/ivRecruiterUpdatePersonalInfoSave"
+            android:layout_width="0dp"
+            android:layout_weight="10.5"
+            android:layout_height="match_parent"
+            android:src="@drawable/save"
+            app:tint="@color/black"
+            android:background="@drawable/candidate_job_details_skills_shape"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="5dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
+
+
+
+        <TextView
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FullName"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterUpdatePersonalInfoFullName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Shivam Ashok Thosar"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterUpdatePersonalInfoFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Job Title"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterUpdatePersonalInfoJobTitle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Manager"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterUpdatePersonalInfoJobTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email Address"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterUpdatePersonalInfoEmailAddress"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="shivam@gmail.com"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterUpdatePersonalInfoEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Phone Number"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="60dp"
+                android:layout_height="51dp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#6200EE"
+                android:hint="+91"
+                android:textColorHint="#5A5959"
+                android:textSize="14sp"
+                android:layout_marginRight="5dp"
+                android:textColor="#5A5959"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilRecruiterUpdatePersonalInfoPhoneNumber"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                app:boxBackgroundMode="outline"
+                app:boxStrokeColor="#6200EE"
+                android:hint="922852921"
+                app:counterMaxLength="10"
+                android:textColorHint="#5A5959"
+                android:textSize="14sp"
+                android:textColor="#5A5959"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/tieRecruiterUpdatePersonalInfoPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

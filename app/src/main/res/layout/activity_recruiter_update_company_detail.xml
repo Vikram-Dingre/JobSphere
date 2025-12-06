@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EEECEC"
+    tools:context=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdateCompanyDetailActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:paddingVertical="20dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="10"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow"
+            android:background="@drawable/candidate_job_details_skills_shape" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:width="0dp"
+            android:layout_weight="79"
+            android:layout_height="wrap_content"
+            android:text="Company Details"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="#C6000000" />
+
+        <ImageView
+            android:id="@+id/ivRecruiterUpdateCompanyDetailSave"
+            android:layout_width="0dp"
+            android:layout_weight="10.5"
+            android:layout_height="match_parent"
+            app:tint="@color/black"
+            android:src="@drawable/save"
+            android:background="@drawable/candidate_job_details_skills_shape"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="5dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/ivRecruiterUpdateCompanyDetailsCompanyLogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/applicant_profile_photo_shape"
+                android:clipToOutline="true"
+                android:src="@drawable/app_logo" />
+
+            <ImageView
+                android:id="@+id/ivRecruiterUpdateCompanyDetailsCompanyLogoUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/edit"
+                android:layout_gravity="end"
+                android:layout_marginTop="-30dp"
+                android:background="@drawable/edit_icon_bg"
+                app:tint="@color/primary"
+                android:padding="2dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_marginTop="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company Name"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterUpdateCompanyDetailCompanyName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Mountreach Solution Pvt Ltd"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterUpdateCompanyLocationCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Industry"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilRecruiterUpdateCompanyDetailIndustry"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        app:boxBackgroundMode="outline"
+        app:boxStrokeColor="#6200EE"
+        android:hint="IT"
+        android:textColorHint="#5A5959"
+        android:textSize="14sp"
+        android:textColor="#5A5959"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tieRecruiterUpdateCompanyLocationIndustry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterUpdateCompanyDetailCompanySize"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="2000 Employees"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterUpdateCompanyLocationSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Website"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterUpdateCompanyDetailCompanyWebsite"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="www.mountreachsolutionpvtltd.com"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterUpdateCompanyLocationWebsite"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
