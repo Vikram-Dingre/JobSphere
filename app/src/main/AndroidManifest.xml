@@ -13,7 +13,7 @@
         android:theme="@style/Theme.JobSphere"
         tools:targetApi="31">
         <activity
-            android:name=".Recruiter.Activities.RecruiterApplicationActivity"
+            android:name=".Recruiter.Activities.RecruiterApplicationDetailActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Recruiter.Activities.RecruiterApplicationActivity"
+            android:exported="false" />
         <activity
             android:name=".Recruiter.Activities.RecruiterCreateNewJobActivity"
             android:exported="false" />

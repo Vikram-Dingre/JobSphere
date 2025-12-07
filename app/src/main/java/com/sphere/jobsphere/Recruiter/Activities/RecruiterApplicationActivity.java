@@ -1,9 +1,13 @@
 package com.sphere.jobsphere.Recruiter.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -27,15 +31,24 @@ public class RecruiterApplicationActivity extends AppCompatActivity {
 
     LinearLayoutManager linearLayoutManager;
     RecruiterHomeApplicantAdapter applicantAdapter;
+    CardView cvApplication;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recruiter_application);
         applicantsRecyclerView =findViewById(R.id.rvRecruiterApplicationActivityApplicants);
+        cvApplication=findViewById(R.id.cvApplication);
 
         loadApplicantsData();
         loadApplicantsRecyclerView();
 
+        cvApplication.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(RecruiterApplicationActivity.this, RecruiterApplicationDetailActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void loadApplicantsRecyclerView() {
