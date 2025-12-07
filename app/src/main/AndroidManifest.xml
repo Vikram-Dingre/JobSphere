@@ -13,6 +13,9 @@
         android:theme="@style/Theme.JobSphere"
         tools:targetApi="31">
         <activity
+            android:name=".Recruiter.Activities.RecruiterCreateNewJobActivity"
+            android:exported="false" />
+        <activity
             android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdateComapnyLocationActivity"
             android:exported="false" />
         <activity

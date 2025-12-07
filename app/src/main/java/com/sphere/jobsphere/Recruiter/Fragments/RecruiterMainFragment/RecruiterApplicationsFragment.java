@@ -1,15 +1,18 @@
 package com.sphere.jobsphere.Recruiter.Fragments.RecruiterMainFragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sphere.jobsphere.R;
+import com.sphere.jobsphere.Recruiter.Activities.RecruiterCreateNewJobActivity;
 import com.sphere.jobsphere.Recruiter.Adapters.RecruiterApplicationsPageAdapter;
 import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterApplicationsModel;
 
@@ -23,6 +26,7 @@ public class RecruiterApplicationsFragment extends Fragment {
     List<RecruiterApplicationsModel> applications = new ArrayList<>();
 
     RecruiterApplicationsPageAdapter adapter;
+    ImageView ivAddNewJob;
 
 
     @Override
@@ -31,6 +35,15 @@ public class RecruiterApplicationsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recruiter_applications, container, false);
         applicationsRecyclerView = view.findViewById(R.id.rvRecruiterAFApplications);
 
+        ivAddNewJob=view.findViewById(R.id.ivRecruiterApplicationCreateJob);
+
+        ivAddNewJob.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(getActivity(), RecruiterCreateNewJobActivity.class);
+                startActivity(i);
+            }
+        });
         loadApplicationsData();
         loadApplicationsRecyclerView();
         return view;

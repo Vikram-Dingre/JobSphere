@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Recruiter.Activities.RecruiterCreateNewJobActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="100"
+        android:paddingVertical="20dp"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="20dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_weight="10"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:src="@drawable/back_arrow"
+            android:background="@drawable/candidate_job_details_skills_shape" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:width="0dp"
+            android:layout_weight="79"
+            android:layout_height="wrap_content"
+            android:text="Create Job"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textColor="#C6000000" />
+
+        <ImageView
+            android:id="@+id/ivRecruiterCreateNewJobCreate"
+            android:layout_width="0dp"
+            android:layout_weight="10.5"
+            android:layout_height="match_parent"
+            app:tint="@color/black"
+            android:src="@drawable/save"
+            android:background="@drawable/candidate_job_details_skills_shape"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="5dp" />
+
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterCreateNewJobTitle"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Enter Job Title"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterCreateNewJobTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterCreateNewJobDescription"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Enter Job Description..."
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterCreateNewJobDescription"
+                android:layout_width="match_parent"
+                android:layout_height="146dp"
+                android:gravity="top"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company Name"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterCreateNewJobCompanyName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Enter Company Name"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterCreateNewJobCompanyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company Logo"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            >
+
+            <ImageView
+                android:id="@+id/ivRecruiterCreateNewJobCompanyLogo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/applicant_profile_photo_shape"
+                android:clipToOutline="true"
+                android:src="@drawable/app_logo" />
+
+            <ImageView
+                android:id="@+id/ivRecruiterCreateNewJobSelectCompanyLogo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/edit"
+                android:layout_gravity="end"
+                android:layout_marginTop="-30dp"
+                android:background="@drawable/edit_icon_bg"
+                app:tint="@color/primary"
+                android:padding="2dp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Company Location"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterCreateNewJobCompanyLocation"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Enter Job Location"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterCreateNewJobCompanyLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Job Type"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Job Type"
+            android:textColorHint="#5A5959"
+            app:endIconTint="#5A5959"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/actRecruiterCreateNewJobJobType"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Job Category"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Job Category"
+            android:textColorHint="#5A5959"
+            app:endIconTint="#5A5959"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/actRecruiterCreateNewJobJobCategory"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skill List"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cgRecruiterCreateNewJobSkillList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:chipSpacing="8dp"
+            app:singleLine="false"
+            app:singleSelection="false">
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:checkable="true"
+                app:chipCornerRadius="5dp"
+                android:text="Java"
+                android:backgroundTint="#279582FC"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:checkable="true"
+                app:chipCornerRadius="5dp"
+                android:text="Java Full-Stack"
+                android:backgroundTint="#279582FC"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:checkable="true"
+                app:chipCornerRadius="5dp"
+                android:text="Python"
+                android:backgroundTint="#279582FC"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:checkable="true"
+                app:chipCornerRadius="5dp"
+                android:text="CSS"
+                android:backgroundTint="#279582FC"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:checkable="true"
+                app:chipCornerRadius="5dp"
+                android:text="HTML"
+                android:backgroundTint="#279582FC"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:checkable="true"
+                app:chipCornerRadius="5dp"
+                android:text="Java Script"
+                android:backgroundTint="#279582FC"
+                android:textColor="@color/black" />
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:checkable="true"
+                app:chipCornerRadius="5dp"
+                android:text="SQL"
+                android:backgroundTint="#279582FC"
+                android:textColor="@color/black" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Salary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:text="Minimum Salary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterCreateNewJobMinimumSalary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginHorizontal="10dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Enter Minimum Salary"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterCreateNewJobMinimumSalary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:text="Maximum Salary"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterCreateNewJobMaximumSalary"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:layout_marginHorizontal="10dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Enter Maximum Salary"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterCreateNewJobMaximumSalary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Experience Level"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Select Experience Level"
+            android:textColorHint="#5A5959"
+            app:endIconTint="#5A5959"
+            >
+
+            <AutoCompleteTextView
+                android:id="@+id/actRecruiterCreateNewJobExperienceLevel"
+                android:layout_width="match_parent"
+                android:layout_height="51dp"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Education Required"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilRecruiterCreateNewJobEducationRequired"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#6200EE"
+            android:hint="Enter Required Education"
+            android:textColorHint="#5A5959"
+            android:textSize="14sp"
+            android:textColor="#5A5959"
+            >
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tieRecruiterCreateNewJobEducationRequired"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/canaidate_application_two_button_common_shape"
+            android:backgroundTint="@color/primary"
+            android:text="Create"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+             />
+
+    </LinearLayout>
+    </ScrollView>
+</LinearLayout>
