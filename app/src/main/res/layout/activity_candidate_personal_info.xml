@@ -55,17 +55,7 @@
         android:layout_marginHorizontal="20dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivCandidatePersonalInfoProfileImage"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/profile"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/circle"
-            android:backgroundTint="@color/primary"
-            android:clipToOutline="true"
-            android:scaleType="fitXY" />
+
 
         <TextView
             android:layout_marginTop="40dp"
@@ -79,7 +69,6 @@
             android:id="@+id/tvCandidatePersonalInfoFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vikram Ashok Dingre"
             android:textSize="14sp"
             android:textColor="#5A5959"
             android:background="@drawable/image_shape"
@@ -113,7 +102,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="100"
                 android:layout_height="wrap_content"
-                android:text="17/01/2008"
                 android:textSize="14sp"
                 android:textColor="#5A5959" />
 
@@ -138,7 +126,6 @@
             android:id="@+id/tvCandidatePersonalInfoEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="vikramdingre91.cs@gmail.com"
             android:textSize="14sp"
             android:textColor="#5A5959"
             android:background="@drawable/image_shape"
@@ -180,7 +167,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="100"
                 android:layout_height="wrap_content"
-                android:text="9403754251"
                 android:textSize="14.5sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"
@@ -201,7 +187,6 @@
             android:id="@+id/tvCandidatePersonalInfoLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Paulachiwadi, Georai, Beed"
             android:textSize="14sp"
             android:textColor="#5A5959"
             android:background="@drawable/image_shape"

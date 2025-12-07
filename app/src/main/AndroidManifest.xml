@@ -37,6 +37,18 @@
             android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterPersonalInfoActivity"
             android:exported="false" />
         <activity
+            android:name=".Candidate.Activities.CandidateEditProfileActivities.CandidateEditEducationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Candidate.Activities.CandidateEditProfileActivities.CandidateEditWorkExperienceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Candidate.Activities.CandidateEditProfileActivities.CandidateEditPersonalInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Candidate.Activities.CandidateEditProfileActivities.CandidateEditProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".Candidate.Activities.CandidateProfileInfoActivities.CandidateEducationActivity"
             android:exported="false" />
         <activity
@@ -44,6 +56,9 @@
             android:exported="false" />
         <activity
             android:name=".Candidate.Activities.CandidateProfileInfoActivities.CandidatePersonalInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Candidate.Activities.CandidateJobDetailsUploadResumeActivity"
             android:exported="false" />
         <activity
             android:name=".Candidate.Activities.CandidateSavedJobsActivity"

@@ -68,10 +68,9 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvCandidateWorkExperienceJobTitle"
+                android:id="@+id/tvCandidateEducationQualifications"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Diploma (Polytechnic)"
                 android:textSize="14sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"
@@ -89,10 +88,9 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvCandidateWorkExperienceCurrentCompany"
+                android:id="@+id/tvCandidateEducationBranch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Information Technology"
                 android:textSize="14sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"
@@ -111,10 +109,9 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvCandidateWorkExperienceExperience"
+                android:id="@+id/tvCandidateEducationUniversity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="MSBTE"
                 android:textSize="14sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"
@@ -132,10 +129,9 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvCandidateWorkExperienceExpectedSalary"
+                android:id="@+id/tvCandidateEducationGraduationYear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="2023-2026"
                 android:textSize="14sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"

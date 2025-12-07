@@ -1,6 +1,8 @@
 package com.sphere.jobsphere.Candidate.Fragments.CandidateHomeFragments;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.widget.Toast.LENGTH_SHORT;
+import static android.widget.Toast.makeText;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,23 +11,26 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidateEducationActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidatePersonalInfoActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidateWorkExperienceActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateSavedJobsActivity;
+import com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels.CandidateProfile;
 import com.sphere.jobsphere.Common.Activities.CommonLoginActivity;
 import com.sphere.jobsphere.R;
 
 public class CandidateProfileFragment extends Fragment {
-    AppCompatButton acbCandidateProfileSavedJobs;
+    AppCompatButton acbCandidateProfileSavedJobs,acbCandidateProfileAppliedJobs;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String currentUid;
@@ -35,6 +40,9 @@ public class CandidateProfileFragment extends Fragment {
 
     LinearLayout llCandidateProfilePersonalInfo, llCandidateProfileWorkExperience, llCandidateProfileEducation, llCandidateProfileLogOut;
 
+    ImageView ivCandidateProfilePhoto,ivCandidateProfileEditProfile;
+    TextView ivCandidateProfileUserName,ivCandidateProfileUserEmail;
+CandidateProfile profile;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_profile, container, false);
@@ -46,10 +54,21 @@ public class CandidateProfileFragment extends Fragment {
         llCandidateProfileWorkExperience = view.findViewById(R.id.llCandidateProfileWorkExperience);
         llCandidateProfileEducation = view.findViewById(R.id.llCandidateProfileEducation);
         llCandidateProfileLogOut = view.findViewById(R.id.llCandidateProfileLogOut);
+        ivCandidateProfilePhoto = view.findViewById(R.id.ivCandidateProfilePhoto);
+        ivCandidateProfileUserName = view.findViewById(R.id.ivCandidateProfileUserName);
+        ivCandidateProfileUserEmail = view.findViewById(R.id.ivCandidateProfileUserEmail);
+        ivCandidateProfileEditProfile = view.findViewById(R.id.ivCandidateProfileEditProfile);
+        acbCandidateProfileAppliedJobs = view.findViewById(R.id.acbCandidateProfileAppliedJobs);
+
 
         pref = getActivity().getSharedPreferences("settings", MODE_PRIVATE);
         editor = pref.edit();
         calculateBoxCounts();
+
+        ivCandidateProfileEditProfile.setOnClickListener(v -> {
+            makeText(getActivity(), "Editing Your Profile...", LENGTH_SHORT).show();
+
+        });
 
         acbCandidateProfileSavedJobs.setOnClickListener(v -> {
             Intent intent = new Intent(getActivity(), CandidateSavedJobsActivity.class);
@@ -77,7 +96,7 @@ public class CandidateProfileFragment extends Fragment {
         llCandidateProfileLogOut.setOnClickListener(v -> {
             FirebaseAuth.getInstance().signOut();
             editor.putBoolean("isLoggedIn", false).apply();
-            Toast.makeText(getActivity(), "Logged out Successfully.", Toast.LENGTH_SHORT).show();
+            makeText(getActivity(), "Logged out Successfully.", LENGTH_SHORT).show();
             new Handler().postDelayed(() -> {
                 startActivity(new Intent(getActivity(), CommonLoginActivity.class));
                 getActivity().finish();
@@ -89,6 +108,22 @@ public class CandidateProfileFragment extends Fragment {
 
     private void calculateBoxCounts() {
 
+        db.collection("candidates")
+                        .document(currentUid)
+                                .get()
+                                        .addOnSuccessListener(documentSnapshot -> {
+                                            profile = documentSnapshot.toObject(CandidateProfile.class);
+                                            profile.setUid(documentSnapshot.getId());
+
+                                            Glide.with(getActivity())
+                                                 .load(profile.getPersonalInfo().getProfilePhotoUrl())
+                                                 .into(ivCandidateProfilePhoto);
+
+                                            ivCandidateProfileUserName.setText(profile.getPersonalInfo().getFullName());
+                                            ivCandidateProfileUserEmail.setText(profile.getPersonalInfo().getEmail());
+
+                                        });
+
         db.collection("candidateSavedJobs")
                 .document(currentUid)
                 .collection("savedJobs")
@@ -99,6 +134,18 @@ public class CandidateProfileFragment extends Fragment {
                     long count = snapshots.size();  // realtime count
 
                     acbCandidateProfileSavedJobs.setText(String.valueOf(count));
+                });
+
+        db.collection("CandidateApplications")
+                .document(currentUid)
+                .collection("applications")
+                .addSnapshotListener((snapshots, error) -> {
+
+                    if (error != null || snapshots == null) return;
+
+                    long count = snapshots.size();  // realtime count
+
+                    acbCandidateProfileAppliedJobs.setText(String.valueOf(count));
                 });
 
 

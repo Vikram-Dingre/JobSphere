@@ -71,7 +71,6 @@
                 android:id="@+id/tvCandidateWorkExperienceJobTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Web Developer"
                 android:textSize="14sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"
@@ -92,7 +91,6 @@
                 android:id="@+id/tvCandidateWorkExperienceCurrentCompany"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Self Employed"
                 android:textSize="14sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"
@@ -114,7 +112,6 @@
                 android:id="@+id/tvCandidateWorkExperienceExperience"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5 years"
                 android:textSize="14sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"
@@ -138,80 +135,7 @@
                 android:layout_marginTop="10dp"
                 app:chipSpacing="8dp"
                 app:singleLine="false"
-                app:singleSelection="false">
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:checkable="false"
-                    app:chipCornerRadius="5dp"
-                    android:text="Part-Time"
-                    android:backgroundTint="#279582FC"
-                    android:textColor="@color/black" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:checkable="false"
-                    app:chipCornerRadius="5dp"
-                    android:text="Full-Time"
-                    android:backgroundTint="#279582FC"
-                    android:textColor="@color/black" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:checkable="false"
-                    app:chipCornerRadius="5dp"
-                    android:text="Remote"
-                    android:backgroundTint="#279582FC"
-                    android:textColor="@color/black" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:checkable="false"
-                    app:chipCornerRadius="5dp"
-                    android:text="Remote"
-                    android:backgroundTint="#279582FC"
-                    android:textColor="@color/black" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:checkable="false"
-                    app:chipCornerRadius="5dp"
-                    android:text="Remote"
-                    android:backgroundTint="#279582FC"
-                    android:textColor="@color/black" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:checkable="false"
-                    app:chipCornerRadius="5dp"
-                    android:text="Remote"
-                    android:backgroundTint="#279582FC"
-                    android:textColor="@color/black" />
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:clickable="false"
-                    android:checkable="false"
-                    app:chipCornerRadius="5dp"
-                    android:text="Remote"
-                    android:backgroundTint="#279582FC"
-                    android:textColor="@color/black" />
-
-
-            </com.google.android.material.chip.ChipGroup>
+                app:singleSelection="false"/>
 
             <TextView
                 android:layout_marginTop="20dp"
@@ -225,7 +149,6 @@
                 android:id="@+id/tvCandidateWorkExperienceExpectedSalary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="10 LPA"
                 android:textSize="14sp"
                 android:textColor="#5A5959"
                 android:background="@drawable/image_shape"
