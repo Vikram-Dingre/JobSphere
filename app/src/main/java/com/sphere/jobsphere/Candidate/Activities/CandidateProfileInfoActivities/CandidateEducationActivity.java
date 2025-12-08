@@ -42,9 +42,9 @@ public class CandidateEducationActivity extends AppCompatActivity {
                     profile = documentSnapshot.toObject(CandidateProfile.class);
                     profile.setUid(documentSnapshot.getId());
 
-                    tvCandidateEducationQualifications.setText(profile.getEducation().get(0).getQualification() + "");
-                    tvCandidateEducationBranch.setText(profile.getEducation().get(0).getSpecialization()+ "");
-                    tvCandidateEducationUniversity.setText(profile.getEducation().get(0).getUniversity() + "");
+                    tvCandidateEducationQualifications.setText(profile.getEducation().get(0).getQualification());
+                    tvCandidateEducationBranch.setText(profile.getEducation().get(0).getSpecialization());
+                    tvCandidateEducationUniversity.setText(profile.getEducation().get(0).getUniversity());
                     tvCandidateEducationGraduationYear.setText(profile.getEducation().get(0).getGraduationYear() + "");
 
                 });

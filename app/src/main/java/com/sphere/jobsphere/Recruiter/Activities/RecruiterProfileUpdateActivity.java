@@ -13,19 +13,20 @@ import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileInfoActivities.
 import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdatePersonalInfoActivity;
 
 public class RecruiterProfileUpdateActivity extends AppCompatActivity {
-    ImageView ivUpdatePersonalInfo,ivUpdateCompanyDetail,ivUpdateCompanyLocation;
+    ImageView ivUpdatePersonalInfo, ivUpdateCompanyDetail, ivUpdateCompanyLocation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recruiter_profile_update);
-        ivUpdatePersonalInfo=findViewById(R.id.ivRecruiterProfileUpdatePersonalInformationUpdate);
-        ivUpdateCompanyDetail=findViewById(R.id.ivRecruiterProfileUpdateCompanyDetailsUpdate);
-        ivUpdateCompanyLocation=findViewById(R.id.ivRecruiterProfileUpdateCompanyLocationUpdate);
+        ivUpdatePersonalInfo = findViewById(R.id.ivRecruiterProfileUpdatePersonalInformationUpdate);
+        ivUpdateCompanyDetail = findViewById(R.id.ivRecruiterProfileUpdateCompanyDetailsUpdate);
+        ivUpdateCompanyLocation = findViewById(R.id.ivRecruiterProfileUpdateCompanyLocationUpdate);
 
         ivUpdatePersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(RecruiterProfileUpdateActivity.this, RecruiterUpdatePersonalInfoActivity.class);
+                Intent i = new Intent(RecruiterProfileUpdateActivity.this, RecruiterUpdatePersonalInfoActivity.class);
                 startActivity(i);
             }
         });
@@ -33,7 +34,7 @@ public class RecruiterProfileUpdateActivity extends AppCompatActivity {
         ivUpdateCompanyDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(RecruiterProfileUpdateActivity.this, RecruiterUpdateCompanyDetailActivity.class);
+                Intent i = new Intent(RecruiterProfileUpdateActivity.this, RecruiterUpdateCompanyDetailActivity.class);
                 startActivity(i);
             }
         });
@@ -41,7 +42,7 @@ public class RecruiterProfileUpdateActivity extends AppCompatActivity {
         ivUpdateCompanyLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(RecruiterProfileUpdateActivity.this, RecruiterUpdateComapnyLocationActivity.class);
+                Intent i = new Intent(RecruiterProfileUpdateActivity.this, RecruiterUpdateComapnyLocationActivity.class);
                 startActivity(i);
             }
         });

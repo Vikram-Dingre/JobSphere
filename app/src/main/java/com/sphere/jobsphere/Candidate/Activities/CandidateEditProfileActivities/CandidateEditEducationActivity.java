@@ -13,15 +13,15 @@ import com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels.Candida
 import com.sphere.jobsphere.R;
 
 public class CandidateEditEducationActivity extends AppCompatActivity {
-EditText etCandidateEditEducationQualifications,etCandidateEditEducationBranch,etCandidateEditEducationUniversity,etCandidateEditEducationGraduationYear;
-ImageView ivCandidateEditProfileEducationSaveButton;
+    EditText etCandidateEditEducationQualifications, etCandidateEditEducationBranch, etCandidateEditEducationUniversity, etCandidateEditEducationGraduationYear;
+    ImageView ivCandidateEditProfileEducationSaveButton;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String currentUid;
 
     CandidateProfile profile;
 
-@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_candidate_edit_education);
@@ -32,29 +32,29 @@ ImageView ivCandidateEditProfileEducationSaveButton;
         etCandidateEditEducationBranch = findViewById(R.id.etCandidateEditEducationBranch);
         etCandidateEditEducationUniversity = findViewById(R.id.etCandidateEditEducationUniversity);
         etCandidateEditEducationGraduationYear = findViewById(R.id.etCandidateEditEducationGraduationYear);
-    ivCandidateEditProfileEducationSaveButton = findViewById(R.id.ivCandidateEditProfileEducationSaveButton);
+        ivCandidateEditProfileEducationSaveButton = findViewById(R.id.ivCandidateEditProfileEducationSaveButton);
 
 
+        fetchEducation();
 
-    fetchEducation();
+        ivCandidateEditProfileEducationSaveButton.setOnClickListener(v -> {
+            profile.getEducation().get(0).setQualification(etCandidateEditEducationQualifications.getText().toString());
+            profile.getEducation().get(0).setSpecialization(etCandidateEditEducationBranch.getText().toString());
+            profile.getEducation().get(0).setUniversity(etCandidateEditEducationUniversity.getText().toString());
+            profile.getEducation().get(0).setGraduationYear(Integer.parseInt(etCandidateEditEducationGraduationYear.getText().toString().trim()));
 
-    ivCandidateEditProfileEducationSaveButton.setOnClickListener(v -> {
-        profile.getEducation().get(0).setQualification(etCandidateEditEducationQualifications.getText().toString());
-        profile.getEducation().get(0).setSpecialization(etCandidateEditEducationBranch.getText().toString());
-        profile.getEducation().get(0).setUniversity(etCandidateEditEducationUniversity.getText().toString());
-        profile.getEducation().get(0).setGraduationYear(Integer.parseInt(etCandidateEditEducationGraduationYear.getText().toString().trim()));
+            db.collection("candidates")
+                    .document(currentUid)
+                    .set(profile);
 
-        db.collection("candidates")
-                .document(currentUid)
-                .set(profile);
+            Intent intent = new Intent(this, CandidateEditProfileActivity.class);
+            startActivity(intent);
+            finish();
 
-        Intent intent = new Intent(this, CandidateEditProfileActivity.class);
-        startActivity(intent);
-        finish();
-
-    });
+        });
 
     }
+
     private void fetchEducation() {
         db.collection("candidates")
                 .document(currentUid)
@@ -66,7 +66,7 @@ ImageView ivCandidateEditProfileEducationSaveButton;
                     etCandidateEditEducationQualifications.setText(profile.getEducation().get(0).getQualification());
                     etCandidateEditEducationBranch.setText(profile.getEducation().get(0).getSpecialization());
                     etCandidateEditEducationUniversity.setText(profile.getEducation().get(0).getUniversity());
-                    etCandidateEditEducationGraduationYear.setText(profile.getEducation().get(0).getGraduationYear()+"");
+                    etCandidateEditEducationGraduationYear.setText(profile.getEducation().get(0).getGraduationYear() + "");
                 });
     }
 }

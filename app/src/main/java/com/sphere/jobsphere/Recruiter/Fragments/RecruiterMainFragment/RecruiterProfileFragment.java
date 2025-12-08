@@ -17,15 +17,15 @@ import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileUpdateActivity;
 
 
 public class RecruiterProfileFragment extends Fragment {
-    ImageView ivEditProfile,ivOpenPersonalInfo,ivOpenCompanyDetails,ivOpenCompanyLocation;
+    ImageView ivEditProfile, ivOpenPersonalInfo, ivOpenCompanyDetails, ivOpenCompanyLocation;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_recruiter_profile, container, false);
         ivEditProfile = view.findViewById(R.id.ivRecruiterProfileEditProfile);
-        ivOpenPersonalInfo=view.findViewById(R.id.ivRecruiterProfilePersonalInformation);
-        ivOpenCompanyDetails=view.findViewById(R.id.ivRecruiterProfileCompanyDetails);
-        ivOpenCompanyLocation=view.findViewById(R.id.ivRecruiterProfileCompanyLocation);
+        ivOpenPersonalInfo = view.findViewById(R.id.ivRecruiterProfilePersonalInformation);
+        ivOpenCompanyDetails = view.findViewById(R.id.ivRecruiterProfileCompanyDetails);
+        ivOpenCompanyLocation = view.findViewById(R.id.ivRecruiterProfileCompanyLocation);
 
         ivEditProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,7 +38,7 @@ public class RecruiterProfileFragment extends Fragment {
         ivOpenPersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getActivity(), RecruiterPersonalInfoActivity.class);
+                Intent i = new Intent(getActivity(), RecruiterPersonalInfoActivity.class);
                 startActivity(i);
             }
         });
@@ -46,7 +46,7 @@ public class RecruiterProfileFragment extends Fragment {
         ivOpenCompanyDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getActivity(), RecruiterCompanyDetailsActivity.class);
+                Intent i = new Intent(getActivity(), RecruiterCompanyDetailsActivity.class);
                 startActivity(i);
             }
         });
@@ -54,7 +54,7 @@ public class RecruiterProfileFragment extends Fragment {
         ivOpenCompanyLocation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getActivity(), RecruiterCompanyLocationInfoActivity.class);
+                Intent i = new Intent(getActivity(), RecruiterCompanyLocationInfoActivity.class);
                 startActivity(i);
             }
         });

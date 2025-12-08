@@ -13,7 +13,7 @@ import com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels.Candida
 import com.sphere.jobsphere.R;
 
 public class CandidateEditProfileActivity extends AppCompatActivity {
-ImageView ivCandidateEditProfileSaveButton,ivCandidateEditProfileImage,ivCandidateEditProfileEditIcon,ivCandidateEditProfilePersonalInfo,ivCandidateEditProfileWorkExperience,ivCandidateEditProfileEducations;
+    ImageView ivCandidateEditProfileSaveButton, ivCandidateEditProfileImage, ivCandidateEditProfileEditIcon, ivCandidateEditProfilePersonalInfo, ivCandidateEditProfileWorkExperience, ivCandidateEditProfileEducations;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -64,7 +64,7 @@ ImageView ivCandidateEditProfileSaveButton,ivCandidateEditProfileImage,ivCandida
 //                    .set(profile);
 
             Intent intent = new Intent(this, CandidateHomeActivity.class);
-            intent.putExtra("openFragment","profile");
+            intent.putExtra("openFragment", "profile");
             startActivity(intent);
 
         });
@@ -75,7 +75,7 @@ ImageView ivCandidateEditProfileSaveButton,ivCandidateEditProfileImage,ivCandida
     private void fetchProfile() {
         db.collection("candidates")
                 .document(currentUid)
-                .addSnapshotListener((documentSnapshot,e) -> {
+                .addSnapshotListener((documentSnapshot, e) -> {
                     profile = documentSnapshot.toObject(CandidateProfile.class);
                     profile.setUid(documentSnapshot.getId());
                 });

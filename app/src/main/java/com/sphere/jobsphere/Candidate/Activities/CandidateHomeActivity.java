@@ -59,9 +59,9 @@ public class CandidateHomeActivity extends AppCompatActivity {
                     .replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateJobsFragment())
                     .addToBackStack(null)
                     .commit();
-        }else if ("profile".equals(openFragment)){
+        } else if ("profile".equals(openFragment)) {
             // Set Applications tab selected
-            bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_profile);
+            bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_applications);
 
             // Load ApplicationsFragment
             getSupportFragmentManager()
@@ -69,7 +69,7 @@ public class CandidateHomeActivity extends AppCompatActivity {
                     .replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateProfileFragment())
                     .addToBackStack(null)
                     .commit();
-        }else {
+        } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateHomeFragment()).commit();
         }
 

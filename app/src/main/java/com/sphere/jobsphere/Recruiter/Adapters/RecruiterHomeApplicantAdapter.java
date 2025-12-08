@@ -1,17 +1,21 @@
 package com.sphere.jobsphere.Recruiter.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.sphere.jobsphere.R;
+import com.sphere.jobsphere.Recruiter.Activities.RecruiterApplicantDetailActivity;
 import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterApplicantsModel;
 
 import java.util.List;
@@ -38,7 +42,19 @@ public class RecruiterHomeApplicantAdapter extends RecyclerView.Adapter<Recruite
                 .load(applicant.getApplicantProfilePhoto())
                 .into(holder.applicantProfilePhoto);
         holder.applicantName.setText(applicant.applicantName);
-        holder.applicantSpecificatin.setText(applicant.applicantSpecification);
+        holder.applicantSpecificatin.setText(applicant.applicantEmail);
+        holder.acbApplicantSeeResume.setOnClickListener(v -> {
+            Toast.makeText(context, applicant.getApplicantResume(), Toast.LENGTH_SHORT).show();
+        });
+
+        holder.acbApplicantSeeDetail.setOnClickListener(v -> {
+            Intent intent = new Intent(context, RecruiterApplicantDetailActivity.class);
+            intent.putExtra("jobId", applicant.getJobId());
+            intent.putExtra("applicantId", applicant.id);
+            context.startActivity(intent);
+
+        });
+
     }
 
     @Override
@@ -50,13 +66,15 @@ public class RecruiterHomeApplicantAdapter extends RecyclerView.Adapter<Recruite
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView applicantProfilePhoto;
         TextView applicantName, applicantSpecificatin;
-
+        AppCompatButton acbApplicantSeeResume, acbApplicantSeeDetail;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             applicantProfilePhoto = itemView.findViewById(R.id.ivApplicantProfilePhoto);
             applicantName = itemView.findViewById(R.id.tvApplicantName);
             applicantSpecificatin = itemView.findViewById(R.id.tvApplicantSpecification);
+            acbApplicantSeeResume = itemView.findViewById(R.id.acbApplicantSeeResume);
+            acbApplicantSeeDetail = itemView.findViewById(R.id.acbApplicantSeeDetail);
         }
     }
 }

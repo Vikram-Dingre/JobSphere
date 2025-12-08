@@ -13,8 +13,8 @@ import com.sphere.jobsphere.Candidate.Models.CandidateProfileSetupModels.Candida
 import com.sphere.jobsphere.R;
 
 public class CandidateEditWorkExperienceActivity extends AppCompatActivity {
-EditText etCandidateEditWorkExperienceJobTitle,etCandidateEditWorkExperienceCurrentCompany,etCandidateEditWorkExperienceExperience,etCandidateEditWorkExperienceExpectedSalary;
-ImageView ivCandidateEditProfileWorkExperienceSaveButton;
+    EditText etCandidateEditWorkExperienceJobTitle, etCandidateEditWorkExperienceCurrentCompany, etCandidateEditWorkExperienceExperience, etCandidateEditWorkExperienceExpectedSalary;
+    ImageView ivCandidateEditProfileWorkExperienceSaveButton;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String currentUid;
@@ -53,6 +53,7 @@ ImageView ivCandidateEditProfileWorkExperienceSaveButton;
         });
 
     }
+
     private void fetchDefaultWorkExperience() {
         db.collection("candidates")
                 .document(currentUid)
@@ -64,7 +65,7 @@ ImageView ivCandidateEditProfileWorkExperienceSaveButton;
                     etCandidateEditWorkExperienceJobTitle.setText(profile.getProfessionalDetails().getJobTitle());
                     etCandidateEditWorkExperienceCurrentCompany.setText(profile.getProfessionalDetails().getCurrentCompany());
                     etCandidateEditWorkExperienceExperience.setText(profile.getProfessionalDetails().getExperience());
-                    etCandidateEditWorkExperienceExpectedSalary.setText(profile.getProfessionalDetails().getExpectedSalary()+"");
+                    etCandidateEditWorkExperienceExpectedSalary.setText(profile.getProfessionalDetails().getExpectedSalary() + "");
                 });
     }
 }

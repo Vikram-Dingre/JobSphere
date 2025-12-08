@@ -81,9 +81,9 @@ public class RecruiterHomeFragment extends Fragment {
 
     private void loadApplicantsData() {
         for (int i = 1; i <= 5; i++) {
-            applicants.add(new RecruiterApplicantsModel("https://dummyimage.com/100x100/000/fff&text=" + i,
+            applicants.add(new RecruiterApplicantsModel("", "", "", "https://dummyimage.com/100x100/000/fff&text=" + i,
                     i % 2 == 1 ? "Shivam Thosar" : "Vikram Dingre",
-                    i % 2 == 1 ? "Frontend Devloper" : "Backend Devloper"));
+                    i % 2 == 1 ? "Frontend Devloper" : "Backend Devloper", "", "", ""));
         }
     }
 

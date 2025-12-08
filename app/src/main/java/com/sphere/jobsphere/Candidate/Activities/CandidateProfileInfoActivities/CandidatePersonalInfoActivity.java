@@ -12,7 +12,7 @@ import com.sphere.jobsphere.R;
 
 public class CandidatePersonalInfoActivity extends AppCompatActivity {
 
-    TextView tvCandidatePersonalInfoFullName, tvCandidatePersonalInfoDateOfBirth,tvCandidatePersonalInfoEmail,tvCandidatePersonalInfoPhone,tvCandidatePersonalInfoLocation;
+    TextView tvCandidatePersonalInfoFullName, tvCandidatePersonalInfoDateOfBirth, tvCandidatePersonalInfoEmail, tvCandidatePersonalInfoPhone, tvCandidatePersonalInfoLocation;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -45,11 +45,11 @@ public class CandidatePersonalInfoActivity extends AppCompatActivity {
                     profile = documentSnapshot.toObject(CandidateProfile.class);
                     profile.setUid(documentSnapshot.getId());
 
-                    tvCandidatePersonalInfoFullName.setText(profile.getPersonalInfo().getFullName()+"");
-                    tvCandidatePersonalInfoDateOfBirth.setText(profile.getPersonalInfo().getDob()+"");
-                    tvCandidatePersonalInfoEmail.setText(profile.getPersonalInfo().getEmail()+"");
-                    tvCandidatePersonalInfoPhone.setText(profile.getPersonalInfo().getPhone()+"");
-                    tvCandidatePersonalInfoLocation.setText(profile.getPersonalInfo().getCurrentLocation()+"");
+                    tvCandidatePersonalInfoFullName.setText(profile.getPersonalInfo().getFullName());
+                    tvCandidatePersonalInfoDateOfBirth.setText(profile.getPersonalInfo().getDob());
+                    tvCandidatePersonalInfoEmail.setText(profile.getPersonalInfo().getEmail());
+                    tvCandidatePersonalInfoPhone.setText(profile.getPersonalInfo().getPhone());
+                    tvCandidatePersonalInfoLocation.setText(profile.getPersonalInfo().getCurrentLocation());
 
                 });
 

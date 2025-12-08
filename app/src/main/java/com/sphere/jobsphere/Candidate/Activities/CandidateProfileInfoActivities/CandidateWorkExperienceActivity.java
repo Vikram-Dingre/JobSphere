@@ -15,8 +15,8 @@ import com.sphere.jobsphere.R;
 
 public class CandidateWorkExperienceActivity extends AppCompatActivity {
 
-TextView tvCandidateWorkExperienceJobTitle,tvCandidateWorkExperienceCurrentCompany,tvCandidateWorkExperienceExperience,tvCandidateWorkExperienceExpectedSalary;
-ChipGroup cgCandidateWorkExperienceSkills;
+    TextView tvCandidateWorkExperienceJobTitle, tvCandidateWorkExperienceCurrentCompany, tvCandidateWorkExperienceExperience, tvCandidateWorkExperienceExpectedSalary;
+    ChipGroup cgCandidateWorkExperienceSkills;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -49,27 +49,27 @@ ChipGroup cgCandidateWorkExperienceSkills;
                     profile = documentSnapshot.toObject(CandidateProfile.class);
                     profile.setUid(documentSnapshot.getId());
 
-                    tvCandidateWorkExperienceJobTitle.setText(profile.getProfessionalDetails().getJobTitle()+"");
-                    tvCandidateWorkExperienceCurrentCompany.setText(profile.getProfessionalDetails().getCurrentCompany()+"");
-                    tvCandidateWorkExperienceExperience.setText(profile.getProfessionalDetails().getExperience()+"");
-                    tvCandidateWorkExperienceExpectedSalary.setText(profile.getProfessionalDetails().getExpectedSalary()+"");
+                    tvCandidateWorkExperienceJobTitle.setText(profile.getProfessionalDetails().getJobTitle());
+                    tvCandidateWorkExperienceCurrentCompany.setText(profile.getProfessionalDetails().getCurrentCompany());
+                    tvCandidateWorkExperienceExperience.setText(profile.getProfessionalDetails().getExperience());
+                    tvCandidateWorkExperienceExpectedSalary.setText(profile.getProfessionalDetails().getExpectedSalary() + "");
 
 
-                        cgCandidateWorkExperienceSkills.removeAllViews(); // Clear previous chips if any
+                    cgCandidateWorkExperienceSkills.removeAllViews(); // Clear previous chips if any
 
-                        for (String skill : profile.getProfessionalDetails().getSkills()) {
-                            skill = skill.trim(); // remove extra spaces
+                    for (String skill : profile.getProfessionalDetails().getSkills()) {
+                        skill = skill.trim(); // remove extra spaces
 
-                            Chip chip = new Chip(this);
-                            chip.setText(skill);
+                        Chip chip = new Chip(this);
+                        chip.setText(skill);
 
-                            // Style the chip
-                            chip.setChipBackgroundColorResource(R.color.lightPurple);
-                            chip.setTextColor(ContextCompat.getColor(this, R.color.black));
-                            chip.setClickable(false);
-                            chip.setCheckable(false);
+                        // Style the chip
+                        chip.setChipBackgroundColorResource(R.color.lightPurple);
+                        chip.setTextColor(ContextCompat.getColor(this, R.color.black));
+                        chip.setClickable(false);
+                        chip.setCheckable(false);
 
-                            cgCandidateWorkExperienceSkills.addView(chip);
+                        cgCandidateWorkExperienceSkills.addView(chip);
                     }
 
                 });

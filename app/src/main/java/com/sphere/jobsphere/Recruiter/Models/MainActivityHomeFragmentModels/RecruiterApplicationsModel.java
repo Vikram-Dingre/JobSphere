@@ -5,7 +5,7 @@ import java.util.List;
 
 public class RecruiterApplicationsModel {
 
-    private String id;                  // Firestore document ID
+    public String id;                  // Firestore document ID
     private String title;               // Job title
     private String description;         // Full job description
     private String companyName;         // Company name

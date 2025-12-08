@@ -14,18 +14,17 @@
         tools:targetApi="31">
         <activity
             android:name=".Recruiter.Activities.RecruiterApplicationDetailActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="false">
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Recruiter.Activities.RecruiterApplicationActivity"
             android:exported="false" />
         <activity
             android:name=".Recruiter.Activities.RecruiterCreateNewJobActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Recruiter.Activities.RecruiterApplicantDetailActivity"
             android:exported="false" />
         <activity
             android:name=".Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdateComapnyLocationActivity"
@@ -116,12 +115,12 @@
             android:exported="false" />
         <activity
             android:name=".Common.Activities.CommonSplashActivity"
-            android:exported="false">
-            <!--<intent-filter>
+            android:exported="true">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
 
         <meta-data

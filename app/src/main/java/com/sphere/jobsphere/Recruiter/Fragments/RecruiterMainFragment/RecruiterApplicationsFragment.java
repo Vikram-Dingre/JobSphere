@@ -11,14 +11,17 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.R;
 import com.sphere.jobsphere.Recruiter.Activities.RecruiterCreateNewJobActivity;
 import com.sphere.jobsphere.Recruiter.Adapters.RecruiterApplicationsPageAdapter;
 import com.sphere.jobsphere.Recruiter.Models.MainActivityHomeFragmentModels.RecruiterApplicationsModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class RecruiterApplicationsFragment extends Fragment {
@@ -28,6 +31,10 @@ public class RecruiterApplicationsFragment extends Fragment {
     RecruiterApplicationsPageAdapter adapter;
     ImageView ivAddNewJob;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+
+    String currentUid;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,55 +42,45 @@ public class RecruiterApplicationsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recruiter_applications, container, false);
         applicationsRecyclerView = view.findViewById(R.id.rvRecruiterAFApplications);
 
-        ivAddNewJob=view.findViewById(R.id.ivRecruiterApplicationCreateJob);
+        currentUid = auth.getCurrentUser().getUid();
+
+        ivAddNewJob = view.findViewById(R.id.ivRecruiterApplicationCreateJob);
+
+        applicationsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
+        adapter = new RecruiterApplicationsPageAdapter(applications, getActivity());
+        applicationsRecyclerView.setAdapter(adapter);
 
         ivAddNewJob.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(getActivity(), RecruiterCreateNewJobActivity.class);
+                Intent i = new Intent(getActivity(), RecruiterCreateNewJobActivity.class);
                 startActivity(i);
             }
         });
+
         loadApplicationsData();
-        loadApplicationsRecyclerView();
+
         return view;
     }
 
-    private void loadApplicationsRecyclerView() {
-        applicationsRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.VERTICAL, false));
-        adapter = new RecruiterApplicationsPageAdapter(applications, getActivity());
-        applicationsRecyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-    }
-
     private void loadApplicationsData() {
-        for (int i = 1; i <= 30; i++) {
-
-            applications.add(new RecruiterApplicationsModel("job" + i, // id
-                    "Software Engineer " + i, // title
-                    "We are looking for a passionate Software Engineer to join our dynamic team and work on exciting projects " + i, // description
-                    "Company " + i, // companyName
-                    "https://dummyimage.com/100x100/000/fff&text=" + i, // companyLogo
-                    i % 2 == 0 ? "Bangalore" : "Mumbai", // location
-                    i % 2 == 0 ? "Full-Time" : "Part-Time", // jobType
-                    Arrays.asList("Remote", "Hybrid"), // jobTypes
-                    i % 3 == 0 ? "IT" : "Finance", // category
-                    "Java, Spring Boot, SQL", // skillsRequired
-                    Arrays.asList("Java", "Spring Boot", "SQL", "Firebase"), // skillsList
-                    "₹" + (5 + i) + " LPA", // salary
-                    5000.0 + i, // minSalary
-                    10000.0 + i, // maxSalary
-                    i % 2 == 0 ? "Mid Level" : "Entry Level", // experienceLevel
-                    "B.Tech / M.Tech", // education
-                    System.currentTimeMillis() - (i * 86400000L), // postedAt (i days ago)
-                    System.currentTimeMillis() + (30 * 86400000L), // deadline (30 days from now)
-                    "recruiter" + i, // recruiterId
-                    "Recruiter " + i, // recruiterName
-                    "recruiter" + i + "@company.com", // recruiterEmail
-                    i * 3, // applicantsCount
-                    Arrays.asList("cand1", "cand2", "cand3"), // applicants
-                    Math.random() * 100 // matchScore
-            ));
-        }
+        applications.clear();
+        db.collection("jobs")
+                .whereEqualTo("recruiterId", currentUid)
+                .addSnapshotListener((snapshots, e) -> {
+                    if (snapshots == null) {
+                        return;
+                    }
+                    int size = snapshots.size();
+                    AtomicInteger loaded = new AtomicInteger(0);
+                    for (DocumentSnapshot documentSnapshot : snapshots.getDocuments()) {
+                        RecruiterApplicationsModel job = documentSnapshot.toObject(RecruiterApplicationsModel.class);
+                        job.id = documentSnapshot.getId();
+                        applications.add(job);
+                        if (loaded.incrementAndGet() == size) {
+                            adapter.notifyDataSetChanged();
+                        }
+                    }
+                });
     }
 }

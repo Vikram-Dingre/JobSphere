@@ -8,19 +8,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.sphere.jobsphere.Candidate.Models.CandidateApplicationModel;
-import com.sphere.jobsphere.Candidate.Models.CandidateJobModel;
 import com.sphere.jobsphere.R;
 
 public class RecruiterApplicationDetailActivity extends AppCompatActivity {
@@ -35,6 +26,7 @@ public class RecruiterApplicationDetailActivity extends AppCompatActivity {
 
     private String currentTab;
     private String jobId;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

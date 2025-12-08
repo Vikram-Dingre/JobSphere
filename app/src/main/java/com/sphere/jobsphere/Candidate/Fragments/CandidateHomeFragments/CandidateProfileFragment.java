@@ -32,7 +32,7 @@ import com.sphere.jobsphere.Common.Activities.CommonLoginActivity;
 import com.sphere.jobsphere.R;
 
 public class CandidateProfileFragment extends Fragment {
-    AppCompatButton acbCandidateProfileSavedJobs,acbCandidateProfileAppliedJobs;
+    AppCompatButton acbCandidateProfileSavedJobs, acbCandidateProfileAppliedJobs;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
     String currentUid;
@@ -42,9 +42,10 @@ public class CandidateProfileFragment extends Fragment {
 
     LinearLayout llCandidateProfilePersonalInfo, llCandidateProfileWorkExperience, llCandidateProfileEducation, llCandidateProfileLogOut;
 
-    ImageView ivCandidateProfilePhoto,ivCandidateProfileEditProfile;
-    TextView ivCandidateProfileUserName,ivCandidateProfileUserEmail;
-CandidateProfile profile;
+    ImageView ivCandidateProfilePhoto, ivCandidateProfileEditProfile;
+    TextView ivCandidateProfileUserName, ivCandidateProfileUserEmail;
+    CandidateProfile profile;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_candidate_profile, container, false);
@@ -119,22 +120,22 @@ CandidateProfile profile;
     private void calculateBoxCounts() {
 
         db.collection("candidates")
-                        .document(currentUid)
-                                        .addSnapshotListener((documentSnapshot,error) -> {
+                .document(currentUid)
+                .addSnapshotListener((documentSnapshot, error) -> {
 
-                                            if (error != null || documentSnapshot == null) return;
-                                            
-                                            profile = documentSnapshot.toObject(CandidateProfile.class);
-                                            profile.setUid(documentSnapshot.getId());
+                    if (error != null || documentSnapshot == null) return;
 
-                                            Glide.with(getActivity())
-                                                 .load(profile.getPersonalInfo().getProfilePhotoUrl())
-                                                 .into(ivCandidateProfilePhoto);
+                    profile = documentSnapshot.toObject(CandidateProfile.class);
+                    profile.setUid(documentSnapshot.getId());
 
-                                            ivCandidateProfileUserName.setText(profile.getPersonalInfo().getFullName());
-                                            ivCandidateProfileUserEmail.setText(profile.getPersonalInfo().getEmail());
+                    Glide.with(getActivity())
+                            .load(profile.getPersonalInfo().getProfilePhotoUrl())
+                            .into(ivCandidateProfilePhoto);
 
-                                        });
+                    ivCandidateProfileUserName.setText(profile.getPersonalInfo().getFullName());
+                    ivCandidateProfileUserEmail.setText(profile.getPersonalInfo().getEmail());
+
+                });
 
         db.collection("candidateSavedJobs")
                 .document(currentUid)

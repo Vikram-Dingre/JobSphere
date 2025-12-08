@@ -215,6 +215,7 @@
                     </LinearLayout>
 
                     <EditText
+                        android:id="@+id/etRecruiterApplicantDetailsMessage"
                         android:layout_width="match_parent"
                         android:layout_height="90dp"
                         android:layout_margin="12dp"
@@ -237,6 +238,7 @@
     </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/acbRecruiterApplicantDetailsSendButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"

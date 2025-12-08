@@ -78,8 +78,8 @@
                 android:hint="Georai"
                 android:textColorHint="#5A5959"
                 android:textSize="14sp"
-                android:textColor="#5A5959"
-                >
+                android:textColor="#5A5959">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieRecruiterUpdateCompanyLocationCity"
                     android:layout_width="match_parent"
@@ -105,8 +105,8 @@
                 android:hint="Maharastra"
                 android:textColorHint="#5A5959"
                 android:textSize="14sp"
-                android:textColor="#5A5959"
-                >
+                android:textColor="#5A5959">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieRecruiterUpdateCompanyLocationState"
                     android:layout_width="match_parent"
@@ -133,8 +133,8 @@
                 android:hint="India"
                 android:textColorHint="#5A5959"
                 android:textSize="14sp"
-                android:textColor="#5A5959"
-                >
+                android:textColor="#5A5959">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieRecruiterUpdateCompanyLocationCountry"
                     android:layout_width="match_parent"
@@ -160,14 +160,15 @@
                 android:hint="431127"
                 android:textColorHint="#5A5959"
                 android:textSize="14sp"
-                android:textColor="#5A5959"
-                >
+                android:textColor="#5A5959">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieRecruiterUpdateCompanyLocationZipCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
@@ -186,14 +187,15 @@
                 android:hint="Takadgoan road Sant Nagar , Georai"
                 android:textColorHint="#5A5959"
                 android:textSize="14sp"
-                android:textColor="#5A5959"
-                >
+                android:textColor="#5A5959">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieRecruiterUpdateCompanyLocationCompanyAddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
@@ -212,15 +214,14 @@
                 android:hint="I dont know..."
                 android:textColorHint="#5A5959"
                 android:textSize="14sp"
-                android:textColor="#5A5959"
-                >
+                android:textColor="#5A5959">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/tieRecruiterUpdateCompanyLocationAboutYourCompany"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
 
         </LinearLayout>

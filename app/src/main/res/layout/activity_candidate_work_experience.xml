@@ -135,7 +135,7 @@
                 android:layout_marginTop="10dp"
                 app:chipSpacing="8dp"
                 app:singleLine="false"
-                app:singleSelection="false"/>
+                app:singleSelection="false" />
 
             <TextView
                 android:layout_marginTop="20dp"

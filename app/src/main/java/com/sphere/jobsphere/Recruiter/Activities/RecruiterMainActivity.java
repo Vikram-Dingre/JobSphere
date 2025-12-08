@@ -24,8 +24,18 @@ public class RecruiterMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recruiter_main);
+
         bnvRecruiterMainActivityBottomMenu = findViewById(R.id.bnvRecruiterMainActivityBottomMenu);
-        getSupportFragmentManager().beginTransaction().replace(R.id.flRecruiterMainactivityFrameContainer, new RecruiterHomeFragment()).commit();
+
+        String openFragment = getIntent().getStringExtra("openFragment");
+
+        if ("applications".equals(openFragment)) {
+            bnvRecruiterMainActivityBottomMenu.setSelectedItemId(R.id.recruiter_main_bottom_menu_applications);
+            getSupportFragmentManager().beginTransaction().replace(R.id.flRecruiterMainactivityFrameContainer, new RecruiterApplicationsFragment()).commit();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.flRecruiterMainactivityFrameContainer, new RecruiterHomeFragment()).commit();
+        }
+
 
         bnvRecruiterMainActivityBottomMenu.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

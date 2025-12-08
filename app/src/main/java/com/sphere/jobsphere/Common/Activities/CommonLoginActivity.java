@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.R;
-import com.sphere.jobsphere.Recruiter.Activities.RecruiterHomeActivity;
+import com.sphere.jobsphere.Recruiter.Activities.RecruiterMainActivity;
 
 public class CommonLoginActivity extends AppCompatActivity {
     AppCompatButton acbLoginLogin, acbLoginSignUp;
@@ -67,12 +67,20 @@ public class CommonLoginActivity extends AppCompatActivity {
                             if (isProfileCompleted) {
                                 if (userRole.equals("seeker")) {
                                     new Handler().postDelayed(() -> {
-                                        startActivity(new Intent(this, CandidateHomeActivity.class));
+                                        Intent intent = new Intent(this, CandidateHomeActivity.class);
+                                        startActivity(intent);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                Intent.FLAG_ACTIVITY_NEW_TASK |
+                                                Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         finish();
                                     }, 1000);
                                 } else {
                                     new Handler().postDelayed(() -> {
-                                        startActivity(new Intent(this, RecruiterHomeActivity.class));
+                                        Intent intent = new Intent(this, RecruiterMainActivity.class);
+                                        startActivity(intent);
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP |
+                                                Intent.FLAG_ACTIVITY_NEW_TASK |
+                                                Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                         finish();
                                     }, 1000);
                                 }
