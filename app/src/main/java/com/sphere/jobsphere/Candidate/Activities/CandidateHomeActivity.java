@@ -59,7 +59,17 @@ public class CandidateHomeActivity extends AppCompatActivity {
                     .replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateJobsFragment())
                     .addToBackStack(null)
                     .commit();
-        } else {
+        }else if ("profile".equals(openFragment)){
+            // Set Applications tab selected
+            bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_profile);
+
+            // Load ApplicationsFragment
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateProfileFragment())
+                    .addToBackStack(null)
+                    .commit();
+        }else {
             getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, new CandidateHomeFragment()).commit();
         }
 

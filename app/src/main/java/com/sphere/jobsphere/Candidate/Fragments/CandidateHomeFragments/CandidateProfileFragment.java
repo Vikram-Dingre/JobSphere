@@ -21,6 +21,8 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.sphere.jobsphere.Candidate.Activities.CandidateEditProfileActivities.CandidateEditProfileActivity;
+import com.sphere.jobsphere.Candidate.Activities.CandidateHomeActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidateEducationActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidatePersonalInfoActivity;
 import com.sphere.jobsphere.Candidate.Activities.CandidateProfileInfoActivities.CandidateWorkExperienceActivity;
@@ -65,8 +67,16 @@ CandidateProfile profile;
         editor = pref.edit();
         calculateBoxCounts();
 
+        acbCandidateProfileAppliedJobs.setOnClickListener(v -> {
+            Fragment candidateApplicationsFragment = new CandidateApplicationsFragment();
+            CandidateHomeActivity activity = (CandidateHomeActivity) getActivity();
+            activity.bnvCandidateHomeActivityBottomMenu.setSelectedItemId(R.id.candidate_home_bottom_menu_applications);
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flCandidateHomeActivityFrameContainer, candidateApplicationsFragment).commit();
+        });
+
         ivCandidateProfileEditProfile.setOnClickListener(v -> {
-            makeText(getActivity(), "Editing Your Profile...", LENGTH_SHORT).show();
+            Intent intent = new Intent(getActivity(), CandidateEditProfileActivity.class);
+            startActivity(intent);
 
         });
 
@@ -110,8 +120,10 @@ CandidateProfile profile;
 
         db.collection("candidates")
                         .document(currentUid)
-                                .get()
-                                        .addOnSuccessListener(documentSnapshot -> {
+                                        .addSnapshotListener((documentSnapshot,error) -> {
+
+                                            if (error != null || documentSnapshot == null) return;
+                                            
                                             profile = documentSnapshot.toObject(CandidateProfile.class);
                                             profile.setUid(documentSnapshot.getId());
 
