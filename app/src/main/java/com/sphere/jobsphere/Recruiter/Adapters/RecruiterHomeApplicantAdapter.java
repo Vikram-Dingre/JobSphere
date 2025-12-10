@@ -41,8 +41,10 @@ public class RecruiterHomeApplicantAdapter extends RecyclerView.Adapter<Recruite
         Glide.with(context)
                 .load(applicant.getApplicantProfilePhoto())
                 .into(holder.applicantProfilePhoto);
+
         holder.applicantName.setText(applicant.applicantName);
         holder.applicantSpecificatin.setText(applicant.applicantEmail);
+
         holder.acbApplicantSeeResume.setOnClickListener(v -> {
             Toast.makeText(context, applicant.getApplicantResume(), Toast.LENGTH_SHORT).show();
         });

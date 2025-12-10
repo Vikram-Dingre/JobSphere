@@ -65,14 +65,6 @@
             android:layout_marginTop="10dp">
 
             <ImageView
-                android:id="@+id/ivRecruiterUpdateCompanyDetailsCompanyLogo"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:background="@drawable/applicant_profile_photo_shape"
-                android:clipToOutline="true"
-                android:src="@drawable/app_logo" />
-
-            <ImageView
                 android:id="@+id/ivRecruiterUpdateCompanyDetailsCompanyLogoUpdate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,16 +89,17 @@
             android:id="@+id/tilRecruiterUpdateCompanyDetailCompanyName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="#6200EE"
             android:hint="Mountreach Solution Pvt Ltd"
             android:textColorHint="#5A5959"
+            app:hintEnabled="false"
             android:textSize="14sp"
             android:textColor="#5A5959">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieRecruiterUpdateCompanyLocationCity"
+                android:id="@+id/tieRecruiterUpdateCompanyDetailsCompanyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -124,16 +117,17 @@
             android:id="@+id/tilRecruiterUpdateCompanyDetailIndustry"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="#6200EE"
+            app:hintEnabled="false"
             android:hint="IT"
             android:textColorHint="#5A5959"
             android:textSize="14sp"
             android:textColor="#5A5959">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieRecruiterUpdateCompanyLocationIndustry"
+                android:id="@+id/tieRecruiterUpdateCompanyDetailsIndustry"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -153,16 +147,17 @@
             android:id="@+id/tilRecruiterUpdateCompanyDetailCompanySize"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="#6200EE"
             android:hint="2000 Employees"
+            app:hintEnabled="false"
             android:textColorHint="#5A5959"
             android:textSize="14sp"
             android:textColor="#5A5959">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieRecruiterUpdateCompanyLocationSize"
+                android:id="@+id/tieRecruiterUpdateCompanyDetailsSize"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
@@ -180,16 +175,17 @@
             android:id="@+id/tilRecruiterUpdateCompanyDetailCompanyWebsite"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="#6200EE"
+            app:hintEnabled="false"
             android:hint="www.mountreachsolutionpvtltd.com"
             android:textColorHint="#5A5959"
             android:textSize="14sp"
             android:textColor="#5A5959">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieRecruiterUpdateCompanyLocationWebsite"
+                android:id="@+id/tieRecruiterUpdateCompanyDetailsWebsite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />

@@ -376,6 +376,7 @@
                         android:background="@color/bg" />
 
                     <LinearLayout
+                        android:id="@+id/llRecruiterProfileLogout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_vertical"

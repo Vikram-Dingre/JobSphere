@@ -72,11 +72,12 @@
                 android:id="@+id/tilRecruiterUpdateCompanyLocationCity"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#6200EE"
                 android:hint="Georai"
                 android:textColorHint="#5A5959"
+                app:hintEnabled="false"
                 android:textSize="14sp"
                 android:textColor="#5A5959">
 
@@ -99,11 +100,12 @@
                 android:id="@+id/tilRecruiterUpdateCompanyLocationState"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#6200EE"
                 android:hint="Maharastra"
                 android:textColorHint="#5A5959"
+                app:hintEnabled="false"
                 android:textSize="14sp"
                 android:textColor="#5A5959">
 
@@ -127,11 +129,12 @@
                 android:id="@+id/tilRecruiterUpdateCompanyLocationCountery"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#6200EE"
                 android:hint="India"
                 android:textColorHint="#5A5959"
+                app:hintEnabled="false"
                 android:textSize="14sp"
                 android:textColor="#5A5959">
 
@@ -154,11 +157,12 @@
                 android:id="@+id/tilRecruiterUpdateCompanyLocationZipCode"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#6200EE"
                 android:hint="431127"
                 android:textColorHint="#5A5959"
+                app:hintEnabled="false"
                 android:textSize="14sp"
                 android:textColor="#5A5959">
 
@@ -181,11 +185,12 @@
                 android:id="@+id/tilRecruiterUpdateCompanyLocationCompanyAddress"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#6200EE"
                 android:hint="Takadgoan road Sant Nagar , Georai"
                 android:textColorHint="#5A5959"
+                app:hintEnabled="false"
                 android:textSize="14sp"
                 android:textColor="#5A5959">
 
@@ -208,11 +213,12 @@
                 android:id="@+id/tilRecruiterUpdateCompanyLocationAboutYourCompany"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#6200EE"
                 android:hint="I dont know..."
                 android:textColorHint="#5A5959"
+                app:hintEnabled="false"
                 android:textSize="14sp"
                 android:textColor="#5A5959">
 

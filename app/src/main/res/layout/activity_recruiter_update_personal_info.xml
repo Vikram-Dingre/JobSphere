@@ -69,12 +69,13 @@
             android:id="@+id/tilRecruiterUpdatePersonalInfoFullName"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="#6200EE"
             android:hint="Shivam Ashok Thosar"
             android:textColorHint="#5A5959"
             android:textSize="14sp"
+            app:hintEnabled="false"
             android:textColor="#5A5959">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -97,10 +98,11 @@
             android:id="@+id/tilRecruiterUpdatePersonalInfoJobTitle"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="#6200EE"
             android:hint="Manager"
+            app:hintEnabled="false"
             android:textColorHint="#5A5959"
             android:textSize="14sp"
             android:textColor="#5A5959">
@@ -126,7 +128,8 @@
             android:id="@+id/tilRecruiterUpdatePersonalInfoEmailAddress"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="51dp"
+            android:layout_height="wrap_content"
+            app:hintEnabled="false"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="#6200EE"
             android:hint="shivam@gmail.com"
@@ -156,30 +159,28 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <TextView
                 android:layout_width="60dp"
-                android:layout_height="51dp"
+                android:layout_height="match_parent"
                 app:boxBackgroundMode="outline"
                 app:boxStrokeColor="#6200EE"
                 android:hint="+91"
+                android:gravity="center"
+                android:background="@drawable/input_shape"
+                android:backgroundTint="@color/dadada"
                 android:textColorHint="#5A5959"
-                android:textSize="14sp"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:layout_marginRight="5dp"
-                android:textColor="#5A5959">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none" />
-            </com.google.android.material.textfield.TextInputLayout>
+                android:textColor="#5A5959" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/tilRecruiterUpdatePersonalInfoPhoneNumber"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="51dp"
+                android:layout_height="wrap_content"
                 app:boxBackgroundMode="outline"
+                app:hintEnabled="false"
                 app:boxStrokeColor="#6200EE"
                 android:hint="922852921"
                 app:counterMaxLength="10"

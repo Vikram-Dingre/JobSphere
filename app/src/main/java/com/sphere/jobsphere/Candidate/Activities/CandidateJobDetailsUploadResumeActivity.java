@@ -146,6 +146,19 @@ public class CandidateJobDetailsUploadResumeActivity extends AppCompatActivity {
                             });
 
 
+//                      // Step 1: Ensure parent document exists
+//                                db.collection("recruiterJobApplicants")
+//                                        .document(jobId)
+//                                        .set(Collections.singletonMap("exists", true))
+//                                        .addOnSuccessListener(aVoid -> {
+//
+//                                            // Step 2: Add applicant
+//                                            db.collection("recruiterJobApplicants")
+//                                                    .document(jobId)
+//                                                    .collection("jobApplicants")
+//                                                    .add(applicant);
+//                                        });
+
 //                    db.collection("CandidateApplications")
 //                            .document(currentUid)
 //                            .collection("applications")

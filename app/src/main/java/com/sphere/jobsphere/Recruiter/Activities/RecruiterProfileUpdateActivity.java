@@ -13,7 +13,7 @@ import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileInfoActivities.
 import com.sphere.jobsphere.Recruiter.Activities.RecruiterProfileInfoActivities.RecruiterProfileUpdateActivities.RecruiterUpdatePersonalInfoActivity;
 
 public class RecruiterProfileUpdateActivity extends AppCompatActivity {
-    ImageView ivUpdatePersonalInfo, ivUpdateCompanyDetail, ivUpdateCompanyLocation;
+    ImageView ivUpdatePersonalInfo, ivUpdateCompanyDetail, ivUpdateCompanyLocation, ivRecruiterUpdateProfileSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +22,7 @@ public class RecruiterProfileUpdateActivity extends AppCompatActivity {
         ivUpdatePersonalInfo = findViewById(R.id.ivRecruiterProfileUpdatePersonalInformationUpdate);
         ivUpdateCompanyDetail = findViewById(R.id.ivRecruiterProfileUpdateCompanyDetailsUpdate);
         ivUpdateCompanyLocation = findViewById(R.id.ivRecruiterProfileUpdateCompanyLocationUpdate);
+        ivRecruiterUpdateProfileSave = findViewById(R.id.ivRecruiterUpdateProfileSave);
 
         ivUpdatePersonalInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +38,20 @@ public class RecruiterProfileUpdateActivity extends AppCompatActivity {
                 Intent i = new Intent(RecruiterProfileUpdateActivity.this, RecruiterUpdateCompanyDetailActivity.class);
                 startActivity(i);
             }
+        });
+
+        ivRecruiterUpdateProfileSave.setOnClickListener(v -> {
+
+            // update the profile image url here using profile object and then run next query
+
+//            db.collection("candidates")
+//                    .document(currentUid)
+//                    .set(profile);
+
+            Intent intent = new Intent(this, RecruiterMainActivity.class);
+            intent.putExtra("openFragment", "profile");
+            startActivity(intent);
+
         });
 
         ivUpdateCompanyLocation.setOnClickListener(new View.OnClickListener() {

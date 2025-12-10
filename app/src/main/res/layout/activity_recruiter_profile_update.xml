@@ -60,7 +60,7 @@
                         android:textStyle="bold" />
 
                     <ImageView
-                        android:id="@+id/ibCandidateHomeNotifications"
+                        android:id="@+id/ivRecruiterUpdateProfileSave"
                         app:tint="@color/white"
                         android:layout_width="0dp"
                         android:layout_height="22dp"

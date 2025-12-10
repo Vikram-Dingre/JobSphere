@@ -126,6 +126,8 @@ public class CandidateProfileFragment extends Fragment {
                     if (error != null || documentSnapshot == null) return;
 
                     profile = documentSnapshot.toObject(CandidateProfile.class);
+                    if (profile == null) return;
+
                     profile.setUid(documentSnapshot.getId());
 
                     Glide.with(getActivity())

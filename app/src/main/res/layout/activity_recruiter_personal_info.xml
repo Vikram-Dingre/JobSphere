@@ -55,17 +55,6 @@
         android:layout_marginHorizontal="20dp"
         android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/ivRecruiterPersonalInfoProfileImage"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/profile"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/circle"
-            android:backgroundTint="@color/primary"
-            android:clipToOutline="true"
-            android:scaleType="fitXY" />
 
         <TextView
             android:layout_marginTop="40dp"
@@ -155,6 +144,7 @@
                 android:textStyle="bold"
                 android:layout_marginRight="5dp"
                 android:textColor="#5A5959"
+                android:editable="false"
                 android:background="@drawable/image_shape"
                 android:backgroundTint="@color/white"
                 android:paddingHorizontal="15dp"

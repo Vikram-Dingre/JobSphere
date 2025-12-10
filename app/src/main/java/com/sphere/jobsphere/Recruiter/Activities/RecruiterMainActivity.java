@@ -32,6 +32,9 @@ public class RecruiterMainActivity extends AppCompatActivity {
         if ("applications".equals(openFragment)) {
             bnvRecruiterMainActivityBottomMenu.setSelectedItemId(R.id.recruiter_main_bottom_menu_applications);
             getSupportFragmentManager().beginTransaction().replace(R.id.flRecruiterMainactivityFrameContainer, new RecruiterApplicationsFragment()).commit();
+        } else if ("profile".equals(openFragment)) {
+            bnvRecruiterMainActivityBottomMenu.setSelectedItemId(R.id.recruiter_main_bottom_menu_profile);
+            getSupportFragmentManager().beginTransaction().replace(R.id.flRecruiterMainactivityFrameContainer, new RecruiterProfileFragment()).commit();
         } else {
             getSupportFragmentManager().beginTransaction().replace(R.id.flRecruiterMainactivityFrameContainer, new RecruiterHomeFragment()).commit();
         }
